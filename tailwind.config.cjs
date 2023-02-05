@@ -5,7 +5,7 @@ module.exports = {
 		extend: {
 			fontFamily: {
 				sans: ['inter'],
-				mono: ['JetBrains-Mono'],
+				mono: ['JetBrains Mono'],
 				display: ['Unbounded']
 			}
 		}
