@@ -2,10 +2,13 @@
 // for information about these interfaces
 declare global {
 	namespace App {
-		// interface Error {}
-		// interface Locals {}
-		// interface PageData {}
-		// interface Platform {}
+		interface Locals {
+			supabase: TypedSupabaseClient;
+			session: Session | null;
+		}
+		interface PageData {
+			session: import('@supabase/supabase-js').Session | null;
+		}
 	}
 }
 
