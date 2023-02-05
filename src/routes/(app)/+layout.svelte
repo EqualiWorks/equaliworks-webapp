@@ -40,7 +40,7 @@
 <div class="flex">
 	<LeftNav {navItems} />
 	<div class="w-full">
-		<div class="h-12 border-b flex items-center justify-between px-4">
+		<div class="h-12 border-b dark:border-neutral-700 flex items-center justify-between px-4">
 			<div class="text-xs text-neutral-400">/dashboard</div>
 			<div class="flex items-center">
 				<div
@@ -48,7 +48,7 @@
 				>
 					FH
 				</div>
-				<span class="text-xs">user</span>
+				<span class="text-xs dark:text-white">user</span>
 			</div>
 		</div>
 		<slot />

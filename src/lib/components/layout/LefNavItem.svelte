@@ -5,9 +5,9 @@
 	export let activeUrl: string;
 
 	const defaultClass =
-		'w-full font-medium text-neutral-500 flex items-center py-3 my-1 px-2 text-sm hover:bg-neutral-100 transition ease-in-out duration-100 rounded';
+		'w-full font-medium text-neutral-500 flex items-center py-3 my-1 px-2 text-sm dark:hover:bg-neutral-800 hover:bg-neutral-100 transition ease-in-out duration-100 rounded';
 	const activeClass =
-		'w-full font-medium flex items-center py-3 my-1 px-2 text-sm hover:bg-neutral-100 transition ease-in-out duration-100 rounded';
+		'w-full dark:text-white font-medium flex items-center py-3 my-1 px-2 text-sm dark:hover:bg-neutral-800 hover:bg-neutral-100 transition ease-in-out duration-100 rounded';
 
 	console.log(navItem.href);
 </script>

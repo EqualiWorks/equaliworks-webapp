@@ -8,9 +8,9 @@
 	$: activeUrl = $page.url.pathname;
 </script>
 
-<nav class="border-r w-72 h-screen flex flex-col">
-	<a href="/dashboard" class="h-12 border-b flex items-center px-4">
-		<h6 class="font-display font-light">EQ-WORKS</h6>
+<nav class="border-r dark:border-neutral-700 w-72 h-screen flex flex-col">
+	<a href="/dashboard" class="h-12 border-b dark:border-neutral-700 flex items-center px-4">
+		<h6 class="font-display font-light dark:text-white">EQ-WORKS</h6>
 	</a>
 	<ul class="py-4 px-2">
 		{#each navItems as navItem}
