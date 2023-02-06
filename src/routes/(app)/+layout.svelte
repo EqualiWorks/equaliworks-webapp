@@ -39,18 +39,6 @@
 			icon: 'ph-user-focus-bold'
 		}
 	];
-
-	onMount(() => {
-		const {
-			data: { subscription }
-		} = supabase.auth.onAuthStateChange(() => {
-			invalidateAll();
-		});
-
-		return () => {
-			subscription.unsubscribe();
-		};
-	});
 </script>
 
 <div class="flex">
