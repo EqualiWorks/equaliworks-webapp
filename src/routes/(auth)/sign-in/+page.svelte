@@ -1,18 +1,40 @@
 <script lang="ts">
+	import { enhance } from '$app/forms';
+	import Button from '$lib/components/form/+Button.svelte';
+	import InputEmail from '$lib/components/form/+InputEmail.svelte';
+	import InputPassword from '$lib/components/form/+InputPassword.svelte';
 	import type { SubmitFunction } from '@sveltejs/kit';
 
-	const OAUTH_PROVIDERS = ['discord', 'github'];
+	// variables
+	let email: string = '';
+	let password: string = '';
+	let provider: string | null = null;
+	let emailWarning: string | null = null;
+	let passwordWarning: string | null = null;
 
-	const signInWithProvider: SubmitFunction = async ({ action, cancel }): Promise<void> => {
-		const provider = action.searchParams.get('provider');
+	const signInWithEmail: SubmitFunction = async ({ cancel }): Promise<void> => {
+		provider = 'email';
 
-		if (provider === null) {
-			console.log('provider cannot be null');
+		if (email === '') {
+			emailWarning = 'email cannot be empty';
 			return cancel();
 		}
 
-		if (!OAUTH_PROVIDERS.includes(provider)) {
-			console.log('provider not supported');
+		if (password === '') {
+			passwordWarning = 'password cannot be empty';
+			return cancel();
+		}
+
+		if (password.length < 6) {
+			passwordWarning = 'password too short';
+			return cancel();
+		}
+	};
+
+	const signInWithProvider: SubmitFunction = async ({ action, cancel }): Promise<void> => {
+		provider = action.searchParams.get('provider');
+
+		if (provider === null) {
 			return cancel();
 		}
 	};
@@ -20,48 +42,55 @@
 
 <div class="grid grid-cols-2 w-full h-screen divide-x">
 	<div class="flex flex-col items-center justify-center">
-		<div class="mb-6">
-			<label
-				for="email"
-				class="block mb-2 w-80 text-sm font-medium text-neutral-900 dark:text-white">Email</label
+		<form
+			method="POST"
+			class="w-80 border-b border-dashed mb-8 pb-8"
+			action="?/email-sign-in"
+			use:enhance={signInWithEmail}
+		>
+			<InputEmail warning={emailWarning} bind:value={email} />
+			<InputPassword warning={passwordWarning} bind:value={password} />
+			<Button>Sign in</Button>
+		</form>
+
+		<form class="w-80 flex flex-col gap-2" method="POST" use:enhance={signInWithProvider}>
+			<Button
+				loading={provider === 'linkedIn'}
+				disabled={provider !== 'linkedIn' && provider !== null}
+				formaction="?/provider-sign-in&provider=linkedIn"
 			>
-			<input
-				type="email"
-				id="email"
-				class="bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-				placeholder="name@flowbite.com"
-				required
-			/>
-		</div>
-		<div class="mb-6">
-			<label
-				for="password"
-				class="block mb-2 w-80 text-sm font-medium text-neutral-900 dark:text-white">Password</label
+				<i class="ph-linkedin-logo ph-xl" />
+				<span class="ml-1">LinkedIn</span>
+			</Button>
+			<Button
+				loading={provider === 'azure'}
+				disabled={provider !== 'azure' && provider !== null}
+				formaction="?/provider-sign-in&provider=azure"
 			>
-			<input
-				type="password"
-				id="password"
-				class="bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-				required
-			/>
-		</div>
-		<div>
-			<button
-				type="button"
-				class="text-neutral-900 bg-white border border-neutral-300 focus:outline-none focus:ring-4 focus:ring-neutral-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-neutral-800 dark:text-white dark:border-neutral-600 dark:hover:text-green-400 dark:hover:border-neutral-600 dark:focus:ring-neutral-700"
-				>Login</button
+				<i class="ph-windows-logo ph-xl" />
+				<span class="ml-1">Microsoft</span>
+			</Button>
+			<Button
+				loading={provider === 'google'}
+				disabled={provider !== 'google' && provider !== null}
+				formaction="?/provider-sign-in&provider=google"
 			>
-		</div>
-		<div>
-			<button
-				type="button"
-				class="text-neutral-900  bg-white border border-neutral-300 focus:outline-none focus:ring-4 focus:ring-neutral-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-neutral-800 dark:text-white dark:border-neutral-600 dark:hover:text-green-400 dark:hover:border-neutral-600 dark:focus:ring-neutral-700"
-			>
-				<i class="ph-linkedin-logo-bold" /></button
-			>
-		</div>
+				<i class="ph-google-logo ph-xl" />
+				<span class="ml-1">Google</span>
+			</Button>
+		</form>
 	</div>
-	<div class="flex items-center justify-center">
-		<p class="text-green-400">image</p>
+	<div class="flex flex-col items-center justify-center">
+		<div>
+			<h1 class="font-display">Equality Matters</h1>
+			<h2 class="font-display text-green-400">You matter</h2>
+		</div>
+
+		<div>
+			<h1 class="font-display">Your talent is more important than your physical appearance</h1>
+		</div>
+		<div>
+			<h1 class="font-display">Get hired because of your skills. Exclusively</h1>
+		</div>
 	</div>
 </div>

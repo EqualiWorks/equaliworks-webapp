@@ -1,7 +1,7 @@
 import { fail, redirect, type Actions } from '@sveltejs/kit';
 import { AuthApiError, type Provider, type Session } from '@supabase/supabase-js';
 
-const OAUTH_PROVIDERS = ['discord', 'github'];
+const OAUTH_PROVIDERS = ['google', 'linkedIn', 'azure'];
 
 export const actions: Actions = {
 	'provider-sign-in': async ({ url, locals }) => {
