@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import { page } from '$app/stores';
 	import Button from '$lib/components/form/+Button.svelte';
 	import InputEmail from '$lib/components/form/+InputEmail.svelte';
 	import InputPassword from '$lib/components/form/+InputPassword.svelte';
@@ -54,27 +55,15 @@
 		</form>
 
 		<form class="w-80 flex flex-col gap-2" method="POST" use:enhance={signInWithProvider}>
-			<Button
-				loading={provider === 'linkedIn'}
-				disabled={provider !== 'linkedIn' && provider !== null}
-				formaction="?/provider-sign-in&provider=linkedIn"
-			>
+			<Button loading={provider === 'linkedIn'} formaction="?/provider-sign-in&provider=linkedIn">
 				<i class="ph-linkedin-logo ph-xl" />
 				<span class="ml-1">LinkedIn</span>
 			</Button>
-			<Button
-				loading={provider === 'azure'}
-				disabled={provider !== 'azure' && provider !== null}
-				formaction="?/provider-sign-in&provider=azure"
-			>
+			<Button loading={provider === 'azure'} formaction="?/provider-sign-in&provider=azure">
 				<i class="ph-windows-logo ph-xl" />
 				<span class="ml-1">Microsoft</span>
 			</Button>
-			<Button
-				loading={provider === 'google'}
-				disabled={provider !== 'google' && provider !== null}
-				formaction="?/provider-sign-in&provider=google"
-			>
+			<Button loading={provider === 'google'} formaction="?/provider-sign-in&provider=google">
 				<i class="ph-google-logo ph-xl" />
 				<span class="ml-1">Google</span>
 			</Button>

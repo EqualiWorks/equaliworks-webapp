@@ -12,6 +12,10 @@ export const handle: Handle = async ({ event, resolve }) => {
 		if (!event.url.pathname.startsWith('/sign-in') && !event.url.pathname.startsWith('/sign-up')) {
 			throw redirect(303, '/sign-in');
 		}
+	} else {
+		if (event.url.pathname.startsWith('/sign-in') || event.url.pathname.startsWith('/sign-up')) {
+			throw redirect(303, '/dashboard');
+		}
 	}
 
 	return resolve(event);

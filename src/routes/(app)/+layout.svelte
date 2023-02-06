@@ -1,6 +1,10 @@
 <script lang="ts">
+	import { invalidateAll } from '$app/navigation';
+	import { page } from '$app/stores';
 	import LeftNav from '$lib/components/layout/LeftNav.svelte';
 	import type { NavItem } from '$lib/components/layout/NavItem';
+	import { supabase } from '$lib/db/supabase';
+	import { onMount } from 'svelte';
 	import '../../app.css';
 
 	const navItems: NavItem[] = [
@@ -35,6 +39,18 @@
 			icon: 'ph-user-focus-bold'
 		}
 	];
+
+	onMount(() => {
+		const {
+			data: { subscription }
+		} = supabase.auth.onAuthStateChange(() => {
+			invalidateAll();
+		});
+
+		return () => {
+			subscription.unsubscribe();
+		};
+	});
 </script>
 
 <div class="flex">
@@ -42,14 +58,6 @@
 	<div class="w-full">
 		<div class="h-12 border-b dark:border-neutral-700 flex items-center justify-between px-4">
 			<div class="text-xs text-neutral-400">/dashboard</div>
-			<div class="flex items-center">
-				<div
-					class="w-8 h-8 rounded-full border text-neutral-500 bg-neutral-200 border-neutral-300 mr-2 flex items-center justify-center text-xs font-mono"
-				>
-					FH
-				</div>
-				<span class="text-xs dark:text-white">user</span>
-			</div>
 		</div>
 		<slot />
 	</div>

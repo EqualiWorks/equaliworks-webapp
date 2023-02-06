@@ -1,5 +1,12 @@
-<div class="p-4 flex items-center w-full justify-around">
-	<p class="text-4xl font-bold uppercase mr-2 font-mono">phil</p>
-	<p class="font-mono">er_nice</p>
-	<button type="button" class="button">Green</button>
+<script lang="ts">
+	import { enhance, type SubmitFunction } from '$app/forms';
+	import Button from '$lib/components/form/+Button.svelte';
+
+	const submitLogout: SubmitFunction = async ({ cancel }) => {};
+</script>
+
+<div class="p-4">
+	<form action="?/sign-out" method="POST" use:enhance={submitLogout}>
+		<Button class="hover:text-red-500">sign out</Button>
+	</form>
 </div>

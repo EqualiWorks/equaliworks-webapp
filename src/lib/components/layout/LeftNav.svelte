@@ -19,11 +19,17 @@
 	</ul>
 	<div class="mt-auto px-2 py-4">
 		<a
-			class="px-2 py-2 mb-2 text-sm flex items-center hover:text-red-500 font-medium text-neutral-500"
+			class="px-2 py-2 mb-2 text-sm flex items-center hover:text-black font-medium text-neutral-500"
 			href="/profile"
 		>
-			<i class="ph-sign-out-bold mr-2 ph-lg" />
-			<span>Logout</span>
+			<div class="flex items-center">
+				<img
+					class="rounded-full w-8 h-8 mr-2"
+					src={$page.data.session?.user.user_metadata.avatar_url}
+					alt="avatar"
+				/>
+				<span class="dark:text-white">{$page.data.session?.user.user_metadata.name}</span>
+			</div>
 		</a>
 	</div>
 </nav>
