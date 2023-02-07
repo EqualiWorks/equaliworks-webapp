@@ -5,7 +5,7 @@ import { env } from '$env/dynamic/private';
 const OAUTH_PROVIDERS = ['google', 'linkedIn', 'azure'];
 
 const getURL = () => {
-	let url = env.VITE_REDIRECT_URL;
+	let url = env.REDIRECT_URL;
 	return url;
 };
 
