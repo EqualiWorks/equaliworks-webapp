@@ -26,6 +26,8 @@ export const actions: Actions = {
 			return fail(400, { error: `Provider not supported` });
 		}
 
+		console.log(getURL());
+
 		const { error: err, data } = await locals.supabase.auth.signInWithOAuth({
 			provider: provider,
 			options: {
