@@ -8,6 +8,8 @@ export const handle: Handle = async ({ event, resolve }) => {
 	event.locals.supabase = supabaseClient;
 	event.locals.session = session;
 
+	console.log(event.locals);
+
 	if (event.locals.session == null) {
 		if (event.route.id?.startsWith('/(app)')) {
 			throw redirect(303, '/sign-in');
