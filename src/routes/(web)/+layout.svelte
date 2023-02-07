@@ -1,17 +1,5 @@
 <script lang="ts">
-	import { page } from '$app/stores';
-	import { redirect } from '@sveltejs/kit';
-	import { onMount } from 'svelte';
 	import '../../app.css';
-
-	onMount(async () => {
-		setTimeout(() => {
-			console.log($page.data.session);
-			if ($page.data.session != null) {
-				throw redirect(303, '/dashboard');
-			}
-		}, 1000);
-	});
 </script>
 
 <nav>
