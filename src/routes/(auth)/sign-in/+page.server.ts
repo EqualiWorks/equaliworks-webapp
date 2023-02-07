@@ -1,13 +1,7 @@
 import { fail, redirect, type Actions } from '@sveltejs/kit';
 import { AuthApiError, type Provider, type Session } from '@supabase/supabase-js';
-import { env } from '$env/dynamic/private';
 
 const OAUTH_PROVIDERS = ['google', 'linkedIn', 'azure'];
-
-const getURL = () => {
-	let url = env.REDIRECT_URL;
-	return url;
-};
 
 export const actions: Actions = {
 	'provider-sign-in': async ({ url, locals }) => {
@@ -22,10 +16,7 @@ export const actions: Actions = {
 		}
 
 		const { error: err, data } = await locals.supabase.auth.signInWithOAuth({
-			provider: provider,
-			options: {
-				redirectTo: getURL()
-			}
+			provider: provider
 		});
 
 		if (err) {
