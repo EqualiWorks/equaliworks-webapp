@@ -1,15 +1,16 @@
 <script lang="ts">
 	import { supabase } from '$lib/db/supabase';
 
-	const fetchJobPosts = async () => {
-		const { data, error } = await supabase.from('job_posts').select();
+	const fetchJobs = async () => {
+		const res = await fetch('/api/v1/jobs');
+		const data = await res.json();
 
-		return data;
+		return data.data;
 	};
 </script>
 
 <div>
-	{#await fetchJobPosts()}
+	{#await fetchJobs()}
 		<p>loading...</p>
 	{:then jobs}
 		{#if jobs !== null}
