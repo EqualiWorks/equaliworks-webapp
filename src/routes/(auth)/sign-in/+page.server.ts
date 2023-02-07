@@ -29,7 +29,7 @@ export const actions: Actions = {
 		const { error: err, data } = await locals.supabase.auth.signInWithOAuth({
 			provider: provider,
 			options: {
-				redirectTo: getURL
+				redirectTo: getURL()
 			}
 		});
 
