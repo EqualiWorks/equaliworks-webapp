@@ -1,10 +1,6 @@
 <script lang="ts">
-	import { invalidateAll } from '$app/navigation';
-	import { page } from '$app/stores';
 	import LeftNav from '$lib/components/layout/LeftNav.svelte';
 	import type { NavItem } from '$lib/components/layout/NavItem';
-	import { supabase } from '$lib/db/supabase';
-	import { onMount } from 'svelte';
 	import '../../app.css';
 
 	const navItems: NavItem[] = [
