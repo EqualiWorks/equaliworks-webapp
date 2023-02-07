@@ -9,11 +9,11 @@ export const handle: Handle = async ({ event, resolve }) => {
 	event.locals.session = session;
 
 	if (event.locals.session == null) {
-		if (!event.url.pathname.startsWith('/sign-in') && !event.url.pathname.startsWith('/sign-up')) {
+		if (event.route.id?.startsWith('/(app)')) {
 			throw redirect(303, '/sign-in');
 		}
 	} else {
-		if (event.url.pathname.startsWith('/sign-in') || event.url.pathname.startsWith('/sign-in#')) {
+		if (event.route.id?.startsWith('/(auth)') || event.route.id?.startsWith('/(web)')) {
 			throw redirect(303, '/dashboard');
 		}
 	}
