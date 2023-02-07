@@ -1,11 +1,9 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import { page } from '$app/stores';
 	import Button from '$lib/components/form/+Button.svelte';
 	import InputEmail from '$lib/components/form/+InputEmail.svelte';
 	import InputPassword from '$lib/components/form/+InputPassword.svelte';
 	import type { SubmitFunction } from '@sveltejs/kit';
-	import { onMount } from 'svelte';
 
 	// variables
 	let email: string = '';
@@ -42,11 +40,11 @@
 	};
 </script>
 
-<div class="grid grid-cols-2 w-full h-screen divide-x">
+<div class="grid h-screen w-full grid-cols-2 divide-x">
 	<div class="flex flex-col items-center justify-center">
 		<form
 			method="POST"
-			class="w-80 border-b border-dashed mb-8 pb-8"
+			class="mb-8 w-80 border-b border-dashed pb-8"
 			action="?/email-sign-in"
 			use:enhance={signInWithEmail}
 		>
@@ -55,7 +53,7 @@
 			<Button>Sign in</Button>
 		</form>
 
-		<form class="w-80 flex flex-col gap-2" method="POST" use:enhance={signInWithProvider}>
+		<form class="flex w-80 flex-col gap-2" method="POST" use:enhance={signInWithProvider}>
 			<Button loading={provider === 'linkedIn'} formaction="?/provider-sign-in&provider=linkedIn">
 				<i class="ph-linkedin-logo ph-xl" />
 				<span class="ml-1">LinkedIn</span>

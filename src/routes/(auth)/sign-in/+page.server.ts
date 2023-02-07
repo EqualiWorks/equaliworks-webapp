@@ -1,5 +1,5 @@
-import { fail, redirect, type Actions } from '@sveltejs/kit';
 import { AuthApiError, type Provider, type Session } from '@supabase/supabase-js';
+import { fail, redirect, type Actions } from '@sveltejs/kit';
 
 const OAUTH_PROVIDERS = ['google', 'linkedIn', 'azure'];
 
