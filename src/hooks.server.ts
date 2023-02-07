@@ -13,7 +13,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 			throw redirect(303, '/sign-in');
 		}
 	} else {
-		if (event.url.pathname.startsWith('/sign-in') || event.url.pathname.startsWith('/sign-up')) {
+		if (event.url.pathname.startsWith('/sign-in') || event.url.pathname.startsWith('/sign-in#')) {
 			throw redirect(303, '/dashboard');
 		}
 	}

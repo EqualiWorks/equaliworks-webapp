@@ -1,6 +1,9 @@
 <script lang="ts">
+	import { invalidateAll } from '$app/navigation';
 	import LeftNav from '$lib/components/layout/LeftNav.svelte';
 	import type { NavItem } from '$lib/components/layout/NavItem';
+	import { supabase } from '$lib/db/supabase';
+	import { onMount } from 'svelte';
 	import '../../app.css';
 
 	const navItems: NavItem[] = [
@@ -35,6 +38,18 @@
 			icon: 'ph-user-focus-bold'
 		}
 	];
+
+	onMount(() => {
+		const {
+			data: { subscription }
+		} = supabase.auth.onAuthStateChange(() => {
+			invalidateAll();
+		});
+
+		return () => {
+			subscription.unsubscribe();
+		};
+	});
 </script>
 
 <div class="flex">

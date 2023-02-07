@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import { page } from '$app/stores';
 	import Button from '$lib/components/form/+Button.svelte';
 	import InputEmail from '$lib/components/form/+InputEmail.svelte';
 	import InputPassword from '$lib/components/form/+InputPassword.svelte';
