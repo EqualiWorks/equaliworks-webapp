@@ -1,17 +1,11 @@
 import { fail, redirect, type Actions } from '@sveltejs/kit';
 import { AuthApiError, type Provider, type Session } from '@supabase/supabase-js';
+import { env } from '$env/dynamic/private';
 
 const OAUTH_PROVIDERS = ['google', 'linkedIn', 'azure'];
 
 const getURL = () => {
-	let url =
-		process?.env?.VITE_VERCEL_URL ?? // Set this to your site URL in production env.
-		process?.env?.VERCEL_URL ?? // Automatically set by Vercel.
-		'http://localhost:3000/';
-	// Make sure to include `https://` when not localhost.
-	url = url.includes('http') ? url : `https://${url}`;
-	// Make sure to including trailing `/`.
-	url = url.charAt(url.length - 1) === '/' ? url : `${url}/`;
+	let url = env.REDIRECT_URL;
 	return url;
 };
 
