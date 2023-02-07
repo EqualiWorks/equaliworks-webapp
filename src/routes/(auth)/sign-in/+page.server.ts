@@ -3,10 +3,19 @@ import { AuthApiError, type Provider, type Session } from '@supabase/supabase-js
 
 const OAUTH_PROVIDERS = ['google', 'linkedIn', 'azure'];
 
+const getURL = () => {
+	let url =
+		process?.env?.VERCEL_URL ?? // Set this to your site URL in production env.
+		'http://localhost:5173/dashboard';
+	// Make sure to include `https://` when not localhost.
+	url = url.includes('http') ? url : `https://${url}`;
+	// Make sure to including trailing `/`.
+	url = url.charAt(url.length - 1) === '/' ? url : `${url}/dashboard/`;
+	return url;
+};
+
 export const actions: Actions = {
 	'provider-sign-in': async ({ url, locals }) => {
-		console.log(process?.env);
-
 		const provider: Provider | null = url.searchParams.get('provider') as Provider | null;
 
 		if (provider === null) {
@@ -18,7 +27,10 @@ export const actions: Actions = {
 		}
 
 		const { error: err, data } = await locals.supabase.auth.signInWithOAuth({
-			provider: provider
+			provider: provider,
+			options: {
+				redirectTo: getURL
+			}
 		});
 
 		if (err) {
