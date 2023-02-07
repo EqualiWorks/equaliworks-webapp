@@ -5,6 +5,8 @@ const OAUTH_PROVIDERS = ['google', 'linkedIn', 'azure'];
 
 export const actions: Actions = {
 	'provider-sign-in': async ({ url, locals }) => {
+		console.log(process?.env);
+
 		const provider: Provider | null = url.searchParams.get('provider') as Provider | null;
 
 		if (provider === null) {
