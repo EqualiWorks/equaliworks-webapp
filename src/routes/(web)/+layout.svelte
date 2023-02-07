@@ -6,6 +6,7 @@
 
 	onMount(async () => {
 		setTimeout(() => {
+			console.log($page.data.session);
 			if ($page.data.session != null) {
 				throw redirect(303, '/dashboard');
 			}
