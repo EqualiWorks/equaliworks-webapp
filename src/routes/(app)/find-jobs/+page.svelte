@@ -2,6 +2,13 @@
 	import Button from '$lib/components/form/Button.svelte';
 	import InputText from '$lib/components/form/InputText.svelte';
 	import JobPost from '$lib/components/jobs/JobPost.svelte';
+	import Drawer from '$lib/components/layout/drawer/Drawer.svelte';
+	import { drawerStore } from '$lib/components/layout/drawer/stores';
+
+	const openDrawer = () => {
+		console.log('hello');
+		drawerStore.open();
+	};
 
 	const fetchJobs = async () => {
 		const res = await fetch('/api/v1/jobs');
@@ -10,6 +17,10 @@
 		return data.data;
 	};
 </script>
+
+<button on:click={() => openDrawer()}>im button</button>
+
+<Drawer>this is some content</Drawer>
 
 <div class="mx-auto px-4 2xl:container">
 	<div class="py-8">
