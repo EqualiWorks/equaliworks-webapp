@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import Button from '$lib/components/form/+Button.svelte';
-	import InputEmail from '$lib/components/form/+InputEmail.svelte';
-	import InputPassword from '$lib/components/form/+InputPassword.svelte';
+	import Button from '$lib/components/form/Button.svelte';
+	import InputEmail from '$lib/components/form/InputEmail.svelte';
+	import InputPassword from '$lib/components/form/InputPassword.svelte';
 	import type { SubmitFunction } from '@sveltejs/kit';
 
 	// variables

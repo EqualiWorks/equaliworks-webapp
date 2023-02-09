@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { enhance, type SubmitFunction } from '$app/forms';
 	import { page } from '$app/stores';
-	import Button from '$lib/components/form/+Button.svelte';
+	import Button from '$lib/components/form/Button.svelte';
 
 	const submitLogout: SubmitFunction = async ({ cancel }) => {};
 </script>

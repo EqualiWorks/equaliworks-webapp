@@ -8,8 +8,8 @@
 	$: activeUrl = $page.url.pathname;
 </script>
 
-<nav class="border-r dark:border-neutral-700 w-72 h-screen flex flex-col">
-	<a href="/dashboard" class="h-12 border-b dark:border-neutral-700 flex items-center px-4">
+<nav class="flex h-screen min-w-[230px] flex-col border-r dark:border-neutral-700">
+	<a href="/dashboard" class="flex h-12 items-center border-b px-4 dark:border-neutral-700">
 		<h6 class="font-display font-light dark:text-white">EQ-WORKS</h6>
 	</a>
 	<ul class="py-4 px-2">
@@ -19,12 +19,12 @@
 	</ul>
 	<div class="mt-auto px-2 py-4">
 		<a
-			class="px-2 py-2 mb-2 text-sm flex items-center hover:text-black font-medium text-neutral-500"
+			class="mb-2 flex items-center px-2 py-2 text-sm font-medium text-neutral-500 hover:text-black"
 			href="/profile"
 		>
 			<div class="flex items-center">
 				<img
-					class="rounded-full w-8 h-8 mr-2"
+					class="mr-2 h-8 w-8 rounded-full"
 					src={$page.data.session?.user.user_metadata.avatar_url}
 					alt="avatar"
 				/>
