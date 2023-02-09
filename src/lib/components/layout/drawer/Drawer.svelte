@@ -44,7 +44,7 @@
 		on:keypress
 	>
 		<div
-			class="w-6/12 border-l bg-white drop-shadow-xl"
+			class="min-w-[500px] max-w-[900px] border-l bg-white drop-shadow-xl"
 			transition:fly|local={{ x: percentage(90, windowWidth), y: 0, duration }}
 		>
 			<slot />
