@@ -36,8 +36,8 @@
 				<p class="text-sm text-green-400 ">100%</p>
 			</div>
 			<div class="flex items-center gap-2">
-				<i class="ph-calendar-blank-bold" />
-				<p class="text-sm">12 days ago</p>
+				<i class="ph-calendar-blank-bold text-neutral-500" />
+				<p class="text-sm text-neutral-600">12 days ago</p>
 			</div>
 		</div>
 	</div>
