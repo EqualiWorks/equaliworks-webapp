@@ -6,7 +6,10 @@
 	import Drawer from '$lib/components/layout/drawer/Drawer.svelte';
 	import { drawerStore } from '$lib/components/layout/drawer/stores';
 
-	const openDrawer = () => {
+	let selectedJobPost: null | object = null;
+
+	const openDrawer = async () => {
+		selectedJobPost = await fetchJobPost();
 		drawerStore.open();
 	};
 
@@ -15,12 +18,17 @@
 		const data = await res.json();
 		return data.data;
 	};
+
+	const fetchJobPost = async () => {
+		// const res = await fetch('/api/v1/jobs/1313');
+		// const data = await res.json();
+
+		return null;
+	};
 </script>
 
-<button on:click={() => openDrawer()}>im button</button>
-
 <Drawer>
-	<JobPost />
+	<JobPost jobPost={selectedJobPost} />
 </Drawer>
 
 <div class="mx-auto px-4">
@@ -48,9 +56,7 @@
 		{:then jobs}
 			{#if jobs !== null}
 				{#each jobs as job}
-					<JobPostPreview />
-					<JobPostPreview />
-					<JobPostPreview />
+					<JobPostPreview on:click={openDrawer} />
 				{/each}
 			{/if}
 		{/await}

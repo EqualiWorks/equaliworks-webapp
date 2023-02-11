@@ -7,12 +7,10 @@ function drawerService() {
 		subscribe,
 		set,
 		update,
-		/** Open the drawer. */
 		open: () =>
 			update(() => {
 				return { open: true };
 			}),
-		/** Close the drawer. */
 		close: () =>
 			update(() => {
 				return { open: false };

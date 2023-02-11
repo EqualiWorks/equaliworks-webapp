@@ -1,5 +1,7 @@
-<script>
+<script lang="ts">
 	import Button from '$lib/components/form/Button.svelte';
+
+	export let jobPost: null | object;
 </script>
 
 <div class="flex items-center justify-between border-b border-dashed py-8 px-6 text-sm">

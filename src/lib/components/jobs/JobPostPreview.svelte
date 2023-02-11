@@ -2,10 +2,10 @@
 	import Button from '../form/Button.svelte';
 </script>
 
-<div class="border-b py-10">
+<div class="cursor-pointer border-b py-10" on:click on:keydown>
 	<div class="flex items-center justify-between">
 		<div>
-			<h5 class="font-normal font-light">Senior Frontend Developer</h5>
+			<h5 class="font-normal">Senior Frontend Developer</h5>
 			<h6 class="truncate font-light text-neutral-600">
 				Senior Frontend Software developer for container management
 			</h6>
