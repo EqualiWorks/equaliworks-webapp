@@ -18,7 +18,7 @@
 			</a>
 		{/if}
 
-		<button class="mt-1 px-4 py-2" on:click={toggleSideBar}>
+		<button aria-label="toggle sidebar width" class="mt-1 px-4 py-2" on:click={toggleSideBar}>
 			<i class="ph-list-bold" />
 		</button>
 	</div>
