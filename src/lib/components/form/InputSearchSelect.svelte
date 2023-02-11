@@ -3,6 +3,7 @@
 
 	export let label: string;
 	export let id: string = `${label.replace(' ', '-').toLowerCase()}-input`;
+	export let btnClass: string = 'btn-neutral';
 	export let items: string[] = [
 		'Software Developer',
 		'Backend Developer',
@@ -13,6 +14,7 @@
 		'Carpenter',
 		'Cloud Architect'
 	];
+
 	export let selectedItems: string[] = [];
 
 	let showFilterContainer: boolean = false;
@@ -46,15 +48,12 @@
 
 	const addTag = (tagName: string) => {
 		selectedItems = [...selectedItems, tagName];
+		handleBlur();
 	};
 
 	const removeTag = (tagName: string) => {
 		selectedItems = selectedItems.filter((x) => x !== tagName);
 	};
-
-	onMount(() => {
-		console.log(container.getBoundingClientRect().width);
-	});
 </script>
 
 <svelte:window on:click={handleClickOutsideFilterContainer} on:keydown={handleKeyDown} />
@@ -93,7 +92,7 @@
 		{#each selectedItems as item}
 			<button
 				on:click={() => removeTag(item)}
-				class="flex items-center rounded border-neutral-300 bg-neutral-200 px-2 py-0.5 font-mono text-sm tracking-tight text-neutral-800 hover:bg-neutral-300"
+				class="{btnClass} flex items-center rounded px-2 py-0.5 font-mono text-sm tracking-tight"
 			>
 				{item}
 				<i class="ph-x-bold ph-sm ml-2" />
