@@ -8,7 +8,7 @@
 	$: activeUrl = $page.url.pathname;
 </script>
 
-<nav class="fixed mt-12 flex h-screen min-w-[230px] flex-col border-r dark:border-neutral-700">
+<nav class="fixed flex h-screen min-w-[230px] flex-col border-r pt-12 dark:border-neutral-700">
 	<ul class="py-4 px-2">
 		{#each navItems as navItem}
 			<LefNavItem {navItem} {activeUrl} />
