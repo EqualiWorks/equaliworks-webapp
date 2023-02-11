@@ -11,7 +11,7 @@
 	<div class="flex items-center justify-between">
 		<div>
 			<h5 class="font-normal">Senior Frontend Developer</h5>
-			<h6 class="truncate font-light text-neutral-600">
+			<h6 class="truncate font-light text-zinc-600">
 				Senior Frontend Software developer for container management
 			</h6>
 		</div>
@@ -23,16 +23,16 @@
 	<div class="mt-10 flex items-center justify-between">
 		<div class="flex gap-6">
 			<div class="flex items-center gap-2">
-				<i class="ph-buildings-bold text-neutral-500" />
-				<p class="text-sm font-light text-neutral-500 ">Maersk</p>
+				<i class="ph-buildings-bold text-zinc-500" />
+				<p class="text-sm font-light text-zinc-500 ">Maersk</p>
 			</div>
 			<div class="flex items-center gap-2">
-				<i class="ph-map-pin-bold text-neutral-500" />
-				<p class="text-sm font-light text-neutral-500 ">DK | Copenhagen</p>
+				<i class="ph-map-pin-bold text-zinc-500" />
+				<p class="text-sm font-light text-zinc-500 ">DK | Copenhagen</p>
 			</div>
 			<div class="flex items-center gap-2">
-				<i class="ph-clock-bold text-neutral-500" />
-				<p class="text-sm font-light text-neutral-500 ">Full time</p>
+				<i class="ph-clock-bold text-zinc-500" />
+				<p class="text-sm font-light text-zinc-500 ">Full time</p>
 			</div>
 		</div>
 		<div class="flex gap-6">
@@ -41,8 +41,8 @@
 				<p class="text-sm text-green-400 ">100%</p>
 			</div>
 			<div class="flex items-center gap-2">
-				<i class="ph-calendar-blank-bold text-neutral-500" />
-				<p class="text-sm text-neutral-600">12 days ago</p>
+				<i class="ph-calendar-blank-bold text-zinc-500" />
+				<p class="text-sm text-zinc-600">12 days ago</p>
 			</div>
 		</div>
 	</div>

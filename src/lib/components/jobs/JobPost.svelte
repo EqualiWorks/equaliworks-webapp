@@ -7,16 +7,16 @@
 <div class="flex items-center justify-between border-b border-dashed py-8 px-6 text-sm">
 	<div class="flex gap-6">
 		<div class="flex items-center gap-2">
-			<i class="ph-buildings-bold text-neutral-500" />
-			<p class="text-sm font-light text-neutral-500 ">Maersk</p>
+			<i class="ph-buildings-bold text-zinc-500" />
+			<p class="text-sm font-light text-zinc-500 ">Maersk</p>
 		</div>
 		<div class="flex items-center gap-2">
-			<i class="ph-map-pin-bold text-neutral-500" />
-			<p class="text-sm font-light text-neutral-500 ">DK | Copenhagen</p>
+			<i class="ph-map-pin-bold text-zinc-500" />
+			<p class="text-sm font-light text-zinc-500 ">DK | Copenhagen</p>
 		</div>
 		<div class="flex items-center gap-2">
-			<i class="ph-clock-bold text-neutral-500" />
-			<p class="text-sm font-light text-neutral-500 ">Full time</p>
+			<i class="ph-clock-bold text-zinc-500" />
+			<p class="text-sm font-light text-zinc-500 ">Full time</p>
 		</div>
 		<div class="flex items-center gap-2">
 			<i class="ph-hand-eye-bold text-green-400" />
@@ -32,18 +32,18 @@
 <div class="px-6 py-8">
 	<div class="mb-8">
 		<h3 class="font-light">Senior Frontend Developer</h3>
-		<h6 class="truncate font-light text-neutral-600">
+		<h6 class="truncate font-light text-zinc-600">
 			Senior Frontend Software developer for container management
 		</h6>
 	</div>
-	<p class="mb-4 text-neutral-700">
+	<p class="mb-4 text-zinc-700">
 		Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
 		laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto
 		beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut
 		odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
 		Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit,
 	</p>
-	<p class="mb-4 text-neutral-700">
+	<p class="mb-4 text-zinc-700">
 		Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
 		laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto
 		beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut

@@ -9,7 +9,7 @@
 </script>
 
 <div class="mb-6">
-	<label for={id} class="mb-1 block font-mono text-xs capitalize text-neutral-700 dark:text-white">
+	<label for={id} class="mb-1 block font-mono text-xs capitalize text-zinc-700 dark:text-white">
 		{label}
 	</label>
 	<input

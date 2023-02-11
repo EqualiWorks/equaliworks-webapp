@@ -49,8 +49,8 @@ h6 {
 	@apply border border-red-200 bg-red-50 text-red-600 hover:bg-red-100;
 }
 
-.btn-neutral {
-	@apply bg-neutral-200 text-neutral-800 hover:bg-neutral-300;
+.btn-zinc {
+	@apply bg-zinc-200 text-zinc-800 hover:bg-zinc-300;
 }
 
 .btn-ghost-red {
@@ -77,5 +77,5 @@ h6 {
 }
 
 .input {
-	@apply block w-full rounded border border-gray-300 bg-gray-50 py-1 px-2.5 font-mono text-sm text-gray-900 focus:border-green-400 focus:outline-none dark:border-neutral-700 dark:bg-neutral-800 dark:text-white dark:placeholder-neutral-400 dark:focus:border-green-500 dark:focus:ring-green-500;
+	@apply block w-full rounded border border-gray-300 bg-gray-50 py-1 px-2.5 font-mono text-sm text-gray-900 focus:border-green-400 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-white dark:placeholder-zinc-400 dark:focus:border-green-500 dark:focus:ring-green-500;
 }

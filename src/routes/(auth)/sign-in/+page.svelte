@@ -44,7 +44,7 @@
 	<div class="flex flex-col items-center justify-center">
 		<form
 			method="POST"
-			class="mb-8 w-80 border-b border-dashed pb-8 dark:border-neutral-600"
+			class="mb-8 w-80 border-b border-dashed pb-8 dark:border-zinc-600"
 			action="?/email-sign-in"
 			use:enhance={signInWithEmail}
 		>

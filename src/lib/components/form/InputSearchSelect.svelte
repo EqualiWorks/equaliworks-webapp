@@ -3,7 +3,7 @@
 
 	export let label: string;
 	export let id: string = `${label.replace(' ', '-').toLowerCase()}-input`;
-	export let btnClass: string = 'btn-neutral';
+	export let btnClass: string = 'btn-zinc';
 	export let items: string[] = [
 		'Software Developer',
 		'Backend Developer',
@@ -59,15 +59,15 @@
 <svelte:window on:click={handleClickOutsideFilterContainer} on:keydown={handleKeyDown} />
 
 <div bind:this={container}>
-	<label for={id} class="mb-1 block font-mono text-xs capitalize text-neutral-700 dark:text-white">
+	<label for={id} class="mb-1 block font-mono text-xs capitalize text-zinc-700 dark:text-white">
 		<span class="font-bold">{selectedItems.length > 0 ? selectedItems.length : ''}</span>
 		{label}
 	</label>
 	<input
 		{id}
-		class="block w-full rounded border border-gray-300 bg-neutral-50 py-1 px-2.5 font-mono text-sm text-gray-900 focus:border-green-400 {showFilterContainer
+		class="block w-full rounded border border-gray-300 bg-zinc-50 py-1 px-2.5 font-mono text-sm text-gray-900 focus:border-green-400 {showFilterContainer
 			? 'border-green-400'
-			: ''} focus:outline-none focus:drop-shadow-lg dark:border-neutral-700 dark:bg-neutral-800 dark:text-white dark:placeholder-neutral-400 dark:focus:border-green-500 dark:focus:ring-green-500 {showFilterContainer
+			: ''} focus:outline-none focus:drop-shadow-lg dark:border-zinc-700 dark:bg-zinc-800 dark:text-white dark:placeholder-zinc-400 dark:focus:border-green-500 dark:focus:ring-green-500 {showFilterContainer
 			? 'rounded-b-none border-b-0'
 			: ''}"
 		on:focus={() => handleFocus()}
@@ -76,12 +76,12 @@
 		style="width:{filterContainerWidth}px"
 		class="{showFilterContainer
 			? 'flex flex-col'
-			: 'hidden'} absolute max-h-[150px] overflow-auto rounded-b border-b border-l border-r border-green-400 bg-neutral-50/90 drop-shadow-lg backdrop-blur-lg"
+			: 'hidden'} absolute max-h-[150px] overflow-auto rounded-b border-b border-l border-r border-green-400 bg-zinc-50/90 drop-shadow-lg backdrop-blur-lg"
 	>
 		{#each items as item}
 			<button
 				on:click={() => addTag(item)}
-				class="flex items-center justify-between border-b border-dashed px-2.5 py-2 text-neutral-800 hover:bg-neutral-200"
+				class="flex items-center justify-between border-b border-dashed px-2.5 py-2 text-zinc-800 hover:bg-zinc-200"
 			>
 				<span class="font-mono text-xs">{item}</span>
 				<i class="ph-plus-bold ph-sm" />
