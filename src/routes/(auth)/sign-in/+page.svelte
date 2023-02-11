@@ -40,11 +40,11 @@
 	};
 </script>
 
-<div class="grid h-screen w-full grid-cols-2 divide-x">
+<div class="grid h-screen w-full grid-cols-1 divide-x lg:grid-cols-2">
 	<div class="flex flex-col items-center justify-center">
 		<form
 			method="POST"
-			class="mb-8 w-80 border-b border-dashed pb-8"
+			class="mb-8 w-80 border-b border-dashed pb-8 dark:border-neutral-600"
 			action="?/email-sign-in"
 			use:enhance={signInWithEmail}
 		>
@@ -68,7 +68,7 @@
 			</Button>
 		</form>
 	</div>
-	<div class="flex flex-col items-center justify-center">
+	<div class="hidden flex-col items-center justify-center lg:flex">
 		<div>
 			<h1 class="font-display">Equality Matters</h1>
 			<h2 class="font-display text-green-400">You matter</h2>
