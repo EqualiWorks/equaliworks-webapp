@@ -3,12 +3,15 @@
 	import InputText from '$lib/components/form/InputText.svelte';
 	import JobPost from '$lib/components/jobs/JobPost.svelte';
 	import JobPostPreview from '$lib/components/jobs/JobPostPreview.svelte';
+	import JobPostSearch from '$lib/components/jobs/JobPostSearch.svelte';
 	import Drawer from '$lib/components/layout/drawer/Drawer.svelte';
 	import { drawerStore } from '$lib/components/layout/drawer/stores';
 
 	let selectedJobPost: null | object = null;
+	let activeJobPost: null | string = null;
 
-	const openDrawer = async () => {
+	const openJobPost = async (jobId: string) => {
+		activeJobPost = jobId;
 		selectedJobPost = await fetchJobPost();
 		drawerStore.open();
 	};
@@ -32,9 +35,7 @@
 </Drawer>
 
 <div class="mx-auto px-4">
-	<div class="py-8">
-		<InputText name="search" label="search" placeholder="add keyword" />
-	</div>
+	<JobPostSearch />
 	<div class="flex items-center py-4">
 		<p class="mr-auto text-sm"><span class="mr-2 font-semibold">133</span>jobs found</p>
 		<div class="flex gap-4">
@@ -56,12 +57,7 @@
 		{:then jobs}
 			{#if jobs !== null}
 				{#each jobs as job}
-					<JobPostPreview on:click={openDrawer} />
-					<JobPostPreview on:click={openDrawer} />
-					<JobPostPreview on:click={openDrawer} />
-					<JobPostPreview on:click={openDrawer} />
-					<JobPostPreview on:click={openDrawer} />
-					<JobPostPreview on:click={openDrawer} />
+					<JobPostPreview on:click={() => openJobPost(job.id)} isActive={job.id == activeJobPost} />
 				{/each}
 			{/if}
 		{/await}

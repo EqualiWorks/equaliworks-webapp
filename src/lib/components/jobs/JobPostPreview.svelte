@@ -1,8 +1,13 @@
 <script lang="ts">
 	import Button from '../form/Button.svelte';
+	export let isActive: boolean = false;
 </script>
 
-<div class="cursor-pointer border-b py-10" on:click on:keydown>
+<div
+	class="cursor-pointer border-b py-10 {isActive ? 'border-l-4 border-l-green-400' : ''}"
+	on:click
+	on:keydown
+>
 	<div class="flex items-center justify-between">
 		<div>
 			<h5 class="font-normal">Senior Frontend Developer</h5>
