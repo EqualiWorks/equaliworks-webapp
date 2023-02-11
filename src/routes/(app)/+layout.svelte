@@ -52,12 +52,22 @@
 	});
 </script>
 
-<div class="flex">
+<div>
 	<LeftNav {navItems} />
-	<div class="w-full">
-		<div class="flex h-12 items-center justify-between border-b px-4 dark:border-neutral-700">
+	<div class="fixed flex w-full bg-white/30 backdrop-blur-sm">
+		<a
+			href="/dashboard"
+			class="flex h-12 min-w-[230px] items-center border-r border-b px-4 dark:border-neutral-700"
+		>
+			<h6 class="font-display font-light dark:text-white">EQ-WORKS</h6>
+		</a>
+
+		<div class=" flex h-12 w-full items-center border-b px-4 dark:border-neutral-700">
 			<div class="text-xs text-neutral-400">/dashboard</div>
 		</div>
+	</div>
+
+	<div class="ml-[230px] pt-12">
 		<slot />
 	</div>
 </div>

@@ -8,10 +8,7 @@
 	$: activeUrl = $page.url.pathname;
 </script>
 
-<nav class="flex h-screen min-w-[230px] flex-col border-r dark:border-neutral-700">
-	<a href="/dashboard" class="flex h-12 items-center border-b px-4 dark:border-neutral-700">
-		<h6 class="font-display font-light dark:text-white">EQ-WORKS</h6>
-	</a>
+<nav class="fixed mt-12 flex h-screen min-w-[230px] flex-col border-r dark:border-neutral-700">
 	<ul class="py-4 px-2">
 		{#each navItems as navItem}
 			<LefNavItem {navItem} {activeUrl} />

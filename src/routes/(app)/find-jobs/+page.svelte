@@ -57,6 +57,11 @@
 			{#if jobs !== null}
 				{#each jobs as job}
 					<JobPostPreview on:click={openDrawer} />
+					<JobPostPreview on:click={openDrawer} />
+					<JobPostPreview on:click={openDrawer} />
+					<JobPostPreview on:click={openDrawer} />
+					<JobPostPreview on:click={openDrawer} />
+					<JobPostPreview on:click={openDrawer} />
 				{/each}
 			{/if}
 		{/await}
