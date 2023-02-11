@@ -1,5 +1,6 @@
 <script lang="ts">
-	import type { NavItem } from './NavItem';
+	import type { NavItem } from '$lib/components/layout/navigation/NavItem';
+	import { sideBarOpen } from './stores';
 
 	export let navItem: NavItem;
 	export let activeUrl: string;
@@ -15,11 +16,13 @@
 		class={activeUrl === `/${navItem.href}` ? activeClass : defaultClass}
 		href={`/${navItem.href}`}
 	>
-		<i class="{navItem.icon} mr-2 ph-lg" />
-		{navItem.title}
+		<i class="{navItem.icon} ph-lg" />
+		{#if $sideBarOpen}
+			<span class="ml-3">{navItem.title}</span>
+		{/if}
 		{#if navItem.notifications !== undefined}
 			<span
-				class="inline-flex items-center justify-center w-5 h-5 ml-2 text-xs font-semibold text-red-800 bg-red-200 rounded-full"
+				class="ml-2 inline-flex h-5 w-5 items-center justify-center rounded-full bg-red-200 text-xs font-semibold text-red-800"
 				>{navItem.notifications}</span
 			>
 		{/if}

@@ -1,0 +1,29 @@
+<script lang="ts">
+	import { sideBarOpen } from './stores';
+
+	const toggleSideBar = () => {
+		$sideBarOpen ? sideBarOpen.set(false) : sideBarOpen.set(true);
+	};
+</script>
+
+<div class="fixed flex w-full bg-white/30 backdrop-blur-sm">
+	<div
+		class="flex {$sideBarOpen
+			? 'min-w-[230px]'
+			: 'min-w-[50px]'} items-center justify-between border-r border-b"
+	>
+		{#if $sideBarOpen}
+			<a href="/dashboard" class="flex items-center px-4 dark:border-neutral-700">
+				<h6 class="font-display font-light dark:text-white">EQ-WORKS</h6>
+			</a>
+		{/if}
+
+		<button class="mt-1 px-4 py-2" on:click={toggleSideBar}>
+			<i class="ph-list-bold" />
+		</button>
+	</div>
+
+	<div class=" flex h-12 w-full items-center border-b px-4 dark:border-neutral-700">
+		<div class="text-xs text-neutral-400">/dashboard</div>
+	</div>
+</div>
