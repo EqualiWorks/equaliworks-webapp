@@ -14,7 +14,7 @@
 	transition:fade
 	class="fixed flex h-screen {$sideBarOpen
 		? 'min-w-[230px]'
-		: 'min-w-[50px]'} flex-col border-r pt-12 dark:border-neutral-700"
+		: 'min-w-[50px]'} flex-col border-r pt-12 dark:border-zinc-700 dark:bg-zinc-900"
 >
 	<ul class="py-4 pl-2 pr-1">
 		{#each navItems as navItem}
@@ -23,7 +23,7 @@
 	</ul>
 	<div class="mt-auto {$sideBarOpen ? 'ml-1 py-4' : 'pb-2 pt-4'}">
 		<a
-			class="mb-2 flex items-center px-2 py-2 text-sm font-medium text-neutral-500 hover:text-black"
+			class="mb-2 flex items-center px-2 py-2 text-sm font-medium text-zinc-500 hover:text-black"
 			href="/profile"
 		>
 			<div class="flex items-center">

@@ -12,7 +12,8 @@
 		{
 			href: 'dashboard',
 			title: 'Home',
-			icon: 'ph-house-bold'
+			icon: 'ph-house-bold',
+			notifications: 42
 		},
 		{
 			href: 'find-jobs',
@@ -32,12 +33,15 @@
 		{
 			href: 'cv',
 			title: 'CV',
-			icon: 'ph-user-square-bold'
+			icon: 'ph-user-square-bold',
+			badge: 'PRO'
 		},
 		{
 			href: 'cover-letter',
 			title: 'Cover letter',
-			icon: 'ph-user-focus-bold'
+			icon: 'ph-user-focus-bold',
+			badge: 'PRO',
+			notifications: 42
 		}
 	];
 

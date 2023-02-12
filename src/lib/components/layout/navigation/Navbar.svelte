@@ -1,12 +1,28 @@
 <script lang="ts">
+	import { page } from '$app/stores';
+	import { onMount } from 'svelte';
 	import { sideBarOpen } from './stores';
+
+	let breadCrumbs: string[] = [];
 
 	const toggleSideBar = () => {
 		$sideBarOpen ? sideBarOpen.set(false) : sideBarOpen.set(true);
 	};
+
+	const constructBreadCrumbs = () => {
+		const urlParts = $page.url.pathname.split('/').slice(1);
+
+		if (urlParts == null) return [];
+
+		breadCrumbs = urlParts;
+	};
+
+	onMount(() => {
+		constructBreadCrumbs();
+	});
 </script>
 
-<div class="fixed flex w-full bg-white/30 backdrop-blur-sm dark:bg-black/30">
+<div class="fixed flex w-full bg-white/30 backdrop-blur-sm dark:bg-zinc-900">
 	<div
 		class="flex {$sideBarOpen
 			? 'min-w-[230px]'
@@ -24,6 +40,9 @@
 	</div>
 
 	<div class=" flex h-12 w-full items-center border-b px-4 dark:border-zinc-700">
-		<div class="text-xs text-zinc-400">/dashboard</div>
+		<a class="mr-2 font-mono text-xs text-zinc-400" href="/dashboard">home</a>
+		{#each breadCrumbs as breadCrumb}
+			<a href={`/${breadCrumb}`} class="mr-2 font-mono text-xs text-zinc-400">{breadCrumb}</a>
+		{/each}
 	</div>
 </div>

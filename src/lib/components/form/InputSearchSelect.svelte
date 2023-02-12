@@ -76,12 +76,12 @@
 		style="width:{filterContainerWidth}px"
 		class="{showFilterContainer
 			? 'flex flex-col'
-			: 'hidden'} absolute max-h-[150px] overflow-auto rounded-b border-b border-l border-r border-green-400 bg-zinc-50/90 drop-shadow-lg backdrop-blur-lg"
+			: 'hidden'} absolute max-h-[150px] overflow-auto rounded-b border-b border-l border-r border-green-400 bg-zinc-50/90 drop-shadow-lg backdrop-blur-lg dark:bg-zinc-800/90 "
 	>
 		{#each items as item}
 			<button
 				on:click={() => addTag(item)}
-				class="flex items-center justify-between border-b border-dashed px-2.5 py-2 text-zinc-800 hover:bg-zinc-200"
+				class="flex items-center justify-between border-b border-dashed px-2.5 py-2 text-zinc-800 hover:bg-zinc-200 dark:border-zinc-700 dark:text-zinc-100 dark:hover:bg-zinc-700"
 			>
 				<span class="font-mono text-xs">{item}</span>
 				<i class="ph-plus-bold ph-sm" />

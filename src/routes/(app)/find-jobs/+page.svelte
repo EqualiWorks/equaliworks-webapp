@@ -34,10 +34,12 @@
 	<JobPost jobPost={selectedJobPost} />
 </Drawer>
 
-<div class="mx-auto px-4">
+<div class="mx-auto">
 	<JobPostSearch />
-	<div class="flex items-center py-4">
-		<p class="mr-auto text-sm"><span class="mr-2 font-semibold">133</span>jobs found</p>
+	<div class="flex items-center px-4 py-4 dark:bg-zinc-900/50">
+		<p class="mr-auto text-sm dark:text-zinc-200">
+			<span class="mr-2 font-semibold dark:text-white">133</span>jobs found
+		</p>
 		<div class="flex gap-4">
 			<Button>
 				<p class="truncate font-normal">

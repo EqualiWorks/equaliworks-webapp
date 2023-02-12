@@ -4,7 +4,9 @@
 	export let jobPost: null | object;
 </script>
 
-<div class="flex items-center justify-between border-b border-dashed py-8 px-6 text-sm">
+<div
+	class="flex items-center justify-between border-b border-dashed py-8 px-6 text-sm dark:border-zinc-700 dark:bg-zinc-900"
+>
 	<div class="flex gap-6">
 		<div class="flex items-center gap-2">
 			<i class="ph-buildings-bold text-zinc-500" />
@@ -31,19 +33,19 @@
 
 <div class="px-6 py-8">
 	<div class="mb-8">
-		<h3 class="font-light">Senior Frontend Developer</h3>
-		<h6 class="truncate font-light text-zinc-600">
+		<h3 class="font-light dark:text-white">Senior Frontend Developer</h3>
+		<h6 class="truncate font-light text-zinc-600 dark:text-zinc-100">
 			Senior Frontend Software developer for container management
 		</h6>
 	</div>
-	<p class="mb-4 text-zinc-700">
+	<p class="mb-4 text-zinc-700 dark:text-zinc-200">
 		Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
 		laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto
 		beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut
 		odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
 		Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit,
 	</p>
-	<p class="mb-4 text-zinc-700">
+	<p class="mb-4 text-zinc-700 dark:text-zinc-200">
 		Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
 		laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto
 		beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut
@@ -51,7 +53,7 @@
 		Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit,
 	</p>
 	<div>
-		<h4 class="font-light">Skills required</h4>
+		<h4 class="font-light dark:text-white">Skills required</h4>
 	</div>
 	...
 </div>

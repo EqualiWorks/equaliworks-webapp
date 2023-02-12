@@ -3,15 +3,11 @@
 	export let isActive: boolean = false;
 </script>
 
-<div
-	class="cursor-pointer border-b py-10 {isActive ? 'border-l-4 border-l-green-400' : ''}"
-	on:click
-	on:keydown
->
+<div class="cursor-pointer border-b px-4 py-10 dark:border-zinc-700" on:click on:keydown>
 	<div class="flex items-center justify-between">
 		<div>
-			<h5 class="font-normal">Senior Frontend Developer</h5>
-			<h6 class="truncate font-light text-zinc-600">
+			<h5 class="font-normal dark:text-white">Senior Frontend Developer</h5>
+			<h6 class="truncate font-light text-zinc-600 dark:text-zinc-300">
 				Senior Frontend Software developer for container management
 			</h6>
 		</div>
@@ -42,7 +38,7 @@
 			</div>
 			<div class="flex items-center gap-2">
 				<i class="ph-calendar-blank-bold text-zinc-500" />
-				<p class="text-sm text-zinc-600">12 days ago</p>
+				<p class="text-sm text-zinc-500">12 days ago</p>
 			</div>
 		</div>
 	</div>

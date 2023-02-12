@@ -6,9 +6,9 @@
 	export let activeUrl: string;
 
 	const defaultClass =
-		'w-full font-medium text-neutral-500 flex items-center py-3 my-1 px-2 text-sm dark:hover:bg-neutral-800 hover:bg-neutral-100 transition ease-in-out duration-100 rounded';
+		'w-full font-medium text-zinc-500 flex items-center py-3 my-1 px-2 text-sm dark:hover:bg-zinc-800 hover:bg-zinc-100 transition ease-in-out duration-100 rounded';
 	const activeClass =
-		'w-full dark:text-white font-medium flex items-center py-3 my-1 px-2 text-sm dark:hover:bg-neutral-800 hover:bg-neutral-100 transition ease-in-out duration-100 rounded';
+		'w-full dark:text-white font-medium flex items-center py-3 my-1 px-2 text-sm dark:hover:bg-zinc-800 hover:bg-zinc-100 transition ease-in-out duration-100 rounded';
 </script>
 
 <li>
@@ -22,8 +22,12 @@
 		{/if}
 		{#if navItem.notifications !== undefined}
 			<span
-				class="ml-2 inline-flex h-5 w-5 items-center justify-center rounded-full bg-red-200 text-xs font-semibold text-red-800"
-				>{navItem.notifications}</span
+				class="absolute mb-5 ml-4 inline-flex h-2 w-2 items-center justify-center rounded-full bg-red-200 text-xs font-semibold text-red-800 dark:bg-red-600 dark:text-white"
+			/>
+		{/if}
+		{#if navItem.badge !== undefined && $sideBarOpen}
+			<span class="btn-ghost-blue ml-auto rounded-full py-0.5 px-2 text-xs tracking-tight"
+				>{navItem.badge}</span
 			>
 		{/if}
 	</a>
