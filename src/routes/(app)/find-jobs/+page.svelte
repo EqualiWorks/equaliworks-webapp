@@ -34,7 +34,7 @@
 	<JobPost jobPost={selectedJobPost} />
 </Drawer>
 
-<div class="mx-auto">
+<div class="">
 	<JobPostSearch />
 	<div class="flex items-center px-4 py-4 dark:bg-zinc-900/50">
 		<p class="mr-auto text-sm dark:text-zinc-200">
@@ -53,12 +53,14 @@
 		</div>
 	</div>
 	<hr />
-	<div class="flex flex-col">
+	<div class="container mx-auto grid grid-cols-1 gap-4 p-4 lg:grid-cols-2">
 		{#await fetchJobs()}
 			<p>loading...</p>
 		{:then jobs}
 			{#if jobs !== null}
 				{#each jobs as job}
+					<JobPostPreview on:click={() => openJobPost(job.id)} isActive={job.id == activeJobPost} />
+					<JobPostPreview on:click={() => openJobPost(job.id)} isActive={job.id == activeJobPost} />
 					<JobPostPreview on:click={() => openJobPost(job.id)} isActive={job.id == activeJobPost} />
 				{/each}
 			{/if}

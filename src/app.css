@@ -29,8 +29,16 @@ h5 {
 h6 {
 }
 
-.button {
-	@apply mr-2 mb-2 rounded-lg bg-gradient-to-r from-green-400 via-green-500 to-green-600 px-5 py-2.5 text-center text-sm font-medium text-white shadow-lg shadow-green-500/50 hover:bg-gradient-to-br focus:outline-none focus:ring-4 focus:ring-green-300 dark:shadow-lg dark:shadow-green-800/80 dark:focus:ring-green-800;
+.btn {
+	@apply rounded px-5 py-2;
+}
+
+.btn-sm {
+	@apply rounded px-3.5 py-1.5 text-sm;
+}
+
+.btn-xs {
+	@apply rounded px-2 py-1 text-xs;
 }
 
 .btn-ghost-green {
@@ -81,5 +89,5 @@ hr {
 }
 
 .input {
-	@apply block w-full rounded border border-gray-300 bg-gray-50 py-1 px-2.5 font-mono text-sm text-gray-900 focus:border-green-400 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-white dark:placeholder-zinc-400 dark:focus:border-green-500 dark:focus:ring-green-500;
+	@apply block w-full rounded border border-gray-300 bg-gray-50 px-3 py-2 text-sm text-gray-900 focus:border-green-400 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-white dark:placeholder-zinc-400 dark:focus:border-green-500 dark:focus:ring-green-500;
 }

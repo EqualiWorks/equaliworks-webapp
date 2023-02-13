@@ -92,7 +92,7 @@
 		{#each selectedItems as item}
 			<button
 				on:click={() => removeTag(item)}
-				class="{btnClass} flex items-center rounded px-2 py-0.5 font-mono text-sm tracking-tight"
+				class="{btnClass} flex items-center rounded px-2 py-0.5 font-mono text-xs tracking-tight"
 			>
 				{item}
 				<i class="ph-x-bold ph-sm ml-2" />

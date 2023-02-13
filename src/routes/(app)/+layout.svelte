@@ -61,7 +61,7 @@
 <div>
 	<SideBar {navItems} />
 	<Navbar />
-	<div class="{$sideBarOpen ? 'ml-[230px]' : 'ml-[50px]'} pt-12">
+	<div class="{$sideBarOpen ? 'ml-[230px]' : 'ml-[50px]'} h-screen pt-12">
 		<slot />
 	</div>
 </div>
