@@ -62,6 +62,13 @@
 					<JobPostPreview on:click={() => openJobPost(job.id)} isActive={job.id == activeJobPost} />
 					<JobPostPreview on:click={() => openJobPost(job.id)} isActive={job.id == activeJobPost} />
 					<JobPostPreview on:click={() => openJobPost(job.id)} isActive={job.id == activeJobPost} />
+					<JobPostPreview on:click={() => openJobPost(job.id)} isActive={job.id == activeJobPost} />
+					<JobPostPreview on:click={() => openJobPost(job.id)} isActive={job.id == activeJobPost} />
+					<JobPostPreview on:click={() => openJobPost(job.id)} isActive={job.id == activeJobPost} />
+					<JobPostPreview on:click={() => openJobPost(job.id)} isActive={job.id == activeJobPost} />
+					<JobPostPreview on:click={() => openJobPost(job.id)} isActive={job.id == activeJobPost} />
+					<JobPostPreview on:click={() => openJobPost(job.id)} isActive={job.id == activeJobPost} />
+					<JobPostPreview on:click={() => openJobPost(job.id)} isActive={job.id == activeJobPost} />
 				{/each}
 			{/if}
 		{/await}

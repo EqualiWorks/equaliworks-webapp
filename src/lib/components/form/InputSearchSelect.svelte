@@ -67,7 +67,7 @@
 		{id}
 		class="block w-full rounded border border-gray-300 bg-zinc-50 py-1 px-2.5 font-mono text-sm text-gray-900 focus:border-green-400 {showFilterContainer
 			? 'border-green-400'
-			: ''} focus:outline-none focus:drop-shadow-lg dark:border-zinc-700 dark:bg-zinc-800 dark:text-white dark:placeholder-zinc-400 dark:focus:border-green-500 dark:focus:ring-green-500 {showFilterContainer
+			: ''} focus:outline-none focus:drop-shadow-lg dark:border-zinc-800 dark:bg-zinc-800 dark:text-white dark:placeholder-zinc-400 dark:focus:border-green-500 dark:focus:ring-green-500 {showFilterContainer
 			? 'rounded-b-none border-b-0'
 			: ''}"
 		on:focus={() => handleFocus()}
@@ -81,7 +81,7 @@
 		{#each items as item}
 			<button
 				on:click={() => addTag(item)}
-				class="flex items-center justify-between border-b border-dashed px-2.5 py-2 text-zinc-800 hover:bg-zinc-200 dark:border-zinc-700 dark:text-zinc-100 dark:hover:bg-zinc-700"
+				class="flex items-center justify-between border-b border-dashed px-2.5 py-2 text-zinc-800 hover:bg-zinc-200 dark:border-zinc-800 dark:text-zinc-100 dark:hover:bg-zinc-700"
 			>
 				<span class="font-mono text-xs">{item}</span>
 				<i class="ph-plus-bold ph-sm" />

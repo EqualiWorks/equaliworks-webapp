@@ -5,7 +5,7 @@
 </script>
 
 <div
-	class="flex items-center justify-between border-b border-dashed py-8 px-6 text-sm dark:border-zinc-700 dark:bg-zinc-900"
+	class="flex items-center justify-between border-b border-dashed py-8 px-6 text-sm dark:border-zinc-800 dark:bg-zinc-900"
 >
 	<div class="flex gap-6">
 		<div class="flex items-center gap-2">

@@ -22,14 +22,14 @@
 	});
 </script>
 
-<div class="fixed flex w-full bg-white/30 backdrop-blur-sm dark:bg-zinc-900">
+<div class="fixed flex w-full bg-white/80 backdrop-blur-sm dark:bg-zinc-900/80">
 	<div
 		class="flex {$sideBarOpen
 			? 'min-w-[230px]'
-			: 'min-w-[50px]'} items-center justify-between border-r border-b dark:border-zinc-700"
+			: 'min-w-[50px]'} items-center justify-between border-r border-b dark:border-zinc-800"
 	>
 		{#if $sideBarOpen}
-			<a href="/dashboard" class="flex items-center px-4 dark:border-zinc-700">
+			<a href="/dashboard" class="flex items-center px-4 dark:border-zinc-800">
 				<h6 class="font-display font-light dark:text-white">EQ-WORKS</h6>
 			</a>
 		{/if}
@@ -39,7 +39,7 @@
 		</button>
 	</div>
 
-	<div class=" flex h-12 w-full items-center border-b px-4 dark:border-zinc-700">
+	<div class=" flex h-12 w-full items-center border-b px-4 dark:border-zinc-800">
 		<a class="mr-2 font-mono text-xs text-zinc-400" href="/dashboard">home</a>
 		{#each breadCrumbs as breadCrumb}
 			<a href={`/${breadCrumb}`} class="mr-2 font-mono text-xs text-zinc-400">{breadCrumb}</a>

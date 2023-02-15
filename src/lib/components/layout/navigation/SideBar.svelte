@@ -12,9 +12,9 @@
 
 <nav
 	transition:fade
-	class="fixed flex h-screen {$sideBarOpen
+	class="fixed flex h-screen bg-white/80 backdrop-blur-sm {$sideBarOpen
 		? 'min-w-[230px]'
-		: 'min-w-[50px]'} flex-col border-r pt-12 dark:border-zinc-700 dark:bg-zinc-900"
+		: 'min-w-[50px]'} flex-col border-r pt-12 dark:border-zinc-800 dark:bg-zinc-900/80"
 >
 	<ul class="py-4 pl-2 pr-1">
 		{#each navItems as navItem}

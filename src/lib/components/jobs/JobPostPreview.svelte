@@ -4,7 +4,7 @@
 </script>
 
 <!-- 
-<div class="cursor-pointer border-b px-4 py-10 dark:border-zinc-700" on:click on:keydown>
+<div class="cursor-pointer border-b px-4 py-10 dark:border-zinc-800" on:click on:keydown>
 	<div class="flex items-center justify-between">
 		<div>
 			<h5 class="font-normal dark:text-white">Senior Frontend Developer</h5>
@@ -48,7 +48,7 @@
 <div
 	on:click
 	on:keydown
-	class="group flex h-[260px] cursor-pointer flex-col justify-between rounded-lg border pt-4 transition-colors duration-200 hover:border-black dark:border-zinc-800 dark:hover:border-zinc-500 dark:hover:bg-zinc-900"
+	class="group flex h-[260px] cursor-pointer flex-col justify-between rounded-lg border bg-white pt-4 transition-colors duration-200 hover:border-black dark:border-zinc-800 dark:bg-black dark:hover:border-zinc-700 dark:hover:bg-zinc-900/90"
 >
 	<div class="px-4">
 		<div class="flex items-center justify-between">

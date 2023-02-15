@@ -44,7 +44,7 @@
 		on:keypress
 	>
 		<div
-			class="min-w-[500px] max-w-[900px] border-l bg-white drop-shadow-xl dark:border-zinc-700 dark:bg-zinc-900"
+			class="min-w-[500px] max-w-[900px] border-l bg-white drop-shadow-xl dark:border-zinc-800 dark:bg-zinc-900"
 			in:fly|local={{ x: percentage(90, windowWidth), y: 0, duration }}
 			out:fade
 		>

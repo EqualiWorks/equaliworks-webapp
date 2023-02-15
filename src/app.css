@@ -62,7 +62,7 @@ h6 {
 }
 
 hr {
-	@apply dark:border-zinc-700;
+	@apply dark:border-zinc-800;
 }
 
 .btn-ghost-red {
@@ -89,5 +89,26 @@ hr {
 }
 
 .input {
-	@apply block w-full rounded border border-gray-300 bg-gray-50 px-3 py-2 text-sm text-gray-900 focus:border-green-400 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-white dark:placeholder-zinc-400 dark:focus:border-green-500 dark:focus:ring-green-500;
+	@apply block w-full rounded border border-gray-300 bg-gray-50 px-3 py-2 text-sm text-gray-900 focus:border-green-400 focus:outline-none dark:border-zinc-800 dark:bg-zinc-800 dark:text-white dark:placeholder-zinc-400 dark:focus:border-green-500 dark:focus:ring-green-500;
+}
+
+.bg {
+	background-image: radial-gradient(at 37% 12%, hsla(16, 89%, 60%, 0.2) 0px, transparent 50%),
+		radial-gradient(at 81% 83%, hsla(28, 92%, 79%, 0.2) 0px, transparent 50%),
+		radial-gradient(at 46% 91%, hsla(336, 82%, 61%, 0.2) 0px, transparent 50%),
+		radial-gradient(at 80% 67%, hsla(109, 60%, 77%, 0.2) 0px, transparent 50%),
+		radial-gradient(at 98% 79%, hsla(12, 67%, 60%, 0.2) 0px, transparent 50%),
+		radial-gradient(at 47% 51%, hsla(126, 95%, 73%, 0.2) 0px, transparent 50%),
+		radial-gradient(at 68% 42%, hsla(237, 81%, 73%, 0.2) 0px, transparent 50%);
+}
+
+.bg {
+	background-image: radial-gradient(at 37% 12%, hsla(16, 89%, 60%, 0.2) 0px, transparent 50%),
+		radial-gradient(at 81% 83%, hsla(28, 92%, 79%, 0.2) 0px, transparent 50%),
+		radial-gradient(at 46% 91%, hsla(336, 82%, 61%, 0.2) 0px, transparent 50%),
+		radial-gradient(at 80% 67%, hsla(109, 60%, 77%, 0.2) 0px, transparent 50%),
+		radial-gradient(at 98% 79%, hsla(12, 67%, 60%, 0.2) 0px, transparent 50%),
+		radial-gradient(at 47% 51%, hsla(126, 95%, 73%, 0.2) 0px, transparent 50%),
+		radial-gradient(at 68% 42%, hsla(237, 81%, 73%, 0.2) 0px, transparent 50%);
+	background-color: #000;
 }
