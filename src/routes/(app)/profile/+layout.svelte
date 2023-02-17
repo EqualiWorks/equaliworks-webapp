@@ -32,7 +32,12 @@
 		</div>
 		<slot />
 	</div>
-	<div id="profile-preview" class="col-span-7 p-4">
-		<h2 class="font-display">{$page.data.session?.user.user_metadata.name}</h2>
+	<div id="profile-preview" class="col-span-7 bg-white p-4">
+		<h2 class="font-bold tracking-tight">{$page.data.session?.user.user_metadata.name}</h2>
+
+		<div class="rounded-lg border p-4">
+			<h5 class="text-bold">Certifications</h5>
+			<p />
+		</div>
 	</div>
 </div>

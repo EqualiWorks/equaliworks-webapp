@@ -38,7 +38,7 @@
 {#if $drawerStore.open}
 	<div
 		bind:this={backdrop}
-		class="fixed top-0 left-0 right-0 bottom-0 z-40 flex w-full justify-end"
+		class="fixed top-0 left-0 right-0 bottom-0 z-40 flex w-full justify-end backdrop-blur-sm"
 		transition:fade|local={{ duration }}
 		on:mousedown={onBackdropClicked}
 		on:keypress

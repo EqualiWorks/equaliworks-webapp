@@ -93,22 +93,6 @@ hr {
 }
 
 .bg {
-	background-image: radial-gradient(at 37% 12%, hsla(16, 89%, 60%, 0.2) 0px, transparent 50%),
-		radial-gradient(at 81% 83%, hsla(28, 92%, 79%, 0.2) 0px, transparent 50%),
-		radial-gradient(at 46% 91%, hsla(336, 82%, 61%, 0.2) 0px, transparent 50%),
-		radial-gradient(at 80% 67%, hsla(109, 60%, 77%, 0.2) 0px, transparent 50%),
-		radial-gradient(at 98% 79%, hsla(12, 67%, 60%, 0.2) 0px, transparent 50%),
-		radial-gradient(at 47% 51%, hsla(126, 95%, 73%, 0.2) 0px, transparent 50%),
-		radial-gradient(at 68% 42%, hsla(237, 81%, 73%, 0.2) 0px, transparent 50%);
-}
-
-.bg {
-	background-image: radial-gradient(at 37% 12%, hsla(16, 89%, 60%, 0.2) 0px, transparent 50%),
-		radial-gradient(at 81% 83%, hsla(28, 92%, 79%, 0.2) 0px, transparent 50%),
-		radial-gradient(at 46% 91%, hsla(336, 82%, 61%, 0.2) 0px, transparent 50%),
-		radial-gradient(at 80% 67%, hsla(109, 60%, 77%, 0.2) 0px, transparent 50%),
-		radial-gradient(at 98% 79%, hsla(12, 67%, 60%, 0.2) 0px, transparent 50%),
-		radial-gradient(at 47% 51%, hsla(126, 95%, 73%, 0.2) 0px, transparent 50%),
-		radial-gradient(at 68% 42%, hsla(237, 81%, 73%, 0.2) 0px, transparent 50%);
-	background-color: #000;
+	background-image: radial-gradient(at 36% 0%, hsla(240, 73%, 56%, 0.06) 0px, transparent 50%),
+		radial-gradient(at 71% 4%, hsla(330, 78%, 46%, 0.06) 0px, transparent 50%);
 }

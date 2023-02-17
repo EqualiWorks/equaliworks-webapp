@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Button from '$lib/components/form/Button.svelte';
-	import InputText from '$lib/components/form/InputText.svelte';
 	import JobPost from '$lib/components/jobs/JobPost.svelte';
 	import JobPostPreview from '$lib/components/jobs/JobPostPreview.svelte';
 	import JobPostSearch from '$lib/components/jobs/JobPostSearch.svelte';
@@ -31,11 +30,11 @@
 </script>
 
 <Drawer>
-	<JobPost jobPost={selectedJobPost} />
+	<JobPost />
 </Drawer>
 
-<div class="">
-	<JobPostSearch />
+<div>
+	<!-- <JobPostSearch /> -->
 	<div class="flex items-center px-4 py-4 dark:bg-zinc-900/50">
 		<p class="mr-auto text-sm dark:text-zinc-200">
 			<span class="mr-2 font-semibold dark:text-white">133</span>jobs found
@@ -60,15 +59,11 @@
 			{#if jobs !== null}
 				{#each jobs as job}
 					<JobPostPreview on:click={() => openJobPost(job.id)} isActive={job.id == activeJobPost} />
+					<div />
 					<JobPostPreview on:click={() => openJobPost(job.id)} isActive={job.id == activeJobPost} />
+					<div />
 					<JobPostPreview on:click={() => openJobPost(job.id)} isActive={job.id == activeJobPost} />
-					<JobPostPreview on:click={() => openJobPost(job.id)} isActive={job.id == activeJobPost} />
-					<JobPostPreview on:click={() => openJobPost(job.id)} isActive={job.id == activeJobPost} />
-					<JobPostPreview on:click={() => openJobPost(job.id)} isActive={job.id == activeJobPost} />
-					<JobPostPreview on:click={() => openJobPost(job.id)} isActive={job.id == activeJobPost} />
-					<JobPostPreview on:click={() => openJobPost(job.id)} isActive={job.id == activeJobPost} />
-					<JobPostPreview on:click={() => openJobPost(job.id)} isActive={job.id == activeJobPost} />
-					<JobPostPreview on:click={() => openJobPost(job.id)} isActive={job.id == activeJobPost} />
+					<div />
 				{/each}
 			{/if}
 		{/await}

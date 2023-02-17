@@ -10,11 +10,11 @@
 	$: activeUrl = $page.url.pathname;
 </script>
 
-<nav
+<aside
 	transition:fade
-	class="fixed flex h-screen bg-white/80 backdrop-blur-sm {$sideBarOpen
+	class="flex h-full bg-white/80 backdrop-blur-sm dark:bg-base-100 {$sideBarOpen
 		? 'min-w-[230px]'
-		: 'min-w-[50px]'} flex-col border-r pt-12 dark:border-zinc-800 dark:bg-zinc-900/80"
+		: 'min-w-[50px]'} flex-col border-r dark:border-zinc-800"
 >
 	<ul class="py-4 pl-2 pr-1">
 		{#each navItems as navItem}
@@ -38,4 +38,4 @@
 			</div>
 		</a>
 	</div>
-</nav>
+</aside>

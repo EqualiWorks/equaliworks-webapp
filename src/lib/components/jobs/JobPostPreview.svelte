@@ -48,7 +48,7 @@
 <div
 	on:click
 	on:keydown
-	class="group flex h-[260px] cursor-pointer flex-col justify-between rounded-lg border bg-white pt-4 transition-colors duration-200 hover:border-black dark:border-zinc-800 dark:bg-black dark:hover:border-zinc-700 dark:hover:bg-zinc-900/90"
+	class="group flex h-[180px] cursor-pointer flex-col justify-between rounded-lg border bg-white pt-4 transition-colors duration-200 hover:border-black dark:border-neutral dark:bg-base-200 dark:hover:border-zinc-700 dark:hover:bg-neutral-focus"
 >
 	<div class="px-4">
 		<div class="flex items-center justify-between">
@@ -66,13 +66,13 @@
 			Senior Frontend Software developer for container management
 		</p>
 	</div>
-	<div class="p-4">
+	<!-- <div class="p-4">
 		<p class="text-sm text-zinc-500 line-clamp-3">
 			Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit atque rerum aut delectus qui,
 			vitae doloremque dolore voluptatem corporis. Lorem ipsum dolor sit, amet consectetur
 			adipisicing elit. Sit atque rerum aut delectus qui,...
 		</p>
-	</div>
+	</div> -->
 	<div class="mt-auto flex items-center justify-between px-4 pb-4">
 		<div class="flex items-center">
 			<div class="h-12 w-12 rounded border bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900" />

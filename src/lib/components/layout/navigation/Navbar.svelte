@@ -22,7 +22,7 @@
 	});
 </script>
 
-<div class="fixed flex w-full bg-white/80 backdrop-blur-sm dark:bg-zinc-900/80">
+<nav class="fixed z-10 flex w-full bg-white/80 backdrop-blur-sm dark:bg-base-100">
 	<div
 		class="flex {$sideBarOpen
 			? 'min-w-[230px]'
@@ -45,4 +45,4 @@
 			<a href={`/${breadCrumb}`} class="mr-2 font-mono text-xs text-zinc-400">{breadCrumb}</a>
 		{/each}
 	</div>
-</div>
+</nav>
