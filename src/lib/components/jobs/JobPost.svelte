@@ -1,7 +1,5 @@
 <script lang="ts">
 	import Button from '$lib/components/form/Button.svelte';
-
-	export let jobPost: null | object;
 </script>
 
 <div
