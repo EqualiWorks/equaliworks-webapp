@@ -57,12 +57,9 @@
 	});
 </script>
 
-<div>
-	<Navbar />
-	<div class="flex h-screen w-full pt-12">
-		<SideBar {navItems} />
-		<div class="grow overflow-y-auto">
-			<slot />
-		</div>
+<div class="flex h-screen w-full">
+	<SideBar {navItems} />
+	<div class="grow overflow-y-auto">
+		<slot />
 	</div>
 </div>

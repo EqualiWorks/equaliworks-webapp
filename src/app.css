@@ -93,6 +93,12 @@ hr {
 }
 
 .bg {
-	background-image: radial-gradient(at 36% 0%, hsla(240, 73%, 56%, 0.06) 0px, transparent 50%),
-		radial-gradient(at 71% 4%, hsla(330, 78%, 46%, 0.06) 0px, transparent 50%);
+	background-color: #fff;
+	background-image: radial-gradient(at 30% 87%, hsla(104, 67%, 67%, 0.05) 0px, transparent 50%),
+		radial-gradient(at 91% 13%, hsla(62, 67%, 61%, 0.05) 0px, transparent 50%),
+		radial-gradient(at 48% 54%, hsla(286, 69%, 72%, 0.05) 0px, transparent 50%),
+		radial-gradient(at 19% 98%, hsla(298, 92%, 63%, 0.05) 0px, transparent 50%),
+		radial-gradient(at 12% 32%, hsla(144, 68%, 72%, 0.05) 0px, transparent 50%),
+		radial-gradient(at 15% 17%, hsla(190, 99%, 74%, 0.05) 0px, transparent 50%),
+		radial-gradient(at 82% 1%, hsla(86, 87%, 61%, 0.05) 0px, transparent 50%);
 }

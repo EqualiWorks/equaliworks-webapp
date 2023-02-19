@@ -48,7 +48,7 @@
 <div
 	on:click
 	on:keydown
-	class="group flex h-[180px] cursor-pointer flex-col justify-between rounded-lg border bg-white pt-4 transition-colors duration-200 hover:border-black dark:border-neutral dark:bg-base-200 dark:hover:border-zinc-700 dark:hover:bg-neutral-focus"
+	class="group flex cursor-pointer flex-col justify-between border-b p-4 transition-colors duration-200  hover:bg-white dark:border-neutral dark:hover:bg-blue-900"
 >
 	<div class="px-4">
 		<div class="flex items-center justify-between">
@@ -73,7 +73,7 @@
 			adipisicing elit. Sit atque rerum aut delectus qui,...
 		</p>
 	</div> -->
-	<div class="mt-auto flex items-center justify-between px-4 pb-4">
+	<div class="mt-8 flex items-center justify-between px-4">
 		<div class="flex items-center">
 			<div class="h-12 w-12 rounded border bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900" />
 			<div class="ml-2">
@@ -83,10 +83,6 @@
 		</div>
 
 		<div class="flex flex-col items-end">
-			<div class="mb-1 flex items-center justify-center gap-1.5">
-				<i class="ph-clock-bold text-zinc-500" />
-				<p class="truncate text-sm text-zinc-500">Full time</p>
-			</div>
 			<div class="flex items-center gap-1.5">
 				<i class="ph-calendar-blank-bold text-zinc-500" />
 				<p class="text-sm text-zinc-500 ">12 days ago</p>
