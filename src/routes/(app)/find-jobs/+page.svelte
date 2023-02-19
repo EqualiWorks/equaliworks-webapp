@@ -10,9 +10,9 @@
 	let selectedJobPost: null | object = null;
 	let activeJobPost: null | string = null;
 
-	const openJobPost = async (jobId: string) => {
-		activeJobPost = jobId;
-		selectedJobPost = await fetchJobPost();
+	const openJobPost = async (data: any) => {
+		activeJobPost = data.id;
+		selectedJobPost = data;
 		drawerStore.open();
 	};
 
@@ -31,7 +31,8 @@
 </script>
 
 <Drawer>
-	<JobPost />
+	<JobPost 
+		data = {selectedJobPost}/>
 </Drawer>
 
 <!-- <JobPostSearch /> -->
@@ -51,34 +52,10 @@
 					>
 				</div>
 				<div class="">
-					{#each jobs as job}
+					{#each jobs as data}
 						<JobPostPreview
-							on:click={() => openJobPost(job.id)}
-							isActive={job.id == activeJobPost}
-						/>
-						<JobPostPreview
-							on:click={() => openJobPost(job.id)}
-							isActive={job.id == activeJobPost}
-						/>
-						<JobPostPreview
-							on:click={() => openJobPost(job.id)}
-							isActive={job.id == activeJobPost}
-						/>
-						<JobPostPreview
-							on:click={() => openJobPost(job.id)}
-							isActive={job.id == activeJobPost}
-						/>
-						<JobPostPreview
-							on:click={() => openJobPost(job.id)}
-							isActive={job.id == activeJobPost}
-						/>
-						<JobPostPreview
-							on:click={() => openJobPost(job.id)}
-							isActive={job.id == activeJobPost}
-						/>
-						<JobPostPreview
-							on:click={() => openJobPost(job.id)}
-							isActive={job.id == activeJobPost}
+							{data}
+							on:click={() => openJobPost(data)}
 						/>
 					{/each}
 				</div>

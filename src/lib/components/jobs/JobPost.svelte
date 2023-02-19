@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Button from '$lib/components/form/Button.svelte';
+	export let data : any
 </script>
 
 <div
@@ -31,9 +32,9 @@
 
 <div class="px-6 py-8">
 	<div class="mb-8">
-		<h3 class="font-light dark:text-white">Senior Frontend Developer</h3>
+		<h3 class="font-light dark:text-white">{data.title}</h3>
 		<h6 class="truncate font-light text-zinc-600 dark:text-zinc-100">
-			Senior Frontend Software developer for container management
+			{data.summary}
 		</h6>
 	</div>
 	<p class="mb-4 text-zinc-700 dark:text-zinc-200">
