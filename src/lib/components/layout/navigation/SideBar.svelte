@@ -7,16 +7,25 @@
 
 	export let navItems: NavItem[];
 
+	let innerWidth: number = 0;
+
+	$: innerWidth < 1280 ? sideBarOpen.set(false) : sideBarOpen.set(true);
 	$: activeUrl = $page.url.pathname;
 </script>
 
-<nav
+<svelte:window bind:innerWidth />
+
+<aside
 	transition:fade
-	class="fixed flex h-screen {$sideBarOpen
-		? 'min-w-[230px]'
-		: 'min-w-[50px]'} flex-col border-r pt-12 dark:border-zinc-700 dark:bg-zinc-900"
+	class="flex h-full flex-col border-0 bg-black {$sideBarOpen ? 'min-w-[230px]' : 'w-[60px]'}"
 >
-	<ul class="py-4 pl-2 pr-1">
+	<div class="flex items-center justify-between">
+		<a href="/dashboard" class="my-3 ml-1 flex items-center p-4 dark:border-zinc-800">
+			<h6 class="font-display font-light text-white">{$sideBarOpen ? 'EQ-WORKS' : 'EQ'}</h6>
+		</a>
+	</div>
+
+	<ul class="pl-1 pr-1">
 		{#each navItems as navItem}
 			<SideBarItem {navItem} {activeUrl} />
 		{/each}
@@ -38,4 +47,4 @@
 			</div>
 		</a>
 	</div>
-</nav>
+</aside>

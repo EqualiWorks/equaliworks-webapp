@@ -3,7 +3,6 @@
 	import Navbar from '$lib/components/layout/navigation/Navbar.svelte';
 	import type { NavItem } from '$lib/components/layout/navigation/NavItem';
 	import SideBar from '$lib/components/layout/navigation/SideBar.svelte';
-	import { sideBarOpen } from '$lib/components/layout/navigation/stores';
 	import { supabase } from '$lib/db/supabase';
 	import { onMount } from 'svelte';
 	import '../../app.css';
@@ -58,10 +57,9 @@
 	});
 </script>
 
-<div>
+<div class="flex h-screen w-full">
 	<SideBar {navItems} />
-	<Navbar />
-	<div class="{$sideBarOpen ? 'ml-[230px]' : 'ml-[50px]'} h-screen pt-12">
+	<div class="grow overflow-y-auto">
 		<slot />
 	</div>
 </div>

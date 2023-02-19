@@ -4,7 +4,7 @@
 </script>
 
 <!-- 
-<div class="cursor-pointer border-b px-4 py-10 dark:border-zinc-700" on:click on:keydown>
+<div class="cursor-pointer border-b px-4 py-10 dark:border-zinc-800" on:click on:keydown>
 	<div class="flex items-center justify-between">
 		<div>
 			<h5 class="font-normal dark:text-white">Senior Frontend Developer</h5>
@@ -48,7 +48,7 @@
 <div
 	on:click
 	on:keydown
-	class="group flex h-[260px] cursor-pointer flex-col justify-between rounded-lg border pt-4 transition-colors duration-200 hover:border-black dark:border-zinc-800 dark:hover:border-zinc-500 dark:hover:bg-zinc-900"
+	class="group flex cursor-pointer flex-col justify-between border-b p-4 transition-colors duration-200  hover:bg-white dark:border-neutral dark:hover:bg-blue-900"
 >
 	<div class="px-4">
 		<div class="flex items-center justify-between">
@@ -66,14 +66,14 @@
 			Senior Frontend Software developer for container management
 		</p>
 	</div>
-	<div class="p-4">
+	<!-- <div class="p-4">
 		<p class="text-sm text-zinc-500 line-clamp-3">
 			Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit atque rerum aut delectus qui,
 			vitae doloremque dolore voluptatem corporis. Lorem ipsum dolor sit, amet consectetur
 			adipisicing elit. Sit atque rerum aut delectus qui,...
 		</p>
-	</div>
-	<div class="mt-auto flex items-center justify-between px-4 pb-4">
+	</div> -->
+	<div class="mt-8 flex items-center justify-between px-4">
 		<div class="flex items-center">
 			<div class="h-12 w-12 rounded border bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900" />
 			<div class="ml-2">
@@ -83,10 +83,6 @@
 		</div>
 
 		<div class="flex flex-col items-end">
-			<div class="mb-1 flex items-center justify-center gap-1.5">
-				<i class="ph-clock-bold text-zinc-500" />
-				<p class="truncate text-sm text-zinc-500">Full time</p>
-			</div>
 			<div class="flex items-center gap-1.5">
 				<i class="ph-calendar-blank-bold text-zinc-500" />
 				<p class="text-sm text-zinc-500 ">12 days ago</p>

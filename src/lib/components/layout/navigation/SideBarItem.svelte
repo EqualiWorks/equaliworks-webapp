@@ -4,16 +4,14 @@
 
 	export let navItem: NavItem;
 	export let activeUrl: string;
-
-	const defaultClass =
-		'w-full font-medium text-zinc-500 flex items-center py-3 my-1 px-2 text-sm dark:hover:bg-zinc-800 hover:bg-zinc-100 transition ease-in-out duration-100 rounded';
-	const activeClass =
-		'w-full dark:text-white font-medium flex items-center py-3 my-1 px-2 text-sm dark:hover:bg-zinc-800 hover:bg-zinc-100 transition ease-in-out duration-100 rounded';
 </script>
 
 <li>
 	<a
-		class={activeUrl === `/${navItem.href}` ? activeClass : defaultClass}
+		class="my-1 flex items-center rounded py-3 px-4 text-sm transition duration-100 ease-in-out hover:bg-zinc-800 
+			{activeUrl === `/${navItem.href}`
+			? 'bg-zinc-800 font-semibold text-white'
+			: 'font-medium text-zinc-300'}"
 		href={`/${navItem.href}`}
 	>
 		<i class="{navItem.icon} ph-lg" />
@@ -22,7 +20,7 @@
 		{/if}
 		{#if navItem.notifications !== undefined}
 			<span
-				class="absolute mb-5 ml-4 inline-flex h-2 w-2 items-center justify-center rounded-full bg-red-200 text-xs font-semibold text-red-800 dark:bg-red-600 dark:text-white"
+				class="absolute mb-5 ml-4 inline-flex h-2 w-2 items-center justify-center rounded-full bg-red-500 text-xs font-semibold text-red-800 dark:bg-red-600 dark:text-white"
 			/>
 		{/if}
 		{#if navItem.badge !== undefined && $sideBarOpen}

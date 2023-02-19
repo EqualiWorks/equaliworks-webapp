@@ -68,17 +68,18 @@
 			</Button>
 		</form>
 	</div>
-	<div class="hidden flex-col items-center justify-center lg:flex">
-		<div>
-			<h1 class="font-display">Equality Matters</h1>
-			<h2 class="font-display text-green-400">You matter</h2>
-		</div>
-
-		<div>
-			<h1 class="font-display">Your talent is more important than your physical appearance</h1>
-		</div>
-		<div>
-			<h1 class="font-display">Get hired because of your skills. Exclusively</h1>
-		</div>
+	<div class="bg hidden flex-col items-center justify-center overflow-hidden p-4 lg:flex">
+		<h1 class="font-display">Your talent is more important than your physical appearance</h1>
+		<h1 class="font-display">Get hired because of your skills. Exclusively</h1>
+		<h1 class="font-display">Your talent is more important than your physical appearance</h1>
+		<h1 class="font-display">Get hired because of your skills. Exclusively</h1>
+		<h1 class="font-display">Your talent is more important than your physical appearance</h1>
+		<h1 class="font-display">Get hired because of your skills. Exclusively</h1>
+		<h1 class="font-display">Your talent is more important than your physical appearance</h1>
+		<h1 class="font-display">Get hired because of your skills. Exclusively</h1>
+		<h1 class="font-display">Your talent is more important than your physical appearance</h1>
+		<h1 class="font-display">Get hired because of your skills. Exclusively</h1>
+		<h1 class="font-display">Your talent is more important than your physical appearance</h1>
+		<h1 class="font-display">Get hired because of your skills. Exclusively</h1>
 	</div>
 </div>

@@ -62,7 +62,7 @@ h6 {
 }
 
 hr {
-	@apply dark:border-zinc-700;
+	@apply dark:border-zinc-800;
 }
 
 .btn-ghost-red {
@@ -89,5 +89,16 @@ hr {
 }
 
 .input {
-	@apply block w-full rounded border border-gray-300 bg-gray-50 px-3 py-2 text-sm text-gray-900 focus:border-green-400 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-white dark:placeholder-zinc-400 dark:focus:border-green-500 dark:focus:ring-green-500;
+	@apply block w-full rounded border border-gray-300 bg-gray-50 px-3 py-2 text-sm text-gray-900 focus:border-green-400 focus:outline-none dark:border-zinc-800 dark:bg-zinc-800 dark:text-white dark:placeholder-zinc-400 dark:focus:border-green-500 dark:focus:ring-green-500;
+}
+
+.bg {
+	background-color: #fff;
+	background-image: radial-gradient(at 30% 87%, hsla(104, 67%, 67%, 0.05) 0px, transparent 50%),
+		radial-gradient(at 91% 13%, hsla(62, 67%, 61%, 0.05) 0px, transparent 50%),
+		radial-gradient(at 48% 54%, hsla(286, 69%, 72%, 0.05) 0px, transparent 50%),
+		radial-gradient(at 19% 98%, hsla(298, 92%, 63%, 0.05) 0px, transparent 50%),
+		radial-gradient(at 12% 32%, hsla(144, 68%, 72%, 0.05) 0px, transparent 50%),
+		radial-gradient(at 15% 17%, hsla(190, 99%, 74%, 0.05) 0px, transparent 50%),
+		radial-gradient(at 82% 1%, hsla(86, 87%, 61%, 0.05) 0px, transparent 50%);
 }
