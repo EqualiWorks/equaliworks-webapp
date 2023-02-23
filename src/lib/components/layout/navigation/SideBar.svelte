@@ -9,7 +9,7 @@
 
 	let innerWidth: number = 0;
 
-	$: innerWidth < 1280 ? sideBarOpen.set(false) : sideBarOpen.set(true);
+	$: innerWidth < 2000 ? sideBarOpen.set(false) : sideBarOpen.set(true);
 	$: activeUrl = $page.url.pathname;
 </script>
 
@@ -33,7 +33,7 @@
 	<div class="mt-auto {$sideBarOpen ? 'ml-1 py-4' : 'pb-2 pt-4'}">
 		<a
 			class="mb-2 flex items-center px-2 py-2 text-sm font-medium text-zinc-500 hover:text-black"
-			href="/profile"
+			href="/settings"
 		>
 			<div class="flex items-center">
 				<img
