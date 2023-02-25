@@ -16,5 +16,5 @@
 			</p>
 		{/if}
 	</div>
-	<input type="checkbox" {checked} />
+	<input type="checkbox" bind:checked />
 </div>

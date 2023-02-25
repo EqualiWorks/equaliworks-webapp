@@ -47,7 +47,7 @@
 </script>
 
 <div class="flex h-full">
-	<div class="min-w-[280px] border-r px-4 dark:border-0 dark:bg-zinc-900">
+	<div class="min-w-[280px] border-r px-4 dark:border-0 dark:bg-zinc-800">
 		<div class="flex h-[150px] items-center">
 			<div>
 				<h3 class="dark:text-white">Settings</h3>
@@ -109,7 +109,7 @@
 
 	<div class="grow px-4">
 		<div class="flex h-[150px] items-center gap-4">
-			<div class="bg h-16 w-16 rounded-full border" />
+			<div class="bg h-16 w-16 rounded-full border dark:border-zinc-700" />
 			<h3 class="tracking-tight dark:text-white">
 				{$page.data.session?.user.user_metadata.full_name}
 			</h3>

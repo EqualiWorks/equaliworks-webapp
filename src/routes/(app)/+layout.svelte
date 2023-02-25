@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { invalidateAll } from '$app/navigation';
-	import Navbar from '$lib/components/layout/navigation/Navbar.svelte';
 	import type { NavItem } from '$lib/components/layout/navigation/NavItem';
 	import SideBar from '$lib/components/layout/navigation/SideBar.svelte';
 	import { supabase } from '$lib/db/supabase';

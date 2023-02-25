@@ -1,5 +1,12 @@
-<script>
+<script lang="ts">
+	import { enhance, type SubmitFunction } from '$app/forms';
 	import PrivacyItem from './PrivacyItem.svelte';
+
+	let gender: boolean = true;
+
+	const validateUserUpdate: SubmitFunction = async ({ cancel }): Promise<void> => {
+		console.log(gender);
+	};
 </script>
 
 <div class="grid grid-cols-8">
@@ -15,20 +22,22 @@
 			</p>
 		</div>
 		<hr class="my-8" />
-		<div class="divide-y rounded-xl border dark:divide-zinc-700 dark:border-zinc-700">
-			<PrivacyItem checked={true} icon={'ph-gender-neuter'}>gender</PrivacyItem>
-			<PrivacyItem checked={true} icon={'ph-user'}>age</PrivacyItem>
-			<PrivacyItem checked={true} icon={'ph-map-trifold'}>address</PrivacyItem>
-			<PrivacyItem checked={true} icon={'ph-buildings'}>workplace details</PrivacyItem>
-			<PrivacyItem
-				checked={true}
-				icon={'ph-graduation-cap'}
-				description={'This setting will hide details such as graduation year and location of institution'}
-			>
-				educational institution details
-			</PrivacyItem>
-		</div>
-		<hr class="my-8" />
-		<button class="btn-green btn-sm">Save changes</button>
+		<form method="POST" action="?/update-privacy" use:enhance={validateUserUpdate}>
+			<div class="divide-y rounded-xl border dark:divide-zinc-700 dark:border-zinc-700">
+				<PrivacyItem bind:checked={gender} icon={'ph-gender-neuter'}>gender</PrivacyItem>
+				<PrivacyItem checked={true} icon={'ph-user'}>age</PrivacyItem>
+				<PrivacyItem checked={true} icon={'ph-map-trifold'}>address</PrivacyItem>
+				<PrivacyItem checked={true} icon={'ph-buildings'}>workplace details</PrivacyItem>
+				<PrivacyItem
+					checked={true}
+					icon={'ph-graduation-cap'}
+					description={'This setting will hide details such as graduation year and location of institution'}
+				>
+					educational institution details
+				</PrivacyItem>
+			</div>
+			<hr class="my-8" />
+			<button class="btn-green btn-sm" type="submit">Save changes</button>
+		</form>
 	</div>
 </div>
