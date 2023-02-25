@@ -18,10 +18,6 @@
 		md: 'text-sm',
 		lg: 'text-md'
 	};
-
-	const typeAction = (node: any) => {
-		node.type = type;
-	};
 </script>
 
 {#if label !== undefined}

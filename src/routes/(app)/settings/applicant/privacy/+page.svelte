@@ -1,11 +1,26 @@
 <script lang="ts">
-	import { enhance, type SubmitFunction } from '$app/forms';
+	import { applyAction, enhance, type SubmitFunction } from '$app/forms';
+	import { invalidateAll } from '$app/navigation';
+	import Button from '$lib/components/form/Button.svelte';
+	import type { PageData } from './$types';
 	import PrivacyItem from './PrivacyItem.svelte';
 
-	let gender: boolean = true;
+	export let data: PageData;
 
-	const validateUserUpdate: SubmitFunction = async ({ cancel }): Promise<void> => {
-		console.log(gender);
+	let loading: boolean = false;
+
+	const validateUserUpdate: SubmitFunction = async ({ cancel }) => {
+		return async ({ result }) => {
+			loading = true;
+			switch (result.type) {
+				case 'success':
+					await invalidateAll();
+					break;
+				default:
+					await applyAction(result);
+			}
+			loading = false;
+		};
 	};
 </script>
 
@@ -24,12 +39,33 @@
 		<hr class="my-8" />
 		<form method="POST" action="?/update-privacy" use:enhance={validateUserUpdate}>
 			<div class="divide-y rounded-xl border dark:divide-zinc-700 dark:border-zinc-700">
-				<PrivacyItem bind:checked={gender} icon={'ph-gender-neuter'}>gender</PrivacyItem>
-				<PrivacyItem checked={true} icon={'ph-user'}>age</PrivacyItem>
-				<PrivacyItem checked={true} icon={'ph-map-trifold'}>address</PrivacyItem>
-				<PrivacyItem checked={true} icon={'ph-buildings'}>workplace details</PrivacyItem>
 				<PrivacyItem
-					checked={true}
+					bind:checked={data.privacySettings.hide_gender}
+					id={'gender'}
+					icon={'ph-gender-neuter'}
+				>
+					gender
+				</PrivacyItem>
+				<PrivacyItem bind:checked={data.privacySettings.hide_age} id={'age'} icon={'ph-user'}
+					>age</PrivacyItem
+				>
+				<PrivacyItem
+					bind:checked={data.privacySettings.hide_address}
+					id={'address'}
+					icon={'ph-map-trifold'}
+				>
+					address
+				</PrivacyItem>
+				<PrivacyItem
+					bind:checked={data.privacySettings.hide_workplace_details}
+					id={'workplace_details'}
+					icon={'ph-buildings'}
+				>
+					workplace details
+				</PrivacyItem>
+				<PrivacyItem
+					bind:checked={data.privacySettings.hide_educational_details}
+					id={'educational_details'}
 					icon={'ph-graduation-cap'}
 					description={'This setting will hide details such as graduation year and location of institution'}
 				>
@@ -37,7 +73,7 @@
 				</PrivacyItem>
 			</div>
 			<hr class="my-8" />
-			<button class="btn-green btn-sm" type="submit">Save changes</button>
+			<Button {loading} type="submit" label="Save changes" color="green" />
 		</form>
 	</div>
 </div>

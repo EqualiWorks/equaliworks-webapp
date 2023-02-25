@@ -1,7 +1,10 @@
 <script lang="ts">
+	import Toggle from '$lib/components/form/Toggle.svelte';
+
 	export let icon: string;
 	export let description: string | undefined = undefined;
 	export let checked: boolean;
+	export let id: string;
 </script>
 
 <div class="flex items-center p-4">
@@ -16,5 +19,5 @@
 			</p>
 		{/if}
 	</div>
-	<input type="checkbox" bind:checked />
+	<Toggle {checked} {id} name={id} />
 </div>
