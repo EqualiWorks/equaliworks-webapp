@@ -4,6 +4,7 @@
 
 input {
 	--tw-ring-shadow: 0 0 #000 !important;
+	@apply ring-0 ring-offset-0;
 }
 
 h1 {
@@ -29,36 +30,36 @@ h5 {
 h6 {
 }
 
-.btn {
-	@apply rounded px-5 py-2;
-}
-
 .btn-sm {
-	@apply rounded px-3.5 py-1.5 text-sm;
+	@apply items-center rounded-lg px-2 py-1.5 text-xs font-medium transition-all duration-150 active:scale-[95%] disabled:cursor-not-allowed disabled:active:scale-[100%];
 }
 
-.btn-xs {
-	@apply rounded px-2 py-1 text-xs;
+.btn {
+	@apply rounded-lg px-4 py-2.5 text-sm font-medium transition-all duration-150 active:scale-[95%] disabled:cursor-not-allowed disabled:active:scale-[100%];
+}
+
+.btn-green {
+	@apply border border-green-600 bg-green-600 bg-gradient-to-b text-white hover:border-green-700 hover:bg-green-700;
+}
+
+.btn-red {
+	@apply border border-red-600 bg-red-600 bg-gradient-to-b text-white hover:border-red-700 hover:bg-red-700;
+}
+
+.btn-default {
+	@apply border text-zinc-800 hover:border-zinc-800 hover:text-white dark:border-zinc-900 dark:bg-zinc-500/20 dark:text-zinc-300;
 }
 
 .btn-ghost-green {
-	@apply border border-green-200 bg-green-50 text-green-600 hover:bg-green-100 dark:border-green-800 dark:bg-green-900/50 dark:text-green-400 dark:hover:bg-green-900;
-}
-
-.btn-ghost-blue {
-	@apply border border-blue-200 bg-blue-50 text-blue-600 hover:bg-blue-100 dark:border-blue-800 dark:bg-blue-900/50 dark:text-blue-400 dark:hover:bg-blue-900;
-}
-
-.btn-ghost-yellow {
-	@apply border border-amber-200 bg-amber-50 text-amber-600 hover:bg-amber-100 dark:border-amber-800 dark:bg-amber-900/50 dark:text-amber-400 dark:hover:bg-amber-900;
+	@apply border border-green-600 text-green-600 hover:border-green-700 hover:bg-green-700 hover:text-white dark:border-green-700 dark:bg-green-500/20 dark:text-green-400;
 }
 
 .btn-ghost-red {
-	@apply border border-red-200 bg-red-50 text-red-600 hover:bg-red-100 dark:border-red-800 dark:bg-red-900/50 dark:text-red-400 dark:hover:bg-red-900;
+	@apply border border-red-600 text-red-600 hover:border-red-600 hover:bg-red-600 hover:text-white dark:border-red-700  dark:bg-red-500/20 dark:text-red-400;
 }
 
-.btn-zinc {
-	@apply bg-zinc-200 text-zinc-800 hover:bg-zinc-300;
+.btn-ghost {
+	@apply border border-transparent text-zinc-800 hover:border hover:border-zinc-800 dark:text-zinc-300  dark:hover:text-white;
 }
 
 hr {
@@ -89,16 +90,21 @@ hr {
 }
 
 .input {
-	@apply block w-full rounded border border-gray-300 bg-gray-50 px-3 py-2 text-sm text-gray-900 focus:border-green-400 focus:outline-none dark:border-zinc-800 dark:bg-zinc-800 dark:text-white dark:placeholder-zinc-400 dark:focus:border-green-500 dark:focus:ring-green-500;
+	@apply block w-full rounded border border-gray-300 px-3 py-2 text-sm text-gray-900 focus:border-zinc-700 focus:bg-zinc-50 focus:outline-none dark:border-zinc-800 dark:bg-zinc-800 dark:text-white dark:placeholder-zinc-400 dark:focus:border-green-500 dark:focus:ring-green-500;
+}
+
+.form-label {
+	@apply mb-1 block text-sm font-medium tracking-wide;
 }
 
 .bg {
-	background-color: #fff;
-	background-image: radial-gradient(at 30% 87%, hsla(104, 67%, 67%, 0.05) 0px, transparent 50%),
-		radial-gradient(at 91% 13%, hsla(62, 67%, 61%, 0.05) 0px, transparent 50%),
-		radial-gradient(at 48% 54%, hsla(286, 69%, 72%, 0.05) 0px, transparent 50%),
-		radial-gradient(at 19% 98%, hsla(298, 92%, 63%, 0.05) 0px, transparent 50%),
-		radial-gradient(at 12% 32%, hsla(144, 68%, 72%, 0.05) 0px, transparent 50%),
-		radial-gradient(at 15% 17%, hsla(190, 99%, 74%, 0.05) 0px, transparent 50%),
-		radial-gradient(at 82% 1%, hsla(86, 87%, 61%, 0.05) 0px, transparent 50%);
+	background-image: radial-gradient(at 5% 9%, hsla(187, 67%, 69%, 0.2) 0px, transparent 50%),
+		radial-gradient(at 13% 96%, hsla(286, 69%, 64%, 0.2) 0px, transparent 50%),
+		radial-gradient(at 88% 65%, hsla(289, 80%, 67%, 0.2) 0px, transparent 50%),
+		radial-gradient(at 73% 39%, hsla(150, 76%, 72%, 0.2) 0px, transparent 50%),
+		radial-gradient(at 10% 58%, hsla(292, 85%, 67%, 0.2) 0px, transparent 50%),
+		radial-gradient(at 55% 91%, hsla(28, 73%, 60%, 0.2) 0px, transparent 50%),
+		radial-gradient(at 68% 88%, hsla(248, 80%, 65%, 0.2) 0px, transparent 50%);
+
+	background-size: 100% 100vh;
 }

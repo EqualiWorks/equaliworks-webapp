@@ -36,6 +36,7 @@
 	"dependencies": {
 		"@supabase/auth-helpers-sveltekit": "^0.8.7",
 		"@tailwindcss/line-clamp": "^0.4.2",
-		"supabase": "^1.36.6"
+		"supabase": "^1.36.6",
+		"zod": "^3.20.6"
 	}
 }
