@@ -19,5 +19,5 @@
 			</p>
 		{/if}
 	</div>
-	<Toggle {checked} {id} name={id} />
+	<Toggle {checked} {id} name={id} on:change />
 </div>

@@ -8,6 +8,7 @@
 	export let data: PageData;
 
 	let loading: boolean = false;
+	let userUpdatedValue: boolean = false;
 
 	const validateUserUpdate: SubmitFunction = async ({ cancel }) => {
 		return async ({ result }) => {
@@ -40,16 +41,21 @@
 		<form method="POST" action="?/update-privacy" use:enhance={validateUserUpdate}>
 			<div class="divide-y rounded-xl border dark:divide-zinc-700 dark:border-zinc-700">
 				<PrivacyItem
+					on:change={() => (userUpdatedValue = true)}
 					bind:checked={data.privacySettings.hide_gender}
 					id={'gender'}
 					icon={'ph-gender-neuter'}
 				>
 					gender
 				</PrivacyItem>
-				<PrivacyItem bind:checked={data.privacySettings.hide_age} id={'age'} icon={'ph-user'}
-					>age</PrivacyItem
+				<PrivacyItem
+					on:change={() => (userUpdatedValue = true)}
+					bind:checked={data.privacySettings.hide_age}
+					id={'age'}
+					icon={'ph-user'}>age</PrivacyItem
 				>
 				<PrivacyItem
+					on:change={() => (userUpdatedValue = true)}
 					bind:checked={data.privacySettings.hide_address}
 					id={'address'}
 					icon={'ph-map-trifold'}
@@ -57,6 +63,7 @@
 					address
 				</PrivacyItem>
 				<PrivacyItem
+					on:change={() => (userUpdatedValue = true)}
 					bind:checked={data.privacySettings.hide_workplace_details}
 					id={'workplace_details'}
 					icon={'ph-buildings'}
@@ -64,6 +71,7 @@
 					workplace details
 				</PrivacyItem>
 				<PrivacyItem
+					on:change={() => (userUpdatedValue = true)}
 					bind:checked={data.privacySettings.hide_educational_details}
 					id={'educational_details'}
 					icon={'ph-graduation-cap'}
@@ -73,7 +81,13 @@
 				</PrivacyItem>
 			</div>
 			<hr class="my-8" />
-			<Button {loading} type="submit" label="Save changes" color="green" />
+			<Button
+				{loading}
+				type="submit"
+				label="Save changes"
+				color={userUpdatedValue ? 'green' : 'default'}
+				disabled={!userUpdatedValue}
+			/>
 		</form>
 	</div>
 </div>

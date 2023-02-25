@@ -31,19 +31,19 @@ h6 {
 }
 
 .btn-sm {
-	@apply items-center rounded-lg px-2 py-1.5 text-xs font-medium transition-all duration-150 active:scale-[95%];
+	@apply items-center rounded-lg px-2 py-1.5 text-xs font-medium transition-all duration-150 active:scale-[95%] disabled:cursor-not-allowed disabled:active:scale-[100%];
 }
 
 .btn {
-	@apply rounded-lg px-4 py-2.5 text-sm font-medium transition-all duration-150 active:scale-[95%];
+	@apply rounded-lg px-4 py-2.5 text-sm font-medium transition-all duration-150 active:scale-[95%] disabled:cursor-not-allowed disabled:active:scale-[100%];
 }
 
 .btn-green {
-	@apply border-2 border-green-600 bg-green-600 bg-gradient-to-b text-white hover:border-green-700 hover:bg-green-700;
+	@apply border border-green-600 bg-green-600 bg-gradient-to-b text-white hover:border-green-700 hover:bg-green-700;
 }
 
 .btn-red {
-	@apply border-2 border-red-600 bg-red-600 bg-gradient-to-b text-white hover:border-red-700 hover:bg-red-700;
+	@apply border border-red-600 bg-red-600 bg-gradient-to-b text-white hover:border-red-700 hover:bg-red-700;
 }
 
 .btn-default {
@@ -59,7 +59,7 @@ h6 {
 }
 
 .btn-ghost {
-	@apply text-zinc-800 hover:border hover:border-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-800;
+	@apply border border-transparent text-zinc-800 hover:border hover:border-zinc-800 dark:text-zinc-300  dark:hover:text-white;
 }
 
 hr {
