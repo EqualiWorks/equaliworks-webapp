@@ -2,7 +2,9 @@
 	import { applyAction, enhance, type SubmitFunction } from '$app/forms';
 	import { invalidateAll } from '$app/navigation';
 	import Button from '$lib/components/form/Button.svelte';
-	import type { PageData } from '../../$types';
+	import { toastStore } from '$lib/components/toast/stores';
+	import type { PageData } from './$types';
+
 	import PrivacyItem from './PrivacyItem.svelte';
 
 	export let data: PageData;
@@ -21,6 +23,7 @@
 					await applyAction(result);
 			}
 			loading = false;
+			toastStore.trigger({ message: 'successfully saved changes' });
 		};
 	};
 </script>
