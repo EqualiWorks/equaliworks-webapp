@@ -41,7 +41,7 @@
 	{formaction}
 	{disabled}
 	{type}
-	class="{sizes[size]} {colors[color]} inline-flex items-center"
+	class="{sizes[size]} {colors[color]} inline-flex items-center justify-center"
 >
 	{#if loading}
 		<i class="ph-spinner-bold {iconSizes[size]} mr-2 animate-spin" />

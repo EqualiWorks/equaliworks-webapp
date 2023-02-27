@@ -50,22 +50,31 @@
 		>
 			<InputEmail warning={emailWarning} bind:value={email} />
 			<InputPassword warning={passwordWarning} bind:value={password} />
-			<Button>Sign in</Button>
+			<Button type="submit" label="Sign in" />
 		</form>
 
 		<form class="flex w-80 flex-col gap-2" method="POST" use:enhance={signInWithProvider}>
-			<Button loading={provider === 'linkedIn'} formaction="?/provider-sign-in&provider=linkedIn">
-				<i class="ph-linkedin-logo ph-xl" />
-				<span class="ml-1">LinkedIn</span>
-			</Button>
-			<Button loading={provider === 'azure'} formaction="?/provider-sign-in&provider=azure">
-				<i class="ph-windows-logo ph-xl" />
-				<span class="ml-1">Microsoft</span>
-			</Button>
-			<Button loading={provider === 'google'} formaction="?/provider-sign-in&provider=google">
-				<i class="ph-google-logo ph-xl" />
-				<span class="ml-1">Google</span>
-			</Button>
+			<Button
+				type="submit"
+				label="LinkedIn"
+				icon="ph-linkedin-logo-bold"
+				loading={provider === 'linkedIn'}
+				formaction="?/provider-sign-in&provider=linkedIn"
+			/>
+			<Button
+				type="submit"
+				label="Microsoft"
+				icon="ph-windows-logo-bold"
+				loading={provider === 'azure'}
+				formaction="?/provider-sign-in&provider=azure"
+			/>
+			<Button
+				type="submit"
+				label="Google"
+				icon="ph-google-logo"
+				loading={provider === 'google'}
+				formaction="?/provider-sign-in&provider=google"
+			/>
 		</form>
 	</div>
 	<div class="bg hidden flex-col items-center justify-center overflow-hidden p-4 lg:flex">

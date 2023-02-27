@@ -9,7 +9,6 @@ export const load: PageServerLoad = async ({ locals }) => {
 		.select('*')
 		.eq('id', locals.session.user.id);
 
-	// throw any errors
 	if (err) {
 		return fail(500, { error: 'Something went wrong while fetching privacy settings' });
 	}
