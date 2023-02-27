@@ -12,8 +12,8 @@
 	let userUpdatedValue: boolean = false;
 
 	const handleSubmit: SubmitFunction = async () => {
+		loading = true;
 		return async ({ result }) => {
-			loading = true;
 			switch (result.type) {
 				case 'success':
 					toastStore.trigger({
@@ -34,6 +34,9 @@
 			loading = false;
 		};
 	};
+
+	// reactivity
+	$: loading;
 </script>
 
 <div class="grid grid-cols-8">
