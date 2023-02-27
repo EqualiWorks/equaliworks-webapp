@@ -30,8 +30,8 @@
 			icon: 'ph-gender-neuter-bold'
 		},
 		{
-			href: 'cv',
-			title: 'CV',
+			href: 'profile-builder',
+			title: 'Profile Builder',
 			icon: 'ph-user-square-bold',
 			badge: 'PRO'
 		},

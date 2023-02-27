@@ -19,6 +19,10 @@
 		md: 'text-sm',
 		lg: 'text-md'
 	};
+
+	const typeAction = (node: any) => {
+		node.nodeType = type;
+	};
 </script>
 
 {#if label !== undefined}
@@ -31,9 +35,9 @@
 		border
 	]} {sizes[size]}"
 	{id}
-	{type}
-	{value}
 	{placeholder}
+	use:typeAction
+	bind:value
 />
 {#if warning !== undefined}
 	<span class="text-red-500">{warning}</span>
