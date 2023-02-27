@@ -99,23 +99,6 @@
 				{#if jobs !== null}
 					{#each jobs as data}
 						<JobPostPreview {data} on:click={() => openJobPost(data)} />
-						<JobPostPreview {data} on:click={() => openJobPost(data)} />
-						<JobPostPreview {data} on:click={() => openJobPost(data)} />
-						<JobPostPreview {data} on:click={() => openJobPost(data)} />
-						<JobPostPreview {data} on:click={() => openJobPost(data)} />
-						<JobPostPreview {data} on:click={() => openJobPost(data)} />
-						<JobPostPreview {data} on:click={() => openJobPost(data)} />
-						<JobPostPreview {data} on:click={() => openJobPost(data)} />
-						<JobPostPreview {data} on:click={() => openJobPost(data)} />
-						<JobPostPreview {data} on:click={() => openJobPost(data)} />
-						<JobPostPreview {data} on:click={() => openJobPost(data)} />
-						<JobPostPreview {data} on:click={() => openJobPost(data)} />
-						<JobPostPreview {data} on:click={() => openJobPost(data)} />
-						<JobPostPreview {data} on:click={() => openJobPost(data)} />
-						<JobPostPreview {data} on:click={() => openJobPost(data)} />
-						<JobPostPreview {data} on:click={() => openJobPost(data)} />
-						<JobPostPreview {data} on:click={() => openJobPost(data)} />
-						<JobPostPreview {data} on:click={() => openJobPost(data)} />
 					{/each}
 				{/if}
 			</div>
