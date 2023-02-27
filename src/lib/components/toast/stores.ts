@@ -4,7 +4,9 @@ import type { Toast, ToastOptions } from './Types';
 const toastDefaults: ToastOptions = {
 	message: 'Missing Toast Message',
 	autohide: true,
-	timeout: 5000
+	timeout: 5000,
+	icon: 'ph-warning-circle-bold',
+	type: 'info'
 };
 
 const randomUUID = (): string => {

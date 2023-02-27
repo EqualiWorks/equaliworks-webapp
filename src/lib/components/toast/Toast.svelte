@@ -4,8 +4,14 @@
 
 	const max = 3;
 
-	$: console.log($toastStore.length);
 	$: visibleToast = Array.from($toastStore).slice(0, max);
+
+	const colors = {
+		success: 'text-green-500',
+		warning: 'text-yellow-500',
+		error: 'text-red-500',
+		info: 'text-zinc-400'
+	};
 </script>
 
 {#if $toastStore.length}
@@ -16,7 +22,7 @@
 				in:fly={{ x: 0, y: -100, duration: 150 }}
 				out:fade
 			>
-				<i in:scale class="ph-check-circle-bold ph-lg text-green-500" />
+				<i in:scale class="{toast.icon} ph-lg {colors[toast.type]}" />
 				{toast.message}
 			</div>
 		{/each}

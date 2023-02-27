@@ -1,6 +1,8 @@
 export interface ToastOptions {
 	message: string;
 	autohide?: boolean;
+	icon: string;
+	type: 'warning' | 'success' | 'error' | 'info';
 	callback?: (response: { id: string; status: 'queued' | 'closed' }) => void;
 	timeout?: number;
 }

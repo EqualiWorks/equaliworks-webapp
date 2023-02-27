@@ -1,6 +1,5 @@
 import { supabase } from '$lib/db/supabase';
 import { fail, type Actions } from '@sveltejs/kit';
-import { z } from 'zod';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ locals }) => {
@@ -11,14 +10,12 @@ export const load: PageServerLoad = async ({ locals }) => {
 		.eq('id', locals.session.user.id);
 
 	// throw any errors
-	// TODO: build proper error handling
 	if (err) {
-		throw fail(500, { error: 'error' });
+		return fail(500, { error: 'Something went wrong while fetching privacy settings' });
 	}
 
-	// TODO: build proper error handling
 	if (privacySettings[0] == undefined) {
-		throw fail(500, { error: 'error' });
+		return fail(500, { error: 'Something went wrong while fetching privacy settings' });
 	}
 
 	// return object
@@ -47,8 +44,9 @@ export const actions: Actions = {
 			.eq('id', locals.session.user.id);
 
 		// if something goes wrong, throw error
-		// TODO: build proper error handling
-		if (err) throw fail(500, { error: 'error' });
+		if (err) {
+			return fail(500, { error: 'Could not save changes to database' });
+		}
 
 		// if no errors, return success
 		return {

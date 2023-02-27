@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { applyAction, enhance, type SubmitFunction } from '$app/forms';
-	import { invalidateAll } from '$app/navigation';
+	import { enhance, type SubmitFunction } from '$app/forms';
 	import Button from '$lib/components/form/Button.svelte';
 	import { toastStore } from '$lib/components/toast/stores';
 	import type { PageData } from './$types';
@@ -12,18 +11,27 @@
 	let loading: boolean = false;
 	let userUpdatedValue: boolean = false;
 
-	const validateUserUpdate: SubmitFunction = async ({ cancel }) => {
+	const handleSubmit: SubmitFunction = async () => {
 		return async ({ result }) => {
 			loading = true;
 			switch (result.type) {
 				case 'success':
-					await invalidateAll();
+					toastStore.trigger({
+						message: 'Updated privacy settings',
+						icon: 'ph-check-circle-bold',
+						type: 'success'
+					});
 					break;
-				default:
-					await applyAction(result);
+				case 'failure':
+					toastStore.trigger({
+						message: 'Could not update privacy settings',
+						icon: 'ph-warning-circle-bold',
+						type: 'error',
+						autohide: false
+					});
+					break;
 			}
 			loading = false;
-			toastStore.trigger({ message: 'successfully saved changes' });
 		};
 	};
 </script>
@@ -41,7 +49,7 @@
 			</p>
 		</div>
 		<hr class="my-8" />
-		<form method="POST" action="?/update-privacy" use:enhance={validateUserUpdate}>
+		<form method="POST" action="?/update-privacy" use:enhance={handleSubmit}>
 			<div class="divide-y rounded-xl border dark:divide-zinc-700 dark:border-zinc-700">
 				<PrivacyItem
 					on:change={() => (userUpdatedValue = true)}
