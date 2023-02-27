@@ -6,6 +6,7 @@
 	export let placeholder: string = '';
 	export let size: 'sm' | 'md' | 'lg' = 'md';
 	export let border: 'default' | 'red' | 'green' = 'default';
+	export let warning: string | undefined = undefined;
 
 	const colors = {
 		red: 'border-red-500',
@@ -34,3 +35,6 @@
 	{value}
 	{placeholder}
 />
+{#if warning !== undefined}
+	<span class="text-red-500">{warning}</span>
+{/if}

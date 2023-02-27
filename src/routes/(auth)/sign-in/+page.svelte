@@ -1,16 +1,16 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import Button from '$lib/components/form/Button.svelte';
-	import InputEmail from '$lib/components/form/InputEmail.svelte';
-	import InputPassword from '$lib/components/form/InputPassword.svelte';
+	import Input from '$lib/components/form/Input.svelte';
+	import { toastStore } from '$lib/components/toast/stores';
 	import type { SubmitFunction } from '@sveltejs/kit';
 
 	// variables
 	let email: string = '';
 	let password: string = '';
 	let provider: string | null = null;
-	let emailWarning: string | null = null;
-	let passwordWarning: string | null = null;
+	let emailWarning: string | undefined = undefined;
+	let passwordWarning: string | undefined = undefined;
 
 	const signInWithEmail: SubmitFunction = async ({ cancel }): Promise<void> => {
 		provider = 'email';
@@ -35,6 +35,12 @@
 		provider = action.searchParams.get('provider');
 
 		if (provider === null) {
+			toastStore.trigger({
+				message: 'Please select a provider',
+				icon: 'ph-warning-circle-bold',
+				type: 'error',
+				autohide: false
+			});
 			return cancel();
 		}
 	};
@@ -48,8 +54,7 @@
 			action="?/email-sign-in"
 			use:enhance={signInWithEmail}
 		>
-			<InputEmail warning={emailWarning} bind:value={email} />
-			<InputPassword warning={passwordWarning} bind:value={password} />
+			<Input id="email" label="Email" warning={emailWarning} bind:value={email} />
 			<Button type="submit" label="Sign in" />
 		</form>
 
