@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Button from '$lib/components/form/Button.svelte';
 	import Input from '$lib/components/form/Input.svelte';
 
 	let loading = false;
@@ -18,8 +17,5 @@
 		</div>
 
 		<hr class="my-8" />
-
-		<Button label="Save changes" color="default" {loading} />
-		<Button label="Save changes" color="ghost-default" {loading} />
 	</div>
 </div>

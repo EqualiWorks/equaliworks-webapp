@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import Button from '$lib/components/form/Button.svelte';
 	import Input from '$lib/components/form/Input.svelte';
 	import { toastStore } from '$lib/components/toast/stores';
 	import type { SubmitFunction } from '@sveltejs/kit';
@@ -55,31 +54,26 @@
 			use:enhance={signInWithEmail}
 		>
 			<Input id="email" label="Email" warning={emailWarning} bind:value={email} />
-			<Button type="submit" label="Sign in" />
+			<button type="submit" class="btn btn-default">Sign in</button>
 		</form>
 
 		<form class="flex w-80 flex-col gap-2" method="POST" use:enhance={signInWithProvider}>
-			<Button
+			<button
 				type="submit"
-				label="LinkedIn"
-				icon="ph-linkedin-logo-bold"
-				loading={provider === 'linkedIn'}
+				class="btn btn-default"
 				formaction="?/provider-sign-in&provider=linkedIn"
-			/>
-			<Button
-				type="submit"
-				label="Microsoft"
-				icon="ph-windows-logo-bold"
-				loading={provider === 'azure'}
-				formaction="?/provider-sign-in&provider=azure"
-			/>
-			<Button
-				type="submit"
-				label="Google"
-				icon="ph-google-logo"
-				loading={provider === 'google'}
-				formaction="?/provider-sign-in&provider=google"
-			/>
+			>
+				<i class="ph-linkedin-logo-bold ph-lg" />
+				LinkedIn
+			</button>
+			<button type="submit" class="btn btn-default" formaction="?/provider-sign-in&provider=azure">
+				<i class="ph-windows-logo-bold ph-lg" />
+				Microsoft
+			</button>
+			<button type="submit" class="btn btn-default" formaction="?/provider-sign-in&provider=google">
+				<i class="ph-google-logo-bold ph-lg" />
+				Google
+			</button>
 		</form>
 	</div>
 	<div class="bg hidden flex-col items-center justify-center overflow-hidden p-4 lg:flex">

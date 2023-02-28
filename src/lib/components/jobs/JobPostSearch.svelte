@@ -1,5 +1,4 @@
 <script>
-	import Button from '../form/Button.svelte';
 	import InputSearchSelect from '../form/InputSearchSelect.svelte';
 </script>
 
