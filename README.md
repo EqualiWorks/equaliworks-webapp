@@ -2,6 +2,6 @@
 
 
 ### Setup
-clone project
-run `npm intall`
-add a `.env` file to root following the `.env.template` structure
+1. clone project
+2. run `npm intall`
+3. add a `.env` file to root following the `.env.template` structure
