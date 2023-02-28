@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import Input from '$lib/components/form/Input.svelte';
 	import { toastStore } from '$lib/components/toast/stores';
 	import type { SubmitFunction } from '@sveltejs/kit';
 
@@ -53,7 +52,10 @@
 			action="?/email-sign-in"
 			use:enhance={signInWithEmail}
 		>
-			<Input id="email" label="Email" warning={emailWarning} bind:value={email} />
+			<div>
+				<label for="email" class="label">Email</label>
+				<input type="email" id="email" class="input" />
+			</div>
 			<button type="submit" class="btn btn-default">Sign in</button>
 		</form>
 

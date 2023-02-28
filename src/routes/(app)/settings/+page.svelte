@@ -1,19 +1,19 @@
 <script lang="ts">
-	import Input from '$lib/components/form/Input.svelte';
-
-	let loading = false;
 </script>
 
 <div class="grid grid-cols-8">
 	<div class="col-span-6">
 		<div class="mb-6">
-			<Input id={'name-input'} label={'Full name'} value={''} />
+			<label class="label" for="name-input">Full name</label>
+			<input class="input" type="text" />
 		</div>
 		<div class="mb-6">
-			<Input id={'phone-input'} label={'Phone'} value={''} />
+			<label class="label" for="phone-input">Phone</label>
+			<input class="input" type="phone" />
 		</div>
 		<div class="mb-6">
-			<Input id={'email-input'} label={'Email'} value={''} />
+			<label class="label" for="email-input">Email</label>
+			<input class="input" type="email" />
 		</div>
 
 		<hr class="my-8" />

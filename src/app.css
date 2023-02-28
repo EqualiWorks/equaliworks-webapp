@@ -30,6 +30,14 @@ h5 {
 h6 {
 }
 
+.input {
+	@apply w-full rounded border border-zinc-700 px-3 py-1.5 ring-0 ring-transparent duration-200 focus:outline-none focus:ring-0 active:scale-[102%] dark:bg-zinc-800 dark:text-white dark:focus:border-blue-400;
+}
+
+.label {
+	@apply mb-0.5 block text-sm dark:text-zinc-300;
+}
+
 .btn-sm {
 	@apply flex items-center gap-2 rounded-lg px-2 py-1.5 text-xs font-medium transition-all duration-150 active:scale-[95%] disabled:cursor-not-allowed disabled:active:scale-[100%];
 }
@@ -87,10 +95,6 @@ hr {
 	font-size: 1.5em;
 	line-height: 0.6666em;
 	vertical-align: -0.075em;
-}
-
-.input {
-	@apply block w-full rounded border border-gray-300 px-3 py-2 text-sm text-gray-900 focus:border-zinc-700 focus:bg-zinc-50 focus:outline-none dark:border-zinc-800 dark:bg-zinc-800 dark:text-white dark:placeholder-zinc-400 dark:focus:border-green-500 dark:focus:ring-green-500;
 }
 
 .form-label {
