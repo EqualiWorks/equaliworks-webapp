@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Button from '$lib/components/form/Button.svelte';
 	export let data: any;
 </script>
 
@@ -25,8 +24,8 @@
 		</div>
 	</div>
 	<div class="flex items-center gap-2">
-		<Button label="Bookmark" icon="ph-bookmark-simple-bold" />
-		<Button label="Apply" icon="ph-paper-plane-tilt-bold" />
+		<button class="btn btn-ghost"><i class="ph-bookmark-simple-bold" />Bookmark</button>
+		<button class="btn btn-ghost"><i class="ph-paper-plane-tilt-bold" />Apply</button>
 	</div>
 </div>
 

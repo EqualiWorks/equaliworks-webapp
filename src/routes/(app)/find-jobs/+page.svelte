@@ -1,9 +1,6 @@
 <script lang="ts">
-	import Button from '$lib/components/form/Button.svelte';
-	import InputSearchSelect from '$lib/components/form/InputSearchSelect.svelte';
 	import JobPost from '$lib/components/jobs/JobPost.svelte';
 	import JobPostPreview from '$lib/components/jobs/JobPostPreview.svelte';
-	import JobPostSearch from '$lib/components/jobs/JobPostSearch.svelte';
 	import Drawer from '$lib/components/layout/drawer/Drawer.svelte';
 	import { drawerStore } from '$lib/components/layout/drawer/stores';
 

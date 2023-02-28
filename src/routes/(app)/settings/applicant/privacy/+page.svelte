@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { enhance, type SubmitFunction } from '$app/forms';
-	import Button from '$lib/components/form/Button.svelte';
 	import { toastStore } from '$lib/components/toast/stores';
+	import Spinner from '$lib/components/utility/Spinner.svelte';
 	import type { PageData } from './$types';
 
 	import PrivacyItem from './PrivacyItem.svelte';
@@ -95,13 +95,15 @@
 				</PrivacyItem>
 			</div>
 			<hr class="my-8" />
-			<Button
-				{loading}
-				type="submit"
-				label="Save changes"
-				color={userUpdatedValue ? 'green' : 'default'}
+			<button
 				disabled={!userUpdatedValue}
-			/>
+				class="btn {userUpdatedValue ? 'btn-green' : 'btn-default'}"
+			>
+				{#if loading}
+					<Spinner size="ph-lg" />
+				{/if}
+				Save changes
+			</button>
 		</form>
 	</div>
 </div>
