@@ -48,15 +48,18 @@
 	<div class="flex flex-col items-center justify-center">
 		<form
 			method="POST"
-			class="mb-8 w-80 border-b border-dashed pb-8 dark:border-zinc-600"
+			class="mb-8 w-80 border-b border-dashed pb-8 dark:border-zinc-600 flex flex-col gap-2"
 			action="?/email-sign-in"
 			use:enhance={signInWithEmail}
 		>
 			<div>
 				<label for="email" class="label">Email</label>
-				<input type="email" id="email" class="input" />
+				<input type="email" id="email" class="input mt-1" />
 			</div>
-			<button type="submit" class="btn btn-default">Sign in</button>
+			<div class="grid grid-cols-2 gap-2">
+				<button type="submit" class="btn btn-default justify-center">Sign in</button>
+				<a href="/sign-up" class="btn btn-default justify-center">Sign up</a>
+			</div>
 		</form>
 
 		<form class="flex w-80 flex-col gap-2" method="POST" use:enhance={signInWithProvider}>

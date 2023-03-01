@@ -17,5 +17,11 @@
 		</div>
 
 		<hr class="my-8" />
+
+		<form method="POST" action="?/sign-out">
+			<div class="mb-12">
+				<button class="btn btn-default">Sign out</button>
+			</div>
+		</form>
 	</div>
 </div>
