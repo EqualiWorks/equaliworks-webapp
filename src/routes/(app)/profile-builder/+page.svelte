@@ -1,4 +1,9 @@
 <script lang="ts">
+	import Modal from '$lib/components/modal/Modal.svelte';
+	import { modalStore } from '$lib/components/modal/stores';
+	import type { ModalComponent } from '$lib/components/modal/types';
+	import ExperienceModal from './ExperienceModal.svelte';
+
 	let currentJobRole: string = 'Fullstack Developer';
 	let aboutSection: string = 'lorem ipsum';
 
@@ -6,6 +11,24 @@
 
 	const handleVisibilityToggle = () => {
 		hideDetails = !hideDetails;
+	};
+
+	const modalComponent: ModalComponent = {
+		// Pass a reference to your custom component
+		ref: ExperienceModal,
+		// Add the component properties as key/value pairs
+		props: { background: 'bg-red-500' },
+		// Provide a template literal for the default component slot
+		slot: '<p>Skeleton</p>'
+	};
+	// ...
+
+	const triggerModal = (): void => {
+		modalStore.trigger({
+			type: 'component',
+			component: modalComponent,
+			title: 'experience modal!'
+		});
 	};
 </script>
 
@@ -38,7 +61,7 @@
 						<p class="">Frontend developer</p>
 						<p class="text-sm text-zinc-500">Company</p>
 					</div>
-					<button class="btn-sm">
+					<button class="btn-sm" on:click={triggerModal}>
 						<i class="ph-pencil ph-xl" />
 					</button>
 				</div>
