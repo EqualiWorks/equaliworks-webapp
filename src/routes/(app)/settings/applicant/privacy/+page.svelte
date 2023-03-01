@@ -34,8 +34,6 @@
 			loading = false;
 		};
 	};
-
-	// reactivity
 	$: loading;
 </script>
 

@@ -2,6 +2,7 @@
 	import { invalidateAll } from '$app/navigation';
 	import type { NavItem } from '$lib/components/layout/navigation/NavItem';
 	import SideBar from '$lib/components/layout/navigation/SideBar.svelte';
+	import Modal from '$lib/components/modal/Modal.svelte';
 	import Toast from '$lib/components/toast/Toast.svelte';
 	import { supabase } from '$lib/db/supabase';
 	import { onMount } from 'svelte';
@@ -58,6 +59,8 @@
 </script>
 
 <Toast />
+
+<Modal />
 
 <div class="flex h-screen w-full">
 	<SideBar {navItems} />
