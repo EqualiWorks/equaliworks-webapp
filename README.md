@@ -5,3 +5,4 @@
 1. clone project
 2. run `npm intall`
 3. add a `.env` file to root following the `.env.template` structure
+4. Start server with `npm run dev`
