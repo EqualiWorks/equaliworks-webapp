@@ -4,7 +4,7 @@ module.exports = {
 	theme: {
 		extend: {
 			fontFamily: {
-				sans: ['inter'],
+				sans: ['Golos Text'],
 				mono: ['JetBrains Mono'],
 				display: ['Unbounded']
 			},

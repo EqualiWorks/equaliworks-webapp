@@ -2,6 +2,7 @@
 	import { invalidateAll } from '$app/navigation';
 	import type { NavItem } from '$lib/components/layout/navigation/NavItem';
 	import SideBar from '$lib/components/layout/navigation/SideBar.svelte';
+	import Modal from '$lib/components/modal/Modal.svelte';
 	import Toast from '$lib/components/toast/Toast.svelte';
 	import { supabase } from '$lib/db/supabase';
 	import { onMount } from 'svelte';
@@ -30,8 +31,8 @@
 			icon: 'ph-gender-neuter-bold'
 		},
 		{
-			href: 'cv',
-			title: 'CV',
+			href: 'profile-builder',
+			title: 'Profile Builder',
 			icon: 'ph-user-square-bold',
 			badge: 'PRO'
 		},
@@ -58,6 +59,8 @@
 </script>
 
 <Toast />
+
+<Modal />
 
 <div class="flex h-screen w-full">
 	<SideBar {navItems} />
