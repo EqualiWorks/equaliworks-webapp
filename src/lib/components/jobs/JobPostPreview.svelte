@@ -5,7 +5,7 @@
 <div
 	on:click
 	on:keydown
-	class="group flex cursor-pointer flex-col justify-between rounded-xl border px-5 py-4 transition-all duration-200 hover:border-purple-500 hover:px-6 hover:shadow-sm dark:border-zinc-700 dark:bg-zinc-800"
+	class="group flex cursor-pointer flex-col justify-between rounded-xl border bg-white px-5 py-4 transition-all duration-200 hover:border-purple-500 hover:px-6 hover:shadow-sm dark:border-zinc-700 dark:bg-zinc-800"
 >
 	<div class="">
 		<div class="flex items-center justify-between">

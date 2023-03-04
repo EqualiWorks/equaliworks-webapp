@@ -7,6 +7,9 @@ input {
 	@apply ring-0 ring-offset-0;
 }
 
+p {
+}
+
 h1 {
 	@apply text-6xl;
 }
@@ -29,9 +32,8 @@ h5 {
 
 h6 {
 }
-
 .input {
-	@apply w-full rounded border border-zinc-700 px-3 py-1.5 text-sm ring-0 ring-transparent duration-200 focus:outline-none focus:ring-0 active:scale-[102%] dark:bg-zinc-800 dark:text-white dark:focus:border-blue-400;
+	@apply w-full rounded-md border px-3 py-1.5 text-sm ring-0 ring-transparent duration-200 dark:border-zinc-700 dark:bg-zinc-800 dark:text-white dark:focus:border-blue-400;
 }
 
 .label {

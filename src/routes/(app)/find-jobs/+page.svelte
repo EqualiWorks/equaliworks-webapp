@@ -1,4 +1,5 @@
 <script lang="ts">
+	import SearchFilter from '$lib/components/jobPostSearch/SearchFilter.svelte';
 	import JobPost from '$lib/components/jobs/JobPost.svelte';
 	import JobPostPreview from '$lib/components/jobs/JobPostPreview.svelte';
 	import Drawer from '$lib/components/layout/drawer/Drawer.svelte';
@@ -6,7 +7,6 @@
 
 	let selectedJobPost: null | object = null;
 	let activeJobPost: null | string = null;
-	let showAdvancedFilters: boolean = false;
 
 	const openJobPost = async (data: any) => {
 		activeJobPost = data.id;
@@ -19,23 +19,63 @@
 		const data = await res.json();
 		return data.data;
 	};
-
-	const fetchJobPost = async () => {
-		// const res = await fetch('/api/v1/jobs/1313');
-		// const data = await res.json();
-
-		return null;
-	};
-
-	const handleAdvancedFiltersToggle = () => {
-		showAdvancedFilters = showAdvancedFilters ? false : true;
-	};
 </script>
 
 <Drawer>
 	<JobPost data={selectedJobPost} />
 </Drawer>
 
+<div class="flex h-full overflow-auto">
+	<div class="w-[464px] max-w-[464px] border-r dark:border-zinc-700 dark:bg-zinc-800 ">
+		<div class="border-b py-14 px-5 dark:border-zinc-700">
+			<p class="mb-1 text-xs text-zinc-500 dark:text-zinc-400">Explore new opportunities</p>
+			<h3 class="font-medium dark:text-white">Browse job posts</h3>
+		</div>
+		<SearchFilter />
+	</div>
+	<div class="w-full overflow-auto bg-zinc-50 dark:bg-transparent">
+		<div class="mx-auto w-[756px] max-w-[756px]">
+			<div class="flex items-center justify-between py-5">
+				<p class="text-sm dark:text-zinc-400">Found 39 jobs</p>
+				<button class="text-sm dark:text-zinc-400">
+					order by <span class="font-medium dark:text-white">Recommended</span>
+				</button>
+			</div>
+
+			<div class="flex h-full flex-col gap-4 overflow-auto">
+				{#await fetchJobs()}
+					loading...
+				{:then jobs}
+					{#if jobs !== null}
+						{#each jobs as data}
+							<JobPostPreview {data} on:click={() => openJobPost(data)} />
+							<JobPostPreview {data} on:click={() => openJobPost(data)} />
+							<JobPostPreview {data} on:click={() => openJobPost(data)} />
+							<JobPostPreview {data} on:click={() => openJobPost(data)} />
+							<JobPostPreview {data} on:click={() => openJobPost(data)} />
+							<JobPostPreview {data} on:click={() => openJobPost(data)} />
+							<JobPostPreview {data} on:click={() => openJobPost(data)} />
+							<JobPostPreview {data} on:click={() => openJobPost(data)} />
+							<JobPostPreview {data} on:click={() => openJobPost(data)} />
+							<JobPostPreview {data} on:click={() => openJobPost(data)} />
+							<JobPostPreview {data} on:click={() => openJobPost(data)} />
+							<JobPostPreview {data} on:click={() => openJobPost(data)} />
+							<JobPostPreview {data} on:click={() => openJobPost(data)} />
+							<JobPostPreview {data} on:click={() => openJobPost(data)} />
+							<JobPostPreview {data} on:click={() => openJobPost(data)} />
+							<JobPostPreview {data} on:click={() => openJobPost(data)} />
+							<JobPostPreview {data} on:click={() => openJobPost(data)} />
+							<JobPostPreview {data} on:click={() => openJobPost(data)} />
+							<JobPostPreview {data} on:click={() => openJobPost(data)} />
+						{/each}
+					{/if}
+				{/await}
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- 
 <div class="flex flex-col">
 	<div
 		class="{showAdvancedFilters == true
@@ -47,7 +87,7 @@
 				<h3 class="text-black dark:text-white">Find Jobs</h3>
 				<div class="ml-12 grow">
 					<input
-						class="w-full rounded-lg border border-zinc-400 bg-transparent px-4 py-2 text-sm text-black transition-colors duration-200 ease-in-out focus:border-white focus:outline-none focus:ring-white dark:border-zinc-700 dark:text-white dark:placeholder-zinc-400"
+						class="w-full rounded-md border border-zinc-400 bg-transparent px-4 py-2 text-sm text-black transition-colors duration-200 ease-in-out focus:border-white focus:outline-none focus:ring-white dark:border-zinc-700 dark:text-white dark:placeholder-zinc-400"
 						placeholder="Search keywords..."
 					/>
 				</div>
@@ -101,4 +141,4 @@
 			</div>
 		</div>
 	{/await}
-</div>
+</div> -->

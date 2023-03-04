@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import type { ToastOptions } from './types';
+import type { Toast, ToastOptions } from './types';
 
 const toastDefaults: ToastOptions = {
 	message: 'Missing Toast Message',

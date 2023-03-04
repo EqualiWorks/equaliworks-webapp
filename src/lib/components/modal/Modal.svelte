@@ -44,25 +44,25 @@
 {#if $modalStore.length}
 	<div
 		id="modal-backdrop"
-		class="fixed top-0 left-0 right-0 bottom-0 z-[999] bg-black/10 "
+		class="fixed top-0 left-0 right-0 bottom-0 z-[999] bg-black/20"
 		on:mousedown={onBackDropClick}
 		on:touchstart={onBackDropClick}
 		transition:fade={{ duration: 150 }}
 	>
 		<div
 			id="modal-transition"
-			class="flex h-full w-full justify-center overflow-y-auto p-4"
-			transition:fly={{ duration: 100, opacity: 0, x: 0, y: 100 }}
+			class="flex h-full w-full items-center justify-center overflow-y-auto p-4"
+			transition:fly={{ duration: 100, opacity: 0, x: 0, y: -10 }}
 		>
 			{#if $modalStore[0].type !== 'component'}
-				<div>
+				<div class="h-auto">
 					{$modalStore[0].type}
 				</div>
 			{:else}
-				<div class="w-full max-w-[640px] rounded-xl bg-white">
+				<div class="w-full max-w-[640px] rounded-xl border  bg-white">
 					{#if $modalStore[0]?.title}
 						<header class="flex items-center justify-between border-b p-4">
-							<h5>{@html $modalStore[0].title}</h5>
+							<h4 class="font-medium">{@html $modalStore[0].title}</h4>
 							<button class="btn"><i class="ph-x-circle ph-xl" /></button>
 						</header>
 					{/if}
