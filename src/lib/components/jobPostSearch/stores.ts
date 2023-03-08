@@ -4,7 +4,8 @@ import type { Filter } from './types';
 const filter: Filter = {
 	workTime: [],
 	workPlace: [],
-	jobRoles: []
+	location: [],
+	jobTitles: []
 };
 
 function searchService() {
@@ -12,7 +13,29 @@ function searchService() {
 	return {
 		subscribe,
 		set,
-		reset: () => set(filter),
+		clear: () => {
+			update((fStore) => {
+				fStore.jobTitles = [];
+				fStore.location = [];
+				fStore.workPlace = [];
+				fStore.workTime = [];
+				return fStore;
+			});
+		},
+		setFilter: (category: string, value: string[]) => {
+			update((fStore) => {
+				switch (category) {
+					case 'job-title':
+						fStore.jobTitles = value;
+						break;
+					case 'location':
+						fStore.location = value;
+						break;
+				}
+
+				return fStore;
+			});
+		},
 		addFilter: (category: string, value: string) => {
 			update((fStore) => {
 				switch (category) {
@@ -22,6 +45,10 @@ function searchService() {
 
 					case 'work-place':
 						fStore.workPlace = addFilter(fStore.workPlace, value);
+						break;
+
+					case 'job-title':
+						fStore.jobTitles = addFilter(fStore.jobTitles, value);
 						break;
 				}
 				return fStore;
@@ -36,6 +63,10 @@ function searchService() {
 
 					case 'work-place':
 						fStore.workPlace = removeFilter(fStore.workPlace, value);
+						break;
+
+					case 'job-title':
+						fStore.jobTitles = removeFilter(fStore.jobTitles, value);
 						break;
 				}
 				return fStore;

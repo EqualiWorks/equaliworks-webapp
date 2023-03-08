@@ -1,8 +1,8 @@
 export interface Filter {
 	workTime: string[];
 	workPlace: string[];
-	location?: string | undefined;
-	jobRoles: string[];
+	location: string[];
+	jobTitles: string[];
 }
 
 export interface FilterButtonData {

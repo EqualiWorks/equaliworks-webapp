@@ -26,7 +26,9 @@
 </Drawer>
 
 <div class="flex h-full overflow-auto">
-	<div class="w-[464px] max-w-[464px] border-r dark:border-zinc-700 dark:bg-zinc-800 ">
+	<div
+		class="h-full w-[464px] max-w-[464px] overflow-auto border-r dark:border-zinc-700 dark:bg-zinc-800"
+	>
 		<div class="border-b py-14 px-5 dark:border-zinc-700">
 			<p class="mb-1 text-xs text-zinc-500 dark:text-zinc-400">Explore new opportunities</p>
 			<h3 class="font-medium dark:text-white">Browse job posts</h3>

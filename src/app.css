@@ -2,14 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-input {
-	--tw-ring-shadow: 0 0 #000 !important;
-	@apply ring-0 ring-offset-0;
-}
-
-p {
-}
-
 h1 {
 	@apply text-6xl;
 }
@@ -32,12 +24,17 @@ h5 {
 
 h6 {
 }
+
 .input {
-	@apply w-full rounded-md border px-3 py-1.5 text-sm ring-0 ring-transparent duration-200 dark:border-zinc-700 dark:bg-zinc-800 dark:text-white dark:focus:border-blue-400;
+	@apply w-full rounded border py-1.5 px-3 text-sm outline-none ring-0 ring-transparent duration-200 focus:border-teal-700 dark:bg-zinc-800 dark:text-white dark:focus:border-blue-400;
+}
+
+.input-icon {
+	@apply w-full rounded border py-1.5 pr-3 pl-9 text-sm outline-none ring-0 ring-transparent duration-200 focus:border-teal-700 dark:bg-zinc-800 dark:text-white dark:focus:border-blue-400;
 }
 
 .label {
-	@apply mb-0.5 block text-xs dark:text-zinc-300;
+	@apply mb-0.5 block text-sm dark:text-zinc-300;
 }
 
 .btn-sm {
@@ -57,7 +54,7 @@ h6 {
 }
 
 .btn-default {
-	@apply border text-zinc-800 hover:border-zinc-300 hover:bg-zinc-100 dark:border-zinc-900 dark:bg-zinc-500/20 dark:text-zinc-300 dark:hover:text-white;
+	@apply border text-zinc-800 hover:border-zinc-800 hover:text-white dark:border-zinc-900 dark:bg-zinc-500/20 dark:text-zinc-300;
 }
 
 .btn-ghost-green {
