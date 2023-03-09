@@ -8,7 +8,7 @@
 	<div class="flex gap-6">
 		<div class="flex items-center gap-2">
 			<i class="ph-buildings-bold text-zinc-500" />
-			<p class="text-sm font-light text-zinc-500 ">Maersk</p>
+			<p class="text-sm font-light text-zinc-500 ">Company</p>
 		</div>
 		<div class="flex items-center gap-2">
 			<i class="ph-map-pin-bold text-zinc-500" />

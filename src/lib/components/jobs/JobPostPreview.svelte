@@ -27,7 +27,7 @@
 		<div class="flex items-center">
 			<div class="h-12 w-12 rounded border bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900" />
 			<div class="ml-2">
-				<p class="text-sm font-medium dark:text-zinc-300">Maersk</p>
+				<p class="text-sm font-medium dark:text-zinc-300">Company</p>
 				<p class="text-sm dark:text-zinc-400">Copenhagen</p>
 			</div>
 		</div>
