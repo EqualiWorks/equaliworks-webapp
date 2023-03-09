@@ -54,7 +54,7 @@ h6 {
 }
 
 .btn-default {
-	@apply border text-zinc-800 hover:border-zinc-800 hover:text-white dark:border-zinc-900 dark:bg-zinc-500/20 dark:text-zinc-300;
+	@apply border text-zinc-800 hover:border-zinc-800 hover:text-teal-700 dark:border-zinc-900 dark:bg-zinc-500/20 dark:text-zinc-300 dark:hover:text-white;
 }
 
 .btn-ghost-green {

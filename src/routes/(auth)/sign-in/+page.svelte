@@ -56,7 +56,7 @@
 				<label for="email" class="label">Email</label>
 				<input type="email" id="email" class="input" />
 			</div>
-			<button type="submit" class="btn btn-default">Sign in</button>
+			<button type="submit" disabled class="btn btn-default">Sign in</button>
 		</form>
 
 		<form class="flex w-80 flex-col gap-2" method="POST" use:enhance={signInWithProvider}>

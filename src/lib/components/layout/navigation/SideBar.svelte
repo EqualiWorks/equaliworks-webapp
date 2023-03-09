@@ -36,11 +36,11 @@
 			href="/settings"
 		>
 			<div class="flex items-center">
-				<img
-					class="h-8 w-8 rounded-full"
-					src={$page.data.session?.user.user_metadata.avatar_url}
-					alt="avatar"
-				/>
+				<div
+					class="bg ml-1.5 flex h-8 w-8 justify-center rounded-full border bg-white pt-1 text-center"
+				>
+					{($page.data.session?.user.user_metadata.name).substring(0, 1)}
+				</div>
 				{#if $sideBarOpen}
 					<span class="ml-2 dark:text-white">{$page.data.session?.user.user_metadata.name}</span>
 				{/if}
