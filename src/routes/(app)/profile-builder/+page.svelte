@@ -33,7 +33,7 @@
 </script>
 
 <div class="grid h-full grid-cols-7">
-	<div class="col-span-3 border-r dark:border-zinc-700 dark:bg-zinc-800">
+	<div class="col-span-3 overflow-y-auto border-r dark:border-zinc-700 dark:bg-zinc-800">
 		<div class="flex h-44 flex-col justify-center border-b">
 			<div class="flex-col justify-center px-5 dark:border-zinc-700">
 				<p class="mb-1 text-xs text-zinc-400 dark:text-zinc-400">Profile Builder</p>
@@ -158,7 +158,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-span-4 bg-white dark:bg-transparent">
+	<div class="col-span-4 overflow-y-auto bg-white dark:bg-transparent">
 		<div class="flex h-44 flex-col">
 			<div class="border-b border-dashed bg-zinc-50 py-3 px-2">
 				<button class="btn-sm btn-ghost font-mono">Front-end CV<i class="ph-caret-down" /></button>
@@ -295,6 +295,16 @@
 					<p class="text-xs text-zinc-500">5 projects</p>
 				</div>
 				<i class="ph-arrow-right ph-xl text-teal-700" />
+			</div>
+		</div>
+
+		<div class="">
+			<hr class="border-dashed" />
+		</div>
+
+		<div>
+			<div class="px-8 py-5">
+				<p class="mb-1 text-sm font-medium">Languages</p>
 			</div>
 		</div>
 	</div>
