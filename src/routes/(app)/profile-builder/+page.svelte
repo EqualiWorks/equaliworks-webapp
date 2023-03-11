@@ -29,7 +29,7 @@
 
 <div class="grid h-full grid-cols-7">
 	<div class="col-span-3 overflow-y-auto border-r dark:border-zinc-700 dark:bg-zinc-800">
-		<div class="flex h-44 flex-col justify-center border-b">
+		<div class="flex h-44 flex-col justify-center border-b dark:border-zinc-700">
 			<div class="flex-col justify-center px-5 dark:border-zinc-700">
 				<p class="mb-1 text-xs text-zinc-400 dark:text-zinc-400">Profile Builder</p>
 				<h3 class="font-medium dark:text-white">Profile Builder</h3>
