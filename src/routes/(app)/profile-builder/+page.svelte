@@ -173,7 +173,9 @@
 	<div class="col-span-4 overflow-y-auto bg-white dark:bg-transparent">
 		<div class="flex h-44 flex-col">
 			<div class="flex grow items-center gap-4 px-8">
-				<div class="bg flex h-12 w-12 items-center justify-center rounded-full border">
+				<div
+					class="bg flex h-12 w-12 items-center justify-center rounded-full border dark:border-zinc-700"
+				>
 					<i class="ph-user ph-xl" />
 				</div>
 				<div>
@@ -208,7 +210,7 @@
 				<div>
 					<div class="flex items-start justify-between">
 						<div>
-							<p class="font-medium">Software Developer</p>
+							<p class="font-medium dark:text-white">Software Developer</p>
 							<p class="text-xs text-zinc-500">Company . Copenhagen, Denmark</p>
 						</div>
 						<p class="text-sm">2019 - 2022</p>
