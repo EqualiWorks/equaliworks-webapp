@@ -38,11 +38,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Push changes
-        if: ${{contains(steps.git_status.outputs.status, ' ')}}
-        uses: ad-m/github-push-action@master
         run: /
           git push
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
