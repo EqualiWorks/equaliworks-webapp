@@ -1,11 +1,7 @@
 <script lang="ts">
-	import Modal from '$lib/components/modal/Modal.svelte';
 	import { modalStore } from '$lib/components/modal/stores';
 	import type { ModalComponent } from '$lib/components/modal/types';
 	import ExperienceModal from './ExperienceModal.svelte';
-
-	let currentJobRole: string = 'Fullstack Developer';
-	let aboutSection: string = 'lorem ipsum';
 
 	let hideDetails = true;
 
@@ -21,7 +17,6 @@
 		// Provide a template literal for the default component slot
 		slot: '<p>Skeleton</p>'
 	};
-	// ...
 
 	const triggerModal = (): void => {
 		modalStore.trigger({
@@ -41,12 +36,29 @@
 			</div>
 		</div>
 		<div class="mt-6 px-5">
-			<p class="mb-2.5 text-sm dark:text-zinc-400">Tag line</p>
-			<input class="input" type="text" />
+			<label for="tag-line-input" class="mb-2.5 text-sm dark:text-zinc-400"
+				>I would describe myself as a(n)</label
+			>
+			<input
+				class="input"
+				id="tag-line-input"
+				type="text"
+				placeholder="Architect student, passionated web developer, experienced graphics designer ..."
+			/>
 		</div>
 		<div class="mt-6 px-5">
-			<p class="mb-2.5 text-sm text-zinc-500 dark:text-zinc-400">Tag line</p>
-			<textarea class="input" rows="5" />
+			<div class="mb-2.5 flex items-center justify-between ">
+				<label for="about-input" class="text-sm dark:text-zinc-400"
+					>And this is what I'm passionated about</label
+				>
+				<button class="text-zinc-500 hover:text-teal-700"><i class="ph-question" /></button>
+			</div>
+			<textarea
+				id="about-input"
+				class="input"
+				rows="5"
+				placeholder="I'm a highly motivated individual whom ..."
+			/>
 		</div>
 
 		<div class="mb-2.5 mt-6 flex items-center justify-between px-5">
@@ -160,16 +172,11 @@
 	</div>
 	<div class="col-span-4 overflow-y-auto bg-white dark:bg-transparent">
 		<div class="flex h-44 flex-col">
-			<div class="border-b border-dashed bg-zinc-50 py-3 px-2">
-				<button class="btn-sm btn-ghost font-mono">Front-end CV<i class="ph-caret-down" /></button>
-			</div>
-
 			<div class="flex grow items-center gap-4 px-8">
 				<div class="bg flex h-12 w-12 items-center justify-center rounded-full border">
 					<i class="ph-user ph-xl" />
 				</div>
 				<div>
-					<p class="mb-1 text-xs text-zinc-400 dark:text-zinc-400">This is you 🥳</p>
 					<h3 class="font-medium dark:text-white">Software Development student</h3>
 				</div>
 			</div>
