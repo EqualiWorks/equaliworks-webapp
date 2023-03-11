@@ -202,7 +202,7 @@
 		</div>
 
 		<div class="px-8 py-5">
-			<div class="mb-2 flex items-center gap-2 text-teal-700">
+			<div class="mb-2 flex items-center gap-2 text-teal-700 dark:text-teal-400">
 				<i class="ph-barbell" />
 				<p class="text-sm font-medium">Experience</p>
 			</div>
