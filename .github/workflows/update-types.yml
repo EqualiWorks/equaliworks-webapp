@@ -1,18 +1,19 @@
 name: Update database types
 
 on:
-  push:
+  pull_request:
     branches:
       - main
+      - master
 
 jobs:
-  update:
+  build:
     runs-on: ubuntu-latest
     env:
-      SUPABASE_ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-      PROJECT_ID: msbmizfcerevoocnafgg
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      PROJECT_ID: ${{ secrets.SUPABASE_REF_ID}}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           persist-credentials: false
           fetch-depth: 0
@@ -36,4 +37,4 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
+          branch: refs/heads/${{ github.head_ref }}
