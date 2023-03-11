@@ -8,6 +8,10 @@ jobs:
   format-code:
     runs-on: ubuntu-latest
 
+    env:
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      PROJECT_ID: SUPABASE_REF_ID
+
     permissions:
       contents: write
 
