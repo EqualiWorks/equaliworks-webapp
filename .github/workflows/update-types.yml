@@ -36,7 +36,7 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git commit -am "Update database types"
         env:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          gh_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Push changes
         if: ${{contains(steps.git_status.outputs.status, ' ')}}
         uses: ad-m/github-push-action@master
