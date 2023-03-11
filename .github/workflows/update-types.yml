@@ -1,16 +1,25 @@
 name: Update database types
 
 on:
-  pull_request:
-    branches:
-      - main
+  pull_requst:
+    branches: -main
+
 jobs:
-  build:
+  format-code:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
     steps:
-      - uses: lyqht/generate-supabase-db-types-github-action@main
-        with:
-          SUPABASE_REF_ID: ${{ secrets.SUPABASE_REF_ID }}
-          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
-          DB_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
-          OUTPUT_PATH: db.types.ts
+      - uses: actions/checkout@v3
+
+      - run: npm run update-types
+
+      - name: check for file changes
+        id: git_status
+        run: |
+          echo "::set-output name=status::$(git status -s)"
+
+      # Commit all changed files back to the repository
+      - uses: stefanzweifel/git-auto-commit-action@v4
