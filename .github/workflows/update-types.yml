@@ -1,7 +1,7 @@
 name: Update database types
 
 on:
-  pull_requst:
+  build:
     branches: -main
 
 jobs:
