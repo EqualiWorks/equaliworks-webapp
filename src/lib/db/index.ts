@@ -198,6 +198,7 @@ export interface Database {
           data: string
           id: number
           job_post_id: number
+          title: string | null
         }
         Insert: {
           applicant_id: string
@@ -205,6 +206,7 @@ export interface Database {
           data: string
           id?: number
           job_post_id: number
+          title?: string | null
         }
         Update: {
           applicant_id?: string
@@ -212,6 +214,7 @@ export interface Database {
           data?: string
           id?: number
           job_post_id?: number
+          title?: string | null
         }
       }
       certification: {
