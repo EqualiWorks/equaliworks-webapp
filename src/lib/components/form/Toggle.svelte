@@ -3,10 +3,11 @@
 	export let checked: boolean = false;
 	export let name: string;
 	export let id: string;
+	export let value: string = '';
 </script>
 
 <label class="relative inline-flex cursor-pointer items-center">
-	<input type="checkbox" value="" class="peer sr-only" {id} {name} bind:checked on:change />
+	<input type="checkbox" {value} class="peer sr-only" {id} {name} bind:checked on:change />
 	<div
 		class="peer h-5 w-9 rounded-full bg-zinc-200 after:absolute after:top-[2px] after:left-[2px] after:h-4 after:w-4 after:rounded-full after:border after:border-zinc-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-green-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-green-300 dark:border-zinc-600 dark:bg-zinc-700 dark:peer-focus:ring-green-800"
 	/>

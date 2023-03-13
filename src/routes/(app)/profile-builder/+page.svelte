@@ -1,31 +1,25 @@
 <script lang="ts">
-	import { modalStore } from '$lib/components/modal/stores';
-	import type { ModalComponent } from '$lib/components/modal/types';
-	import ExperienceModal from './ExperienceModal.svelte';
+	import Drawer from '$lib/components/layout/drawer/Drawer.svelte';
+	import { drawerStore } from '$lib/components/layout/drawer/stores';
+	import type { ApplicantEducation, ApplicantExperience } from '$lib/db/types';
+	import ProfileAttributeBuilder from './ProfileAttributeBuilder.svelte';
+	import ProfileEducationAdd from './ProfileEducationAdd.svelte';
+	import ProfileEducationBuilder from './ProfileEducationBuilder.svelte';
 
-	let hideDetails = true;
+	let experiences: ApplicantExperience[] = [];
+	let education: ApplicantEducation[] = [];
 
-	const handleVisibilityToggle = () => {
-		hideDetails = !hideDetails;
-	};
+	let title: string = '';
 
-	const modalComponent: ModalComponent = {
-		// Pass a reference to your custom component
-		ref: ExperienceModal,
-		// Add the component properties as key/value pairs
-		props: { background: 'bg-red-500' },
-		// Provide a template literal for the default component slot
-		slot: '<p>Skeleton</p>'
-	};
-
-	const triggerModal = (): void => {
-		modalStore.trigger({
-			type: 'component',
-			component: modalComponent,
-			title: 'Modal header'
-		});
+	const handleAddEducation = () => {
+		title = 'Add new education';
+		drawerStore.open();
 	};
 </script>
+
+<Drawer>
+	<ProfileEducationAdd {title} />
+</Drawer>
 
 <div class="grid h-full grid-cols-7">
 	<div class="col-span-3 overflow-y-auto border-r dark:border-zinc-700 dark:bg-zinc-800">
@@ -66,108 +60,39 @@
 			<button class="btn-sm btn-default">Add <i class="ph-plus" /></button>
 		</div>
 		<div class="mx-5 divide-y rounded-md border dark:divide-zinc-700 dark:border-zinc-700">
-			<div class="flex items-center justify-between p-3">
-				<div>
-					<p class="text-sm font-medium dark:text-white">Software developer</p>
-					<div class="flex items-center gap-2">
-						<p class="text-xs text-zinc-400">Company</p>
-						<div class="h-1 w-1 rounded-full bg-zinc-400" />
-						<p class="text-xs text-zinc-400">2022 - now</p>
-					</div>
+			{#if experiences.length}
+				{#each experiences as experience}
+					<ProfileAttributeBuilder
+						title={experience.title}
+						institution={experience.company}
+						startYear={parseInt(experience.start_date.split('-')[0])}
+						endYear={experience.end_date === null
+							? null
+							: parseInt(experience.end_date.split('-')[0])}
+					/>
+				{/each}
+			{:else}
+				<div class="flex items-center justify-center p-4">
+					<p class="text-sm dark:text-zinc-400">None</p>
 				</div>
-				<div class="flex items-center">
-					<button class="btn-sm"><i class="ph-trash ph-lg dark:text-white" /></button>
-					<button on:click={triggerModal} class="btn-sm"
-						><i class="ph-pencil-simple-line ph-lg dark:text-white" /></button
-					>
-				</div>
-			</div>
-			<div class="flex items-center justify-between p-3">
-				<div>
-					<p class="text-sm font-medium dark:text-white">Software developer</p>
-					<div class="flex items-center gap-2">
-						<p class="text-xs text-zinc-400">Company</p>
-						<div class="h-1 w-1 rounded-full bg-zinc-400" />
-						<p class="text-xs text-zinc-400">2022 - now</p>
-					</div>
-				</div>
-				<div class="flex items-center">
-					<button class="btn-sm"><i class="ph-trash ph-lg dark:text-white" /></button>
-					<button on:click={triggerModal} class="btn-sm"
-						><i class="ph-pencil-simple-line ph-lg dark:text-white" /></button
-					>
-				</div>
-			</div>
-			<div class="flex items-center justify-between p-3">
-				<div>
-					<p class="text-sm font-medium dark:text-white">Software developer</p>
-					<div class="flex items-center gap-2">
-						<p class="text-xs text-zinc-400">Company</p>
-						<div class="h-1 w-1 rounded-full bg-zinc-400" />
-						<p class="text-xs text-zinc-400">2022 - now</p>
-					</div>
-				</div>
-				<div class="flex items-center">
-					<button class="btn-sm"><i class="ph-trash ph-lg dark:text-white" /></button>
-					<button on:click={triggerModal} class="btn-sm"
-						><i class="ph-pencil-simple-line ph-lg dark:text-white" /></button
-					>
-				</div>
-			</div>
+			{/if}
 		</div>
 		<div class="mb-2.5 mt-6 flex items-center justify-between px-5">
 			<p class="text-sm text-zinc-500 dark:text-zinc-400">Education</p>
-			<button class="btn-sm btn-default">Add <i class="ph-plus" /></button>
+			<button class="btn-sm btn-default" on:click={handleAddEducation}
+				>Add <i class="ph-plus" /></button
+			>
 		</div>
 		<div class="mx-5 divide-y rounded-md border dark:divide-zinc-700 dark:border-zinc-700">
-			<div class="flex items-center justify-between p-3">
-				<div>
-					<p class="text-sm font-medium dark:text-white">Software developer</p>
-					<div class="flex items-center gap-2">
-						<p class="text-xs text-zinc-400">Company</p>
-						<div class="h-1 w-1 rounded-full bg-zinc-400" />
-						<p class="text-xs text-zinc-400">2022 - now</p>
-					</div>
+			{#if education.length}
+				{#each education as data}
+					<ProfileEducationBuilder {data} />
+				{/each}
+			{:else}
+				<div class="flex items-center justify-center p-4">
+					<p class="text-sm dark:text-zinc-400">None</p>
 				</div>
-				<div class="flex items-center">
-					<button class="btn-sm"><i class="ph-trash ph-lg dark:text-white" /></button>
-					<button on:click={triggerModal} class="btn-sm"
-						><i class="ph-pencil-simple-line ph-lg dark:text-white" /></button
-					>
-				</div>
-			</div>
-			<div class="flex items-center justify-between p-3">
-				<div>
-					<p class="text-sm font-medium dark:text-white">Software developer</p>
-					<div class="flex items-center gap-2">
-						<p class="text-xs text-zinc-400">Company</p>
-						<div class="h-1 w-1 rounded-full bg-zinc-400" />
-						<p class="text-xs text-zinc-400">2022 - now</p>
-					</div>
-				</div>
-				<div class="flex items-center">
-					<button class="btn-sm"><i class="ph-trash ph-lg dark:text-white" /></button>
-					<button on:click={triggerModal} class="btn-sm"
-						><i class="ph-pencil-simple-line ph-lg dark:text-white" /></button
-					>
-				</div>
-			</div>
-			<div class="flex items-center justify-between p-3">
-				<div>
-					<p class="text-sm font-medium dark:text-white">Software developer</p>
-					<div class="flex items-center gap-2">
-						<p class="text-xs text-zinc-400">Company</p>
-						<div class="h-1 w-1 rounded-full bg-zinc-400" />
-						<p class="text-xs text-zinc-400">2022 - now</p>
-					</div>
-				</div>
-				<div class="flex items-center">
-					<button class="btn-sm"><i class="ph-trash ph-lg dark:text-white" /></button>
-					<button on:click={triggerModal} class="btn-sm"
-						><i class="ph-pencil-simple-line ph-lg dark:text-white" /></button
-					>
-				</div>
-			</div>
+			{/if}
 		</div>
 	</div>
 	<div class="col-span-4 overflow-y-auto bg-white dark:bg-transparent">
@@ -318,60 +243,3 @@
 		</div>
 	</div>
 </div>
-
-<!-- 
-
-
-
-
-		<div class="bg-white p-5 dark:border dark:border-zinc-700 dark:bg-black">
-			<div class="my-10">
-				<p class="text-xs text-purple-500">!his is you 😃</p>
-				<h3 class="mb-2 font-medium dark:text-white">Software Development student</h3>
-				<p class="text-sm text-zinc-500 dark:text-zinc-400">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-					ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-					ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-					reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-				</p>
-			</div>
-			<p class="mb-5 text-zinc-500 dark:text-zinc-400">Experience</p>
-			<div class="mb-8">
-				<div class="mb-2 flex items-start justify-between">
-					<div>
-						<p class="font-medium">Software Developer</p>
-						<div class="flex items-center gap-2 text-sm">
-							<p class="text-zinc-500 dark:text-zinc-400">Company</p>
-							<div class="h-1 w-1 rounded-full bg-zinc-400" />
-							<p class="text-zinc-500 dark:text-zinc-400">Copenhagen, Denmark</p>
-						</div>
-					</div>
-					<p class="text-sm text-zinc-500 dark:text-zinc-400">2019 - 2022</p>
-				</div>
-				<ul class="ml-6 list-disc text-zinc-500 dark:text-zinc-400">
-					<li class="text-sm">skill</li>
-					<li class="text-sm">skill</li>
-					<li class="text-sm">skill</li>
-				</ul>
-			</div>
-			<div class="mb-8">
-				<div class="mb-2 flex items-start justify-between">
-					<div>
-						<p class="font-medium">Software Developer</p>
-						<div class="flex items-center gap-2 text-sm">
-							<p class="text-zinc-500 dark:text-zinc-400">Company</p>
-							<div class="h-1 w-1 rounded-full bg-zinc-400" />
-							<p class="text-zinc-500 dark:text-zinc-400">Copenhagen, Denmark</p>
-						</div>
-					</div>
-					<p class="text-sm text-zinc-500 dark:text-zinc-400">2019 - 2022</p>
-				</div>
-				<ul class="ml-6 list-disc text-zinc-500 dark:text-zinc-400">
-					<li class="text-sm">skill</li>
-					<li class="text-sm">skill</li>
-					<li class="text-sm">skill</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-</div> -->

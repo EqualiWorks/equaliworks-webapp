@@ -58,36 +58,39 @@ export interface Database {
           id?: number
         }
       }
-      "applicant_education ": {
+      applicant_education: {
         Row: {
           applicant_id: string
           created_at: string | null
-          educational_title: string
-          end_date: string | null
+          degree: string | null
+          end_date: string
           graduated: boolean
           id: number
           institution: string
-          start_date: string | null
+          start_date: string
+          title: string
         }
         Insert: {
           applicant_id: string
           created_at?: string | null
-          educational_title: string
-          end_date?: string | null
+          degree?: string | null
+          end_date: string
           graduated: boolean
           id?: number
           institution: string
-          start_date?: string | null
+          start_date: string
+          title: string
         }
         Update: {
           applicant_id?: string
           created_at?: string | null
-          educational_title?: string
-          end_date?: string | null
+          degree?: string | null
+          end_date?: string
           graduated?: boolean
           id?: number
           institution?: string
-          start_date?: string | null
+          start_date?: string
+          title?: string
         }
       }
       applicant_experience: {
