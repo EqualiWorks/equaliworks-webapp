@@ -60,8 +60,6 @@
 
 <Toast />
 
-<Modal />
-
 <div class="flex h-screen w-full">
 	<SideBar {navItems} />
 	<div class="grow overflow-y-auto">

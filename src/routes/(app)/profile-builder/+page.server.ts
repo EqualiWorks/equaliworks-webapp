@@ -1,9 +1,7 @@
 import { supabase } from '$lib/db/supabase';
 import { fail, type Actions } from '@sveltejs/kit';
-import { z, ZodError } from 'zod';
+import { z } from 'zod';
 import type { PageServerLoad } from './$types';
-
-const TrueFalseSchema = z.union([z.literal('true'), z.literal('false')]);
 
 const DateSchema = z.string().refine((value) => {
 	const date = new Date(value);
@@ -16,19 +14,7 @@ const ApplicationEducationSchema = z.object({
 	institution: z.string().min(3),
 	start_date: DateSchema,
 	end_date: DateSchema,
-	graduated: TrueFalseSchema
 });
-
-const getInvalidParsingErrMessage = (error: ZodError): string[] => {
-	return error.issues.map((issue) => {
-		switch (issue.code) {
-			case 'invalid_type':
-				return `Invalid type: ${issue.path.join(', ')}`;
-			default:
-				return '';
-		}
-	});
-};
 
 export const load: PageServerLoad = async ({ locals }) => {
 	const education = async () => {

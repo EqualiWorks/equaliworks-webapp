@@ -14,18 +14,20 @@
 			</p>
 			<div class="h-1 w-1 rounded-full bg-zinc-400" />
 			<p class="text-xs text-zinc-400">
-				{#if data.graduated}
-					graduated 🎓
-				{:else}
+				{#if new Date(data.end_date).getTime() > new Date().getTime()}
 					Studying 📚
+				{:else}
+					graduated 🎓
 				{/if}
 			</p>
 		</div>
 	</div>
-	<div class="flex items-center">
-		<button class="btn-sm"><i class="ph-trash ph-lg dark:text-white" /></button>
-		<button on:click class="btn-sm"
-			><i class="ph-pencil-simple-line ph-lg dark:text-white" /></button
-		>
+	<div class="flex items-center gap-2">
+		<button class="btn-outline btn-error btn-sm btn">
+			<i class="ph-trash ph-lg dark:text-white" />
+		</button>
+		<button on:click class="btn-outline btn-sm btn">
+			<i class="ph-pencil-simple-line ph-lg dark:text-white" />
+		</button>
 	</div>
 </div>

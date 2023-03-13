@@ -1,15 +1,13 @@
 <script lang="ts">
-	import { invalidate, invalidateAll } from '$app/navigation';
-	import Drawer from '$lib/components/layout/drawer/Drawer.svelte';
-	import { drawerStore } from '$lib/components/layout/drawer/stores';
+	import { invalidateAll } from '$app/navigation';
+	import Modal from '$lib/components/modal/Modal.svelte';
 	import { toastStore } from '$lib/components/toast/stores';
 	import type { ApplicantEducation, ApplicantExperience } from '$lib/db/types';
 	import type { PageData } from './$types';
+	import AddEducationModal from './AddEducationModal.svelte';
+	import DeleteEducationModal from './DeleteEducationModal.svelte';
 	import ProfileAttributeBuilder from './ProfileAttributeBuilder.svelte';
-	import ProfileEducationAdd from './ProfileEducationAdd.svelte';
 	import ProfileEducationBuilder from './ProfileEducationBuilder.svelte';
-
-	console.log('hello :D');
 
 	// props
 	export let data: PageData;
@@ -18,18 +16,18 @@
 	$: education = data.education as ApplicantEducation[];
 	$: experiences = data.experience as ApplicantExperience[];
 
-	// variables
-	let title: string = '';
+	// education modal states
+	let AddEducationModalIsOpen = false;
+	let UpdateEducationModalIsOpen = false;
+	let DeleteEducationModalIsOpen = false;
 
-	// handlers
-	const handleAddEducation = () => {
-		title = 'Add new education';
-		drawerStore.open();
-	};
+	// experience modal states
+	let AddExperienceModalIsOpen = false;
+	let UpdateExperienceModalIsOpen = false;
+	let DeleteExperienceModalIsOpen = false;
 
 	const handleSuccessSubmit = async () => {
 		invalidateAll();
-		drawerStore.close();
 		toastStore.trigger({
 			type: 'success',
 			message: 'Successfully added new education',
@@ -38,9 +36,16 @@
 	};
 </script>
 
-<Drawer persistFocus={true}>
-	<ProfileEducationAdd on:submit-success={handleSuccessSubmit} {title} />
-</Drawer>
+<Modal bind:showModal={AddEducationModalIsOpen} title="Add Education">
+	<AddEducationModal
+		on:submit-success={handleSuccessSubmit}
+		bind:showModal={AddEducationModalIsOpen}
+	/>
+</Modal>
+
+<Modal bind:showModal={DeleteEducationModalIsOpen} title="Delete Education">
+	<DeleteEducationModal />
+</Modal>
 
 <div class="grid h-full grid-cols-7">
 	<div class="col-span-3 overflow-y-auto border-r dark:border-zinc-700 dark:bg-zinc-800">
@@ -50,35 +55,44 @@
 				<h3 class="font-medium dark:text-white">Profile Builder</h3>
 			</div>
 		</div>
-		<div class="mt-6 px-5">
-			<label for="tag-line-input" class="mb-2.5 text-sm dark:text-zinc-400"
-				>I would describe myself as a(n)</label
-			>
-			<input
-				class="input"
-				id="tag-line-input"
-				type="text"
-				placeholder="Architect student, passionated web developer, experienced graphics designer ..."
-			/>
-		</div>
-		<div class="mt-6 px-5">
-			<div class="mb-2.5 flex items-center justify-between ">
-				<label for="about-input" class="text-sm dark:text-zinc-400"
-					>And this is what I'm passionated about</label
-				>
-				<button class="text-zinc-500 hover:text-teal-700"><i class="ph-question" /></button>
+
+		<form action="?/add-info" class="mt-8">
+			<div class="form-control w-full px-5">
+				<label class="label" for="tag-line-input">
+					<span class="label-text">Tagline</span>
+				</label>
+				<input
+					id="tag-line-input"
+					type="text"
+					placeholder="Architect student, passionated web developer, experienced graphics designer ..."
+					class="input-bordered input input-md w-full"
+				/>
+				<label class="label" for="tag-line-input">
+					<!-- TODO add error handling -->
+					<!-- {#if form?.missing}<span class="label-text-alt text-red-500">Bottom Left label</span>{/if} -->
+					<!-- {#if form?.incorrect}<span class="label-text-alt text-red-500">Bottom Left label</span>{/if} -->
+				</label>
 			</div>
-			<textarea
-				id="about-input"
-				class="input"
-				rows="5"
-				placeholder="I'm a highly motivated individual whom ..."
-			/>
-		</div>
+
+			<div class="form-control w-full px-5">
+				<label class="label" for="about-input">
+					<span class="label-text">This is what I'm passionated about</span>
+				</label>
+				<textarea id="about-input" class="textarea-bordered textarea h-24" placeholder="Bio" />
+				<label for="about-input" class="label">
+					<!-- TODO add error handling -->
+					<!-- {#if form?.missing}<span class="label-text-alt text-red-500">Bottom Left label</span>{/if} -->
+					<!-- {#if form?.incorrect}<span class="label-text-alt text-red-500">Bottom Left label</span>{/if} -->
+				</label>
+			</div>
+		</form>
 
 		<div class="mb-2.5 mt-6 flex items-center justify-between px-5">
 			<p class="text-sm text-zinc-500 dark:text-zinc-400">Experience</p>
-			<button class="btn-sm btn-default">Add <i class="ph-plus" /></button>
+			<button class="btn-ghost btn-sm btn gap-2">
+				<i class="ph-plus-bold ph-lg" />
+				Add
+			</button>
 		</div>
 		<div class="mx-5 divide-y rounded-md border dark:divide-zinc-700 dark:border-zinc-700">
 			{#if experiences.length}
@@ -100,9 +114,10 @@
 		</div>
 		<div class="mb-2.5 mt-6 flex items-center justify-between px-5">
 			<p class="text-sm text-zinc-500 dark:text-zinc-400">Education</p>
-			<button class="btn-sm btn-default" on:click={handleAddEducation}
-				>Add <i class="ph-plus" /></button
-			>
+			<button class="btn-ghost btn-sm btn gap-2" on:click={() => (AddEducationModalIsOpen = true)}>
+				<i class="ph-plus-bold ph-lg" />
+				Add
+			</button>
 		</div>
 		<div class="mx-5 divide-y rounded-md border dark:divide-zinc-700 dark:border-zinc-700">
 			{#if education.length}
@@ -116,6 +131,7 @@
 			{/if}
 		</div>
 	</div>
+
 	<div class="col-span-4 overflow-y-auto bg-white dark:bg-transparent">
 		<div class="flex h-44 flex-col">
 			<div class="flex grow items-center gap-4 px-8">

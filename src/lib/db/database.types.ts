@@ -64,7 +64,6 @@ export interface Database {
           created_at: string | null
           degree: string | null
           end_date: string
-          graduated: boolean
           id: number
           institution: string
           start_date: string
@@ -75,7 +74,6 @@ export interface Database {
           created_at?: string | null
           degree?: string | null
           end_date: string
-          graduated: boolean
           id?: number
           institution: string
           start_date: string
@@ -86,7 +84,6 @@ export interface Database {
           created_at?: string | null
           degree?: string | null
           end_date?: string
-          graduated?: boolean
           id?: number
           institution?: string
           start_date?: string
