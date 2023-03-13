@@ -1,24 +1,45 @@
 <script lang="ts">
+	import { invalidate, invalidateAll } from '$app/navigation';
 	import Drawer from '$lib/components/layout/drawer/Drawer.svelte';
 	import { drawerStore } from '$lib/components/layout/drawer/stores';
+	import { toastStore } from '$lib/components/toast/stores';
 	import type { ApplicantEducation, ApplicantExperience } from '$lib/db/types';
+	import type { PageData } from './$types';
 	import ProfileAttributeBuilder from './ProfileAttributeBuilder.svelte';
 	import ProfileEducationAdd from './ProfileEducationAdd.svelte';
 	import ProfileEducationBuilder from './ProfileEducationBuilder.svelte';
 
-	let experiences: ApplicantExperience[] = [];
-	let education: ApplicantEducation[] = [];
+	console.log('hello :D');
 
+	// props
+	export let data: PageData;
+
+	// reactive variables
+	$: education = data.education as ApplicantEducation[];
+	$: experiences = data.experience as ApplicantExperience[];
+
+	// variables
 	let title: string = '';
 
+	// handlers
 	const handleAddEducation = () => {
 		title = 'Add new education';
 		drawerStore.open();
 	};
+
+	const handleSuccessSubmit = async () => {
+		invalidateAll();
+		drawerStore.close();
+		toastStore.trigger({
+			type: 'success',
+			message: 'Successfully added new education',
+			icon: 'ph-check-circle'
+		});
+	};
 </script>
 
-<Drawer>
-	<ProfileEducationAdd {title} />
+<Drawer persistFocus={true}>
+	<ProfileEducationAdd on:submit-success={handleSuccessSubmit} {title} />
 </Drawer>
 
 <div class="grid h-full grid-cols-7">

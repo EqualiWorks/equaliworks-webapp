@@ -10,14 +10,16 @@
 			<p class="text-xs text-zinc-400">{data.institution}</p>
 			<div class="h-1 w-1 rounded-full bg-zinc-400" />
 			<p class="text-xs text-zinc-400">
-				{data.start_date.split('-')[0]} - {data.start_date.split('-')[0]}
+				{data.start_date.split('-')[0]} - {data.end_date.split('-')[0]}
 			</p>
 			<div class="h-1 w-1 rounded-full bg-zinc-400" />
-			{#if data.graduated}
-				graduated!
-			{:else}
-				Studying
-			{/if}
+			<p class="text-xs text-zinc-400">
+				{#if data.graduated}
+					graduated 🎓
+				{:else}
+					Studying 📚
+				{/if}
+			</p>
 		</div>
 	</div>
 	<div class="flex items-center">

@@ -4,6 +4,9 @@
 	import { drawerStore } from '$lib/components/layout/drawer/stores';
 	import type { ApplicantEducation } from '$lib/db/types';
 	import type { SubmitFunction } from '@sveltejs/kit';
+	import { createEventDispatcher } from 'svelte';
+
+	const dispatch = createEventDispatcher();
 
 	// component props
 	export let title: string;
@@ -28,12 +31,18 @@
 		// 	console.log('what');
 		// 	return cancel();
 		// }
-	};
 
-	console.log('helloo');
+		return async ({ result, update }) => {
+			dispatch('submit-success', {
+				text: 'hello!'
+			});
+		};
+	};
 </script>
 
-<div class="flex h-full flex-col px-8 pb-8 text-sm dark:border-zinc-800 dark:bg-zinc-900">
+<div
+	class="flex h-full flex-col overflow-y-auto px-8 pb-8 text-sm dark:border-zinc-800 dark:bg-zinc-900"
+>
 	<div class="flex items-center gap-4 py-10">
 		<i class="ph-graduation-cap ph-xl text-white" />
 		<h5 class="text-white">{title}</h5>

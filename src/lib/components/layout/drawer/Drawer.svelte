@@ -3,6 +3,8 @@
 	import { fade, fly } from 'svelte/transition';
 	import { drawerStore } from './stores';
 
+	export let persistFocus: boolean = false;
+
 	let windowWidth: number = 1920;
 	let backdrop: HTMLElement;
 	const duration: number = 150;
@@ -16,7 +18,7 @@
 	});
 
 	const onBackdropClicked = (event: any): void => {
-		if (event.target === backdrop) drawerStore.close();
+		if (event.target === backdrop && !persistFocus) drawerStore.close();
 	};
 
 	const onEscapeClicked = (event: any): void => {

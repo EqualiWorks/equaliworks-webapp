@@ -1,6 +1,7 @@
 import { supabase } from '$lib/db/supabase';
-import { error, fail, type Actions } from '@sveltejs/kit';
+import { fail, type Actions } from '@sveltejs/kit';
 import { z, ZodError } from 'zod';
+import type { PageServerLoad } from './$types';
 
 const TrueFalseSchema = z.union([z.literal('true'), z.literal('false')]);
 
@@ -27,6 +28,37 @@ const getInvalidParsingErrMessage = (error: ZodError): string[] => {
 				return '';
 		}
 	});
+};
+
+export const load: PageServerLoad = async ({ locals }) => {
+	const education = async () => {
+		const { data, error: err } = await supabase
+			.from('applicant_education')
+			.select('*')
+			.eq('applicant_id', locals.session.user.id)
+			.order('end_date', { ascending: false });
+		if (err) {
+			return { error: err };
+		}
+
+		return data;
+	};
+	const experience = async () => {
+		const { data, error: err } = await supabase
+			.from('applicant_experience')
+			.select('*')
+			.eq('applicant_id', locals.session.user.id);
+		if (err) {
+			return { error: err };
+		}
+
+		return data;
+	};
+
+	return {
+		education: education(),
+		experience: experience()
+	};
 };
 
 export const actions: Actions = {
