@@ -16,6 +16,10 @@ const ApplicationEducationSchema = z.object({
 	end_date: DateSchema,
 });
 
+const EducationId = z.object({
+	education_id: z.string(),
+});
+
 export const load: PageServerLoad = async ({ locals }) => {
 	const education = async () => {
 		const { data, error: err } = await supabase
@@ -88,6 +92,26 @@ export const actions: Actions = {
 		return fail(500, { error: 'not yet implemented' });
 	},
 	'delete-education': async ({ request, locals }) => {
-		return fail(500, { error: 'not yet implemented' });
+		try {
+			const body = Object.fromEntries(await request.formData());
+			
+			// parse request body against schema
+			const result = EducationId.safeParse(body);
+			
+			// return invalid user data error if parsing failed
+			if (!result.success) {
+				return fail(400, { error: 'Could not validate input', hint: '' });
+			}
+			
+			const {error: err} = await supabase.from('applicant_education').delete().eq('applicant_id', locals.session.user.id).eq('id', body.education_id);
+
+			if(err) {
+				return fail(500);
+			}
+
+			return { success: true };
+		} catch (error) {
+			return fail(500, { error: 'not yet implemented' });
+		}
 	}
 };

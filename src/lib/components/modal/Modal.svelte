@@ -11,10 +11,10 @@
 <svelte:window on:keydown={handleEscape} />
 
 <div class="modal modal-bottom sm:modal-middle" class:modal-open={showModal}>
-	<div class="modal-box min-w-[800px]">
+	<div class="modal-box">
 		<div class="mb-4 flex items-center">
-			<i class="ph-graduation-cap-bold ph-lg mr-3 text-primary" />
-			<h4 class="mr-auto font-medium tracking-tight text-primary">{title}</h4>
+			<i class="ph-graduation-cap-bold ph-lg mr-3" />
+			<h4 class="mr-auto">{title}</h4>
 			<button on:click={() => (showModal = false)} class="btn-ghost btn-square btn"
 				><i class="ph-x-bold ph-lg" /></button
 			>

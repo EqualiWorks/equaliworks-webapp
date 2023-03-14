@@ -15,15 +15,15 @@
 </script>
 
 {#if $toastStore.length}
-	<div class="fixed right-0 top-0 m-5 flex flex-col space-y-2">
+	<div class="toast-end toast toast-top">
 		{#each visibleToast as toast, i}
 			<div
-				class="flex items-center gap-2 rounded-lg border bg-white px-5 py-2 text-sm shadow"
+				class="alert alert-success flex items-center gap-2 px-4 text-sm"
 				in:fly={{ x: 0, y: -100, duration: 150 }}
 				out:fade
 			>
-				<i in:scale class="{toast.icon} ph-lg {colors[toast.type]}" />
-				{toast.message}
+				<i in:scale class="{toast.icon} ph-lg " />
+				<span>{toast.message}</span>
 			</div>
 		{/each}
 	</div>

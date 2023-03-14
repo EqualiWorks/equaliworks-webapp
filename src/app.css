@@ -25,6 +25,14 @@ h5 {
 h6 {
 }
 
+.btn {
+	@apply font-normal;
+}
+
+.input {
+	@apply h-10 text-sm;
+}
+
 .ph-xxs {
 	font-size: 0.5em;
 }

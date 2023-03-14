@@ -3,6 +3,7 @@
 	import Modal from '$lib/components/modal/Modal.svelte';
 	import { toastStore } from '$lib/components/toast/stores';
 	import type { ApplicantEducation, ApplicantExperience } from '$lib/db/types';
+	import type { DispatchOptions } from 'svelte/internal';
 	import type { PageData } from './$types';
 	import AddEducationModal from './AddEducationModal.svelte';
 	import DeleteEducationModal from './DeleteEducationModal.svelte';
@@ -16,43 +17,50 @@
 	$: education = data.education as ApplicantEducation[];
 	$: experiences = data.experience as ApplicantExperience[];
 
-	// education modal states
-	let AddEducationModalIsOpen = false;
-	let UpdateEducationModalIsOpen = false;
-	let DeleteEducationModalIsOpen = false;
+	// education states
+	let AddEducationModalIsOpen: boolean = false;
+	let UpdateEducationModalIsOpen: boolean = false;
+	let DeleteEducationModalIsOpen: boolean = false;
+	let selectedEducation: ApplicantEducation | null = null;
 
 	// experience modal states
 	let AddExperienceModalIsOpen = false;
 	let UpdateExperienceModalIsOpen = false;
 	let DeleteExperienceModalIsOpen = false;
 
-	const handleSuccessSubmit = async () => {
+	// handlers
+	const handleSuccessSubmit = async (event: any) => {
 		invalidateAll();
 		toastStore.trigger({
 			type: 'success',
-			message: 'Successfully added new education',
+			message: event.detail.message,
 			icon: 'ph-check-circle'
 		});
 	};
+
+	const handleDeleteEducationClick = (event: any) => {
+		selectedEducation = event.detail.data;
+		DeleteEducationModalIsOpen = true;
+	};
 </script>
 
-<Modal bind:showModal={AddEducationModalIsOpen} title="Add Education">
-	<AddEducationModal
-		on:submit-success={handleSuccessSubmit}
-		bind:showModal={AddEducationModalIsOpen}
-	/>
-</Modal>
+<AddEducationModal
+	on:submit-success={handleSuccessSubmit}
+	bind:showModal={AddEducationModalIsOpen}
+/>
 
-<Modal bind:showModal={DeleteEducationModalIsOpen} title="Delete Education">
-	<DeleteEducationModal />
-</Modal>
+<DeleteEducationModal
+	bind:showModal={DeleteEducationModalIsOpen}
+	data={selectedEducation}
+	on:submit-success={handleSuccessSubmit}
+/>
 
 <div class="grid h-full grid-cols-7">
-	<div class="col-span-3 overflow-y-auto border-r dark:border-zinc-700 dark:bg-zinc-800">
-		<div class="flex h-44 flex-col justify-center border-b dark:border-zinc-700">
-			<div class="flex-col justify-center px-5 dark:border-zinc-700">
-				<p class="mb-1 text-xs text-zinc-400 dark:text-zinc-400">Profile Builder</p>
-				<h3 class="font-medium dark:text-white">Profile Builder</h3>
+	<div class="col-span-3 overflow-y-auto border-r border-base-300 bg-base-200">
+		<div class="flex h-44 flex-col justify-center border-b border-base-300">
+			<div class="flex-col justify-center border-base-300 px-5">
+				<p class="mb-1 text-xs ">Profile Builder</p>
+				<h3 class="font-medium ">Profile Builder</h3>
 			</div>
 		</div>
 
@@ -88,13 +96,13 @@
 		</form>
 
 		<div class="mb-2.5 mt-6 flex items-center justify-between px-5">
-			<p class="text-sm text-zinc-500 dark:text-zinc-400">Experience</p>
+			<p class="text-sm ">Experience</p>
 			<button class="btn-ghost btn-sm btn gap-2">
 				<i class="ph-plus-bold ph-lg" />
 				Add
 			</button>
 		</div>
-		<div class="mx-5 divide-y rounded-md border dark:divide-zinc-700 dark:border-zinc-700">
+		<div class="mx-5 divide-y rounded-md border border-base-300 dark:divide-zinc-700">
 			{#if experiences.length}
 				{#each experiences as experience}
 					<ProfileAttributeBuilder
@@ -108,50 +116,50 @@
 				{/each}
 			{:else}
 				<div class="flex items-center justify-center p-4">
-					<p class="text-sm dark:text-zinc-400">None</p>
+					<p class="text-sm ">None</p>
 				</div>
 			{/if}
 		</div>
 		<div class="mb-2.5 mt-6 flex items-center justify-between px-5">
-			<p class="text-sm text-zinc-500 dark:text-zinc-400">Education</p>
+			<p class="text-sm ">Education</p>
 			<button class="btn-ghost btn-sm btn gap-2" on:click={() => (AddEducationModalIsOpen = true)}>
 				<i class="ph-plus-bold ph-lg" />
 				Add
 			</button>
 		</div>
-		<div class="mx-5 divide-y rounded-md border dark:divide-zinc-700 dark:border-zinc-700">
+		<div class="mx-5 divide-y rounded-md border border-base-300">
 			{#if education.length}
 				{#each education as data}
-					<ProfileEducationBuilder {data} />
+					<ProfileEducationBuilder {data} on:delete-education={handleDeleteEducationClick} />
 				{/each}
 			{:else}
 				<div class="flex items-center justify-center p-4">
-					<p class="text-sm dark:text-zinc-400">None</p>
+					<p class="text-sm ">None</p>
 				</div>
 			{/if}
 		</div>
 	</div>
 
-	<div class="col-span-4 overflow-y-auto bg-white dark:bg-transparent">
+	<div class="col-span-4 overflow-y-auto">
 		<div class="flex h-44 flex-col">
 			<div class="flex grow items-center gap-4 px-8">
 				<div
-					class="bg flex h-12 w-12 items-center justify-center rounded-full border dark:border-zinc-700"
+					class="bg flex h-12 w-12 items-center justify-center rounded-full border border-base-300"
 				>
 					<i class="ph-user ph-xl" />
 				</div>
 				<div>
-					<h3 class="font-medium dark:text-white">Software Development student</h3>
+					<h3 class="font-medium ">Software Development student</h3>
 				</div>
 			</div>
 		</div>
 
 		<div class="py-5 px-8">
-			<div class="mb-2 flex items-center gap-2 text-sky-700">
+			<div class="mb-2 flex items-center gap-2 text-secondary">
 				<i class="ph-user" />
 				<p class="text-sm font-medium">About</p>
 			</div>
-			<p class="text-sm text-zinc-500 dark:text-zinc-400">
+			<p class="text-sm">
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
 				labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
 				laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
@@ -164,7 +172,7 @@
 		</div>
 
 		<div class="px-8 py-5">
-			<div class="mb-2 flex items-center gap-2 text-teal-700 dark:text-teal-400">
+			<div class="mb-2 flex items-center gap-2 text-primary">
 				<i class="ph-barbell" />
 				<p class="text-sm font-medium">Experience</p>
 			</div>
@@ -172,12 +180,12 @@
 				<div>
 					<div class="flex items-start justify-between">
 						<div>
-							<p class="font-medium dark:text-white">Software Developer</p>
-							<p class="text-xs text-zinc-500">Company . Copenhagen, Denmark</p>
+							<p class="font-medium">Software Developer</p>
+							<p class="text-xs">Company . Copenhagen, Denmark</p>
 						</div>
 						<p class="text-sm">2019 - 2022</p>
 					</div>
-					<ul class="my-2 ml-6 list-disc text-sm text-zinc-500">
+					<ul class="my-2 ml-6 list-disc text-sm">
 						<li>skill</li>
 						<li>skill</li>
 						<li>skill</li>
@@ -191,7 +199,7 @@
 		</div>
 
 		<div class="px-8 py-5">
-			<div class="mb-2 flex items-center gap-2 text-teal-700">
+			<div class="mb-2 flex items-center gap-2 text-primary">
 				<i class="ph-graduation-cap" />
 				<p class="text-sm font-medium">Education</p>
 			</div>
@@ -200,14 +208,13 @@
 					<div class="flex items-start justify-between">
 						<div>
 							<p class="mb-1 font-medium">
-								Bachelor's degree <span class="font-normal text-zinc-500">Software development</span
-								>
+								Bachelor's degree <span class="font-normal ">Software development</span>
 							</p>
-							<p class="text-xs text-zinc-500">University</p>
+							<p class="text-xs ">University</p>
 						</div>
 						<p class="text-sm">2019 - 2022</p>
 					</div>
-					<ul class="my-2 ml-6 list-disc text-sm text-zinc-500">
+					<ul class="my-2 ml-6 list-disc text-sm ">
 						<li>skill</li>
 						<li>skill</li>
 						<li>skill</li>
@@ -220,13 +227,13 @@
 					<div class="flex items-start justify-between">
 						<div>
 							<p class="mb-1 font-medium">
-								1 semester <span class="font-normal text-zinc-500">Information Technology</span>
+								1 semester <span class="font-normal ">Information Technology</span>
 							</p>
-							<p class="text-xs text-zinc-500">University .</p>
+							<p class="text-xs ">University .</p>
 						</div>
 						<p class="text-sm">2018 - 2019</p>
 					</div>
-					<ul class="my-2 ml-6 list-disc text-sm text-zinc-500">
+					<ul class="my-2 ml-6 list-disc text-sm ">
 						<li>skill</li>
 						<li>skill</li>
 						<li>skill</li>
@@ -239,13 +246,13 @@
 					<div class="flex items-start justify-between">
 						<div>
 							<p class="mb-1 font-medium">
-								Gynasium <span class="font-normal text-zinc-500">Digital Communication</span>
+								Gynasium <span class="font-normal ">Digital Communication</span>
 							</p>
-							<p class="text-xs text-zinc-500">Highschool</p>
+							<p class="text-xs ">Highschool</p>
 						</div>
 						<p class="text-sm">2014 - 2017</p>
 					</div>
-					<ul class="my-2 ml-6 list-disc text-sm text-zinc-500">
+					<ul class="my-2 ml-6 list-disc text-sm ">
 						<li>skill</li>
 						<li>skill</li>
 						<li>skill</li>
@@ -260,12 +267,12 @@
 
 		<div class="px-8 py-5">
 			<p class="mb-1 text-sm font-medium">Porfolio</p>
-			<div class="flex items-center justify-between rounded-lg border border-teal-700 p-4">
+			<div class="flex items-center justify-between rounded-lg border border-primary p-4">
 				<div>
 					<p class="mb-1 text-sm">Checkout portfolio</p>
-					<p class="text-xs text-zinc-500">5 projects</p>
+					<p class="text-xs ">5 projects</p>
 				</div>
-				<i class="ph-arrow-right ph-xl text-teal-700" />
+				<i class="ph-arrow-right ph-xl text-primary" />
 			</div>
 		</div>
 

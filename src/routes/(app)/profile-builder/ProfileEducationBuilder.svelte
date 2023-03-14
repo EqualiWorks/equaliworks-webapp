@@ -1,19 +1,30 @@
 <script lang="ts">
 	import type { ApplicantEducation } from '$lib/db/types';
+	import { createEventDispatcher } from 'svelte';
 	export let data: ApplicantEducation;
+
+	// event dispatcher
+	const dispatch = createEventDispatcher();
+
+	// handlers
+	const handleDeleteClick = () => {
+		return dispatch('delete-education', {
+			data: data
+		});
+	};
 </script>
 
 <div class="flex items-center justify-between p-3">
 	<div>
-		<p class="text-sm font-medium dark:text-white">{data.title}</p>
+		<p class="text-sm font-medium">{data.title}</p>
 		<div class="flex items-center gap-2">
-			<p class="text-xs text-zinc-400">{data.institution}</p>
-			<div class="h-1 w-1 rounded-full bg-zinc-400" />
-			<p class="text-xs text-zinc-400">
+			<p class="text-xs">{data.institution}</p>
+			<div class="h-1 w-1 rounded-full" />
+			<p class="text-xs">
 				{data.start_date.split('-')[0]} - {data.end_date.split('-')[0]}
 			</p>
-			<div class="h-1 w-1 rounded-full bg-zinc-400" />
-			<p class="text-xs text-zinc-400">
+			<div class="h-1 w-1 rounded-full" />
+			<p class="text-xs ">
 				{#if new Date(data.end_date).getTime() > new Date().getTime()}
 					Studying 📚
 				{:else}
@@ -22,12 +33,12 @@
 			</p>
 		</div>
 	</div>
-	<div class="flex items-center gap-2">
-		<button class="btn-outline btn-error btn-sm btn">
-			<i class="ph-trash ph-lg dark:text-white" />
+	<div class="flex items-center">
+		<button on:click={handleDeleteClick} class="btn-ghost btn-sm btn">
+			<i class="ph-trash ph-lg" />
 		</button>
-		<button on:click class="btn-outline btn-sm btn">
-			<i class="ph-pencil-simple-line ph-lg dark:text-white" />
+		<button on:click class="btn-ghost btn-sm btn">
+			<i class="ph-pencil-simple-line ph-lg" />
 		</button>
 	</div>
 </div>
