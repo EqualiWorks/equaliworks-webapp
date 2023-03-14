@@ -1,4 +1,5 @@
 <script lang="ts">
+	export let id: string;
 	export let options: string[] = [];
 	export let selectedOptions: string[] = [];
 	let filteredOptions: string[] = [];
@@ -77,6 +78,7 @@
 	on:click={handleInputFocus}
 	on:click
 	on:keyup={handleSearchUpdate}
+	{id}
 />
 <div class="relative">
 	<div class="pointer-events-none absolute -top-6 left-0 flex items-center pl-3">

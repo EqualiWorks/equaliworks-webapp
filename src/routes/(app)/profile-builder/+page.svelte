@@ -1,195 +1,186 @@
 <script lang="ts">
-	import { modalStore } from '$lib/components/modal/stores';
-	import type { ModalComponent } from '$lib/components/modal/types';
-	import ExperienceModal from './ExperienceModal.svelte';
+	import { invalidateAll } from '$app/navigation';
+	import Modal from '$lib/components/modal/Modal.svelte';
+	import { toastStore } from '$lib/components/toast/stores';
+	import type { ApplicantEducation, ApplicantExperience } from '$lib/db/types';
+	import type { DispatchOptions } from 'svelte/internal';
+	import type { PageData } from './$types';
+	import AddEducationModal from './AddEducationModal.svelte';
+	import DeleteEducationModal from './DeleteEducationModal.svelte';
+	import ProfileAttributeBuilder from './ProfileAttributeBuilder.svelte';
+	import ProfileEducationBuilder from './ProfileEducationBuilder.svelte';
+	import UpdateEducationModal from './UpdateEducationModal.svelte';
 
-	let hideDetails = true;
+	// props
+	export let data: PageData;
 
-	const handleVisibilityToggle = () => {
-		hideDetails = !hideDetails;
+	// reactive variables
+	$: education = data.education as ApplicantEducation[];
+	$: experiences = data.experience as ApplicantExperience[];
+
+	// education states
+	let AddEducationModalIsOpen: boolean = false;
+	let UpdateEducationModalIsOpen: boolean = false;
+	let DeleteEducationModalIsOpen: boolean = false;
+	let selectedEducation: ApplicantEducation | null = null;
+
+	// experience modal states
+	let AddExperienceModalIsOpen = false;
+	let UpdateExperienceModalIsOpen = false;
+	let DeleteExperienceModalIsOpen = false;
+
+	// handlers
+	const handleFormSubmit = async (event: any) => {
+		invalidateAll();
+		if (event.detail.type === 'failure') {
+			toastStore.trigger({
+				type: 'error',
+				message: event.detail.data.error,
+				icon: 'ph-x-circle'
+			});
+		} else {
+			toastStore.trigger({
+				type: 'success',
+				message: event.detail.data.message,
+				icon: 'ph-check-circle'
+			});
+		}
 	};
 
-	const modalComponent: ModalComponent = {
-		// Pass a reference to your custom component
-		ref: ExperienceModal,
-		// Add the component properties as key/value pairs
-		props: { background: 'bg-red-500' },
-		// Provide a template literal for the default component slot
-		slot: '<p>Skeleton</p>'
+	const handleDeleteEducationClick = (event: any) => {
+		selectedEducation = event.detail.data;
+		DeleteEducationModalIsOpen = true;
 	};
 
-	const triggerModal = (): void => {
-		modalStore.trigger({
-			type: 'component',
-			component: modalComponent,
-			title: 'Modal header'
-		});
+	const handleUpdateEducationClick = (event: any) => {
+		selectedEducation = event.detail.data;
+		UpdateEducationModalIsOpen = true;
 	};
 </script>
 
+<AddEducationModal on:submit={handleFormSubmit} bind:showModal={AddEducationModalIsOpen} />
+
+<DeleteEducationModal
+	bind:showModal={DeleteEducationModalIsOpen}
+	data={selectedEducation}
+	on:submit={handleFormSubmit}
+/>
+
+<UpdateEducationModal
+	bind:showModal={UpdateEducationModalIsOpen}
+	data={selectedEducation}
+	on:submit={handleFormSubmit}
+/>
+
 <div class="grid h-full grid-cols-7">
-	<div class="col-span-3 overflow-y-auto border-r dark:border-zinc-700 dark:bg-zinc-800">
-		<div class="flex h-44 flex-col justify-center border-b dark:border-zinc-700">
-			<div class="flex-col justify-center px-5 dark:border-zinc-700">
-				<p class="mb-1 text-xs text-zinc-400 dark:text-zinc-400">Profile Builder</p>
-				<h3 class="font-medium dark:text-white">Profile Builder</h3>
+	<div class="col-span-3 overflow-y-auto border-r border-base-300 bg-base-200">
+		<div class="flex h-44 flex-col justify-center border-b border-base-300">
+			<div class="flex-col justify-center border-base-300 px-5">
+				<p class="mb-1 text-xs ">Profile Builder</p>
+				<h3 class="font-medium ">Profile Builder</h3>
 			</div>
-		</div>
-		<div class="mt-6 px-5">
-			<label for="tag-line-input" class="mb-2.5 text-sm dark:text-zinc-400"
-				>I would describe myself as a(n)</label
-			>
-			<input
-				class="input"
-				id="tag-line-input"
-				type="text"
-				placeholder="Architect student, passionated web developer, experienced graphics designer ..."
-			/>
-		</div>
-		<div class="mt-6 px-5">
-			<div class="mb-2.5 flex items-center justify-between ">
-				<label for="about-input" class="text-sm dark:text-zinc-400"
-					>And this is what I'm passionated about</label
-				>
-				<button class="text-zinc-500 hover:text-teal-700"><i class="ph-question" /></button>
-			</div>
-			<textarea
-				id="about-input"
-				class="input"
-				rows="5"
-				placeholder="I'm a highly motivated individual whom ..."
-			/>
 		</div>
 
+		<form action="?/add-info" class="mt-8">
+			<div class="form-control w-full px-5">
+				<label class="label" for="tag-line-input">
+					<span class="label-text">Tagline</span>
+				</label>
+				<input
+					id="tag-line-input"
+					type="text"
+					placeholder="Architect student, passionated web developer, experienced graphics designer ..."
+					class="input-bordered input input-md w-full"
+				/>
+				<label class="label" for="tag-line-input">
+					<!-- TODO add error handling -->
+					<!-- {#if form?.missing}<span class="label-text-alt text-red-500">Bottom Left label</span>{/if} -->
+					<!-- {#if form?.incorrect}<span class="label-text-alt text-red-500">Bottom Left label</span>{/if} -->
+				</label>
+			</div>
+
+			<div class="form-control w-full px-5">
+				<label class="label" for="about-input">
+					<span class="label-text">This is what I'm passionated about</span>
+				</label>
+				<textarea id="about-input" class="textarea-bordered textarea h-24" placeholder="Bio" />
+				<label for="about-input" class="label">
+					<!-- TODO add error handling -->
+					<!-- {#if form?.missing}<span class="label-text-alt text-red-500">Bottom Left label</span>{/if} -->
+					<!-- {#if form?.incorrect}<span class="label-text-alt text-red-500">Bottom Left label</span>{/if} -->
+				</label>
+			</div>
+		</form>
+
 		<div class="mb-2.5 mt-6 flex items-center justify-between px-5">
-			<p class="text-sm text-zinc-500 dark:text-zinc-400">Experience</p>
-			<button class="btn-sm btn-default">Add <i class="ph-plus" /></button>
+			<p class="text-sm ">Experience</p>
+			<button class="btn-ghost btn-sm btn gap-2">
+				<i class="ph-plus-bold ph-lg" />
+				Add
+			</button>
 		</div>
-		<div class="mx-5 divide-y rounded-md border dark:divide-zinc-700 dark:border-zinc-700">
-			<div class="flex items-center justify-between p-3">
-				<div>
-					<p class="text-sm font-medium dark:text-white">Software developer</p>
-					<div class="flex items-center gap-2">
-						<p class="text-xs text-zinc-400">Company</p>
-						<div class="h-1 w-1 rounded-full bg-zinc-400" />
-						<p class="text-xs text-zinc-400">2022 - now</p>
-					</div>
+		<div class="mx-5 divide-y rounded-md border border-base-300 dark:divide-zinc-700">
+			{#if experiences.length}
+				{#each experiences as experience}
+					<ProfileAttributeBuilder
+						title={experience.title}
+						institution={experience.company}
+						startYear={parseInt(experience.start_date.split('-')[0])}
+						endYear={experience.end_date === null
+							? null
+							: parseInt(experience.end_date.split('-')[0])}
+					/>
+				{/each}
+			{:else}
+				<div class="flex items-center justify-center p-4">
+					<p class="text-sm ">None</p>
 				</div>
-				<div class="flex items-center">
-					<button class="btn-sm"><i class="ph-trash ph-lg dark:text-white" /></button>
-					<button on:click={triggerModal} class="btn-sm"
-						><i class="ph-pencil-simple-line ph-lg dark:text-white" /></button
-					>
-				</div>
-			</div>
-			<div class="flex items-center justify-between p-3">
-				<div>
-					<p class="text-sm font-medium dark:text-white">Software developer</p>
-					<div class="flex items-center gap-2">
-						<p class="text-xs text-zinc-400">Company</p>
-						<div class="h-1 w-1 rounded-full bg-zinc-400" />
-						<p class="text-xs text-zinc-400">2022 - now</p>
-					</div>
-				</div>
-				<div class="flex items-center">
-					<button class="btn-sm"><i class="ph-trash ph-lg dark:text-white" /></button>
-					<button on:click={triggerModal} class="btn-sm"
-						><i class="ph-pencil-simple-line ph-lg dark:text-white" /></button
-					>
-				</div>
-			</div>
-			<div class="flex items-center justify-between p-3">
-				<div>
-					<p class="text-sm font-medium dark:text-white">Software developer</p>
-					<div class="flex items-center gap-2">
-						<p class="text-xs text-zinc-400">Company</p>
-						<div class="h-1 w-1 rounded-full bg-zinc-400" />
-						<p class="text-xs text-zinc-400">2022 - now</p>
-					</div>
-				</div>
-				<div class="flex items-center">
-					<button class="btn-sm"><i class="ph-trash ph-lg dark:text-white" /></button>
-					<button on:click={triggerModal} class="btn-sm"
-						><i class="ph-pencil-simple-line ph-lg dark:text-white" /></button
-					>
-				</div>
-			</div>
+			{/if}
 		</div>
 		<div class="mb-2.5 mt-6 flex items-center justify-between px-5">
-			<p class="text-sm text-zinc-500 dark:text-zinc-400">Education</p>
-			<button class="btn-sm btn-default">Add <i class="ph-plus" /></button>
+			<p class="text-sm ">Education</p>
+			<button class="btn-ghost btn-sm btn gap-2" on:click={() => (AddEducationModalIsOpen = true)}>
+				<i class="ph-plus-bold ph-lg" />
+				Add
+			</button>
 		</div>
-		<div class="mx-5 divide-y rounded-md border dark:divide-zinc-700 dark:border-zinc-700">
-			<div class="flex items-center justify-between p-3">
-				<div>
-					<p class="text-sm font-medium dark:text-white">Software developer</p>
-					<div class="flex items-center gap-2">
-						<p class="text-xs text-zinc-400">Company</p>
-						<div class="h-1 w-1 rounded-full bg-zinc-400" />
-						<p class="text-xs text-zinc-400">2022 - now</p>
-					</div>
+		<div class="mx-5 divide-y rounded-md border border-base-300">
+			{#if education.length}
+				{#each education as data}
+					<ProfileEducationBuilder
+						{data}
+						on:delete-education={handleDeleteEducationClick}
+						on:update-education={handleUpdateEducationClick}
+					/>
+				{/each}
+			{:else}
+				<div class="flex items-center justify-center p-4">
+					<p class="text-sm ">None</p>
 				</div>
-				<div class="flex items-center">
-					<button class="btn-sm"><i class="ph-trash ph-lg dark:text-white" /></button>
-					<button on:click={triggerModal} class="btn-sm"
-						><i class="ph-pencil-simple-line ph-lg dark:text-white" /></button
-					>
-				</div>
-			</div>
-			<div class="flex items-center justify-between p-3">
-				<div>
-					<p class="text-sm font-medium dark:text-white">Software developer</p>
-					<div class="flex items-center gap-2">
-						<p class="text-xs text-zinc-400">Company</p>
-						<div class="h-1 w-1 rounded-full bg-zinc-400" />
-						<p class="text-xs text-zinc-400">2022 - now</p>
-					</div>
-				</div>
-				<div class="flex items-center">
-					<button class="btn-sm"><i class="ph-trash ph-lg dark:text-white" /></button>
-					<button on:click={triggerModal} class="btn-sm"
-						><i class="ph-pencil-simple-line ph-lg dark:text-white" /></button
-					>
-				</div>
-			</div>
-			<div class="flex items-center justify-between p-3">
-				<div>
-					<p class="text-sm font-medium dark:text-white">Software developer</p>
-					<div class="flex items-center gap-2">
-						<p class="text-xs text-zinc-400">Company</p>
-						<div class="h-1 w-1 rounded-full bg-zinc-400" />
-						<p class="text-xs text-zinc-400">2022 - now</p>
-					</div>
-				</div>
-				<div class="flex items-center">
-					<button class="btn-sm"><i class="ph-trash ph-lg dark:text-white" /></button>
-					<button on:click={triggerModal} class="btn-sm"
-						><i class="ph-pencil-simple-line ph-lg dark:text-white" /></button
-					>
-				</div>
-			</div>
+			{/if}
 		</div>
 	</div>
-	<div class="col-span-4 overflow-y-auto bg-white dark:bg-transparent">
+
+	<div class="col-span-4 overflow-y-auto">
 		<div class="flex h-44 flex-col">
 			<div class="flex grow items-center gap-4 px-8">
 				<div
-					class="bg flex h-12 w-12 items-center justify-center rounded-full border dark:border-zinc-700"
+					class="bg flex h-12 w-12 items-center justify-center rounded-full border border-base-300"
 				>
 					<i class="ph-user ph-xl" />
 				</div>
 				<div>
-					<h3 class="font-medium dark:text-white">Software Development student</h3>
+					<h3 class="font-medium ">Software Development student</h3>
 				</div>
 			</div>
 		</div>
 
 		<div class="py-5 px-8">
-			<div class="mb-2 flex items-center gap-2 text-sky-700">
+			<div class="mb-2 flex items-center gap-2 text-secondary">
 				<i class="ph-user" />
 				<p class="text-sm font-medium">About</p>
 			</div>
-			<p class="text-sm text-zinc-500 dark:text-zinc-400">
+			<p class="text-sm">
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
 				labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
 				laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
@@ -202,7 +193,7 @@
 		</div>
 
 		<div class="px-8 py-5">
-			<div class="mb-2 flex items-center gap-2 text-teal-700 dark:text-teal-400">
+			<div class="mb-2 flex items-center gap-2 text-primary">
 				<i class="ph-barbell" />
 				<p class="text-sm font-medium">Experience</p>
 			</div>
@@ -210,12 +201,12 @@
 				<div>
 					<div class="flex items-start justify-between">
 						<div>
-							<p class="font-medium dark:text-white">Software Developer</p>
-							<p class="text-xs text-zinc-500">Company . Copenhagen, Denmark</p>
+							<p class="font-medium">Software Developer</p>
+							<p class="text-xs">Company . Copenhagen, Denmark</p>
 						</div>
 						<p class="text-sm">2019 - 2022</p>
 					</div>
-					<ul class="my-2 ml-6 list-disc text-sm text-zinc-500">
+					<ul class="my-2 ml-6 list-disc text-sm">
 						<li>skill</li>
 						<li>skill</li>
 						<li>skill</li>
@@ -229,7 +220,7 @@
 		</div>
 
 		<div class="px-8 py-5">
-			<div class="mb-2 flex items-center gap-2 text-teal-700">
+			<div class="mb-2 flex items-center gap-2 text-primary">
 				<i class="ph-graduation-cap" />
 				<p class="text-sm font-medium">Education</p>
 			</div>
@@ -238,14 +229,13 @@
 					<div class="flex items-start justify-between">
 						<div>
 							<p class="mb-1 font-medium">
-								Bachelor's degree <span class="font-normal text-zinc-500">Software development</span
-								>
+								Bachelor's degree <span class="font-normal ">Software development</span>
 							</p>
-							<p class="text-xs text-zinc-500">University</p>
+							<p class="text-xs ">University</p>
 						</div>
 						<p class="text-sm">2019 - 2022</p>
 					</div>
-					<ul class="my-2 ml-6 list-disc text-sm text-zinc-500">
+					<ul class="my-2 ml-6 list-disc text-sm ">
 						<li>skill</li>
 						<li>skill</li>
 						<li>skill</li>
@@ -258,13 +248,13 @@
 					<div class="flex items-start justify-between">
 						<div>
 							<p class="mb-1 font-medium">
-								1 semester <span class="font-normal text-zinc-500">Information Technology</span>
+								1 semester <span class="font-normal ">Information Technology</span>
 							</p>
-							<p class="text-xs text-zinc-500">University .</p>
+							<p class="text-xs ">University .</p>
 						</div>
 						<p class="text-sm">2018 - 2019</p>
 					</div>
-					<ul class="my-2 ml-6 list-disc text-sm text-zinc-500">
+					<ul class="my-2 ml-6 list-disc text-sm ">
 						<li>skill</li>
 						<li>skill</li>
 						<li>skill</li>
@@ -277,13 +267,13 @@
 					<div class="flex items-start justify-between">
 						<div>
 							<p class="mb-1 font-medium">
-								Gynasium <span class="font-normal text-zinc-500">Digital Communication</span>
+								Gynasium <span class="font-normal ">Digital Communication</span>
 							</p>
-							<p class="text-xs text-zinc-500">Highschool</p>
+							<p class="text-xs ">Highschool</p>
 						</div>
 						<p class="text-sm">2014 - 2017</p>
 					</div>
-					<ul class="my-2 ml-6 list-disc text-sm text-zinc-500">
+					<ul class="my-2 ml-6 list-disc text-sm ">
 						<li>skill</li>
 						<li>skill</li>
 						<li>skill</li>
@@ -298,12 +288,12 @@
 
 		<div class="px-8 py-5">
 			<p class="mb-1 text-sm font-medium">Porfolio</p>
-			<div class="flex items-center justify-between rounded-lg border border-teal-700 p-4">
+			<div class="flex items-center justify-between rounded-lg border border-primary p-4">
 				<div>
 					<p class="mb-1 text-sm">Checkout portfolio</p>
-					<p class="text-xs text-zinc-500">5 projects</p>
+					<p class="text-xs ">5 projects</p>
 				</div>
-				<i class="ph-arrow-right ph-xl text-teal-700" />
+				<i class="ph-arrow-right ph-xl text-primary" />
 			</div>
 		</div>
 
@@ -318,60 +308,3 @@
 		</div>
 	</div>
 </div>
-
-<!-- 
-
-
-
-
-		<div class="bg-white p-5 dark:border dark:border-zinc-700 dark:bg-black">
-			<div class="my-10">
-				<p class="text-xs text-purple-500">!his is you 😃</p>
-				<h3 class="mb-2 font-medium dark:text-white">Software Development student</h3>
-				<p class="text-sm text-zinc-500 dark:text-zinc-400">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-					ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-					ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-					reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-				</p>
-			</div>
-			<p class="mb-5 text-zinc-500 dark:text-zinc-400">Experience</p>
-			<div class="mb-8">
-				<div class="mb-2 flex items-start justify-between">
-					<div>
-						<p class="font-medium">Software Developer</p>
-						<div class="flex items-center gap-2 text-sm">
-							<p class="text-zinc-500 dark:text-zinc-400">Company</p>
-							<div class="h-1 w-1 rounded-full bg-zinc-400" />
-							<p class="text-zinc-500 dark:text-zinc-400">Copenhagen, Denmark</p>
-						</div>
-					</div>
-					<p class="text-sm text-zinc-500 dark:text-zinc-400">2019 - 2022</p>
-				</div>
-				<ul class="ml-6 list-disc text-zinc-500 dark:text-zinc-400">
-					<li class="text-sm">skill</li>
-					<li class="text-sm">skill</li>
-					<li class="text-sm">skill</li>
-				</ul>
-			</div>
-			<div class="mb-8">
-				<div class="mb-2 flex items-start justify-between">
-					<div>
-						<p class="font-medium">Software Developer</p>
-						<div class="flex items-center gap-2 text-sm">
-							<p class="text-zinc-500 dark:text-zinc-400">Company</p>
-							<div class="h-1 w-1 rounded-full bg-zinc-400" />
-							<p class="text-zinc-500 dark:text-zinc-400">Copenhagen, Denmark</p>
-						</div>
-					</div>
-					<p class="text-sm text-zinc-500 dark:text-zinc-400">2019 - 2022</p>
-				</div>
-				<ul class="ml-6 list-disc text-zinc-500 dark:text-zinc-400">
-					<li class="text-sm">skill</li>
-					<li class="text-sm">skill</li>
-					<li class="text-sm">skill</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-</div> -->
