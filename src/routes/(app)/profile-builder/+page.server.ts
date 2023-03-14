@@ -8,19 +8,31 @@ const DateSchema = z.string().refine((value) => {
 	return !isNaN(date.getTime());
 }, 'Invalid date string');
 
-const ApplicationEducationSchema = z.object({
-	title: z.string().min(3),
-	degree: z.string().min(3),
-	institution: z.string().min(3),
+const AddApplicationEducationSchema = z.object({
+	title: z.string().min(3).max(100),
+	degree: z.string().min(3).max(100),
+	institution: z.string().min(3).max(100),
 	start_date: DateSchema,
-	end_date: DateSchema,
+	end_date: z.optional(DateSchema),
+	description: z.optional(z.string().max(1000)),
+	applicant_id: z.string()
 });
 
-const EducationId = z.object({
-	education_id: z.string(),
+const UpdateApplicantEducationSchema = z.object({
+	title: z.string().min(3).max(100),
+	degree: z.string().min(3).max(100),
+	institution: z.string().min(3).max(100),
+	start_date: DateSchema,
+	end_date: z.optional(DateSchema),
+	description: z.optional(z.string().max(1000))
+});
+
+const DeleteApplicantEducationSchema = z.object({
+	education_id: z.string()
 });
 
 export const load: PageServerLoad = async ({ locals }) => {
+
 	const education = async () => {
 		const { data, error: err } = await supabase
 			.from('applicant_education')
@@ -33,6 +45,7 @@ export const load: PageServerLoad = async ({ locals }) => {
 
 		return data;
 	};
+
 	const experience = async () => {
 		const { data, error: err } = await supabase
 			.from('applicant_experience')
@@ -45,6 +58,7 @@ export const load: PageServerLoad = async ({ locals }) => {
 		return data;
 	};
 
+	// parallel load data
 	return {
 		education: education(),
 		experience: experience()
@@ -55,20 +69,23 @@ export const actions: Actions = {
 	'add-education': async ({ request, locals }) => {
 		try {
 			// get form items from request
-			const body = Object.fromEntries(await request.formData());
+			let body = {
+				...Object.fromEntries(await request.formData()), 
+				applicant_id: locals.session.user.id
+			};
 
 			// parse request body against schema
-			const result = ApplicationEducationSchema.safeParse(body);
+			const validated = AddApplicationEducationSchema.safeParse(body);
 
 			// return invalid user data error if parsing failed
-			if (!result.success) {
+			if (!validated.success) {
 				return fail(400, { error: 'Could not validate input', hint: '' });
 			}
 
 			// if parsing succeeded, query the database
 			const { error: err } = await supabase
 				.from('applicant_education')
-				.insert({ ...body, applicant_id: locals.session.user.id });
+				.insert(validated.data);
 
 			// if some database error occurred, return internal error
 			if (err) {
@@ -77,7 +94,7 @@ export const actions: Actions = {
 			}
 
 			// if this state is reached, everything succeeded, return success 🥳
-			return { success: true };
+			return { success: true, message: 'Education added' };
 
 			// catch all unexpected exceptions
 		} catch (err) {
@@ -93,27 +110,27 @@ export const actions: Actions = {
 			const body = Object.fromEntries(await request.formData());
 
 			// parse request body against schema
-			const result = ApplicationEducationSchema.safeParse(body);
+			const validated = UpdateApplicantEducationSchema.safeParse(body);
 
 			// return invalid user data error if parsing failed
-			if (!result.success) {
+			if (!validated.success) {
 				return fail(400, { error: 'Could not validate input', hint: '' });
 			}
 
 			// if parsing succeeded, query the database
 			const { error: err } = await supabase
 				.from('applicant_education')
-				.update({ ...body, applicant_id: locals.session.user.id })
-				.eq('applicant_id', locals.session.user.id);
+				.update(validated.data)
+				.eq('applicant_id', locals.session.user.id)
+				.eq('id', body.education_id);
 
 			// if some database error occurred, return internal error
 			if (err) {
-				console.log(err);
 				return fail(500, { error: 'Could not save education', hint: 'Please try again later' });
 			}
 
 			// if this state is reached, everything succeeded, return success 🥳
-			return { success: true };
+			return { success: true, message: 'Education updated' };
 
 			// catch all unexpected exceptions
 		} catch (err) {
@@ -128,20 +145,25 @@ export const actions: Actions = {
 			const body = Object.fromEntries(await request.formData());
 			
 			// parse request body against schema
-			const result = EducationId.safeParse(body);
+			const validated = DeleteApplicantEducationSchema.safeParse(body);
 			
 			// return invalid user data error if parsing failed
-			if (!result.success) {
+			if (!validated.success) {
 				return fail(400, { error: 'Could not validate input', hint: '' });
 			}
 			
-			const {error: err} = await supabase.from('applicant_education').delete().eq('applicant_id', locals.session.user.id).eq('id', body.education_id);
+			// query database
+			const {error: err} = await supabase
+				.from('applicant_education')
+				.delete()
+				.eq('applicant_id', locals.session.user.id)
+				.eq('id', validated.data.education_id);
 
 			if(err) {
 				return fail(500);
 			}
 
-			return { success: true };
+			return { success: true, message: 'Education deleted' };
 		} catch (error) {
 			return fail(500, { error: 'not yet implemented' });
 		}

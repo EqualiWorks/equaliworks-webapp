@@ -12,10 +12,10 @@
 	export let data: ApplicantEducation | null;
 
 	// handlers
-	const handleSubmit: SubmitFunction = ({ form, data, action, cancel }) => {
-		return async ({ result, update }) => {
+	const handleSubmit: SubmitFunction = ({}) => {
+		return async ({ result }) => {
 			showModal = false;
-			dispatch('submit-success', { message: 'Successfully deleted education' });
+			dispatch('submit', result);
 		};
 	};
 </script>

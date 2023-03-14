@@ -63,6 +63,7 @@ export interface Database {
           applicant_id: string
           created_at: string | null
           degree: string | null
+          description: string | null
           end_date: string
           id: number
           institution: string
@@ -73,6 +74,7 @@ export interface Database {
           applicant_id: string
           created_at?: string | null
           degree?: string | null
+          description?: string | null
           end_date: string
           id?: number
           institution: string
@@ -83,6 +85,7 @@ export interface Database {
           applicant_id?: string
           created_at?: string | null
           degree?: string | null
+          description?: string | null
           end_date?: string
           id?: number
           institution?: string

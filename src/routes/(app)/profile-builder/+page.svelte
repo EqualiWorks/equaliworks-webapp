@@ -30,13 +30,21 @@
 	let DeleteExperienceModalIsOpen = false;
 
 	// handlers
-	const handleSuccessSubmit = async (event: any) => {
+	const handleFormSubmit = async (event: any) => {
 		invalidateAll();
-		toastStore.trigger({
-			type: 'success',
-			message: event.detail.message,
-			icon: 'ph-check-circle'
-		});
+		if (event.detail.type === 'failure') {
+			toastStore.trigger({
+				type: 'error',
+				message: event.detail.data.error,
+				icon: 'ph-x-circle'
+			});
+		} else {
+			toastStore.trigger({
+				type: 'success',
+				message: event.detail.data.message,
+				icon: 'ph-check-circle'
+			});
+		}
 	};
 
 	const handleDeleteEducationClick = (event: any) => {
@@ -50,21 +58,18 @@
 	};
 </script>
 
-<AddEducationModal
-	on:submit-success={handleSuccessSubmit}
-	bind:showModal={AddEducationModalIsOpen}
-/>
+<AddEducationModal on:submit={handleFormSubmit} bind:showModal={AddEducationModalIsOpen} />
 
 <DeleteEducationModal
 	bind:showModal={DeleteEducationModalIsOpen}
 	data={selectedEducation}
-	on:submit-success={handleSuccessSubmit}
+	on:submit={handleFormSubmit}
 />
 
 <UpdateEducationModal
 	bind:showModal={UpdateEducationModalIsOpen}
 	data={selectedEducation}
-	on:submit-success={handleSuccessSubmit}
+	on:submit={handleFormSubmit}
 />
 
 <div class="grid h-full grid-cols-7">
