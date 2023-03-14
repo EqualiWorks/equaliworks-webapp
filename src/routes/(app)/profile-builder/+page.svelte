@@ -9,6 +9,7 @@
 	import DeleteEducationModal from './DeleteEducationModal.svelte';
 	import ProfileAttributeBuilder from './ProfileAttributeBuilder.svelte';
 	import ProfileEducationBuilder from './ProfileEducationBuilder.svelte';
+	import UpdateEducationModal from './UpdateEducationModal.svelte';
 
 	// props
 	export let data: PageData;
@@ -42,6 +43,11 @@
 		selectedEducation = event.detail.data;
 		DeleteEducationModalIsOpen = true;
 	};
+
+	const handleUpdateEducationClick = (event: any) => {
+		selectedEducation = event.detail.data;
+		UpdateEducationModalIsOpen = true;
+	};
 </script>
 
 <AddEducationModal
@@ -51,6 +57,12 @@
 
 <DeleteEducationModal
 	bind:showModal={DeleteEducationModalIsOpen}
+	data={selectedEducation}
+	on:submit-success={handleSuccessSubmit}
+/>
+
+<UpdateEducationModal
+	bind:showModal={UpdateEducationModalIsOpen}
 	data={selectedEducation}
 	on:submit-success={handleSuccessSubmit}
 />
@@ -130,7 +142,11 @@
 		<div class="mx-5 divide-y rounded-md border border-base-300">
 			{#if education.length}
 				{#each education as data}
-					<ProfileEducationBuilder {data} on:delete-education={handleDeleteEducationClick} />
+					<ProfileEducationBuilder
+						{data}
+						on:delete-education={handleDeleteEducationClick}
+						on:update-education={handleUpdateEducationClick}
+					/>
 				{/each}
 			{:else}
 				<div class="flex items-center justify-center p-4">

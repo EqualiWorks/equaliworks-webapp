@@ -86,10 +86,42 @@ export const actions: Actions = {
 				hint: 'Please try again later'
 			});
 		}
-		// return new Response();
 	},
 	'update-education': async ({ request, locals }) => {
-		return fail(500, { error: 'not yet implemented' });
+		try {
+			// get form items from request
+			const body = Object.fromEntries(await request.formData());
+
+			// parse request body against schema
+			const result = ApplicationEducationSchema.safeParse(body);
+
+			// return invalid user data error if parsing failed
+			if (!result.success) {
+				return fail(400, { error: 'Could not validate input', hint: '' });
+			}
+
+			// if parsing succeeded, query the database
+			const { error: err } = await supabase
+				.from('applicant_education')
+				.update({ ...body, applicant_id: locals.session.user.id })
+				.eq('applicant_id', locals.session.user.id);
+
+			// if some database error occurred, return internal error
+			if (err) {
+				console.log(err);
+				return fail(500, { error: 'Could not save education', hint: 'Please try again later' });
+			}
+
+			// if this state is reached, everything succeeded, return success 🥳
+			return { success: true };
+
+			// catch all unexpected exceptions
+		} catch (err) {
+			return fail(500, {
+				error: 'Something went wrong while adding education',
+				hint: 'Please try again later'
+			});
+		}
 	},
 	'delete-education': async ({ request, locals }) => {
 		try {

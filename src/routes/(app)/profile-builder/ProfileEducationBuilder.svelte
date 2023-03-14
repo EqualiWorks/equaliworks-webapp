@@ -12,6 +12,12 @@
 			data: data
 		});
 	};
+
+	const handleUpdateClick = () => {
+		return dispatch('update-education', {
+			data: data
+		});
+	};
 </script>
 
 <div class="flex items-center justify-between p-3">
@@ -37,7 +43,7 @@
 		<button on:click={handleDeleteClick} class="btn-ghost btn-sm btn">
 			<i class="ph-trash ph-lg" />
 		</button>
-		<button on:click class="btn-ghost btn-sm btn">
+		<button on:click={handleUpdateClick} class="btn-ghost btn-sm btn">
 			<i class="ph-pencil-simple-line ph-lg" />
 		</button>
 	</div>
